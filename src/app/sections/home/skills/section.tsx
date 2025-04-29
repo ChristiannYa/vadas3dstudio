@@ -1,7 +1,7 @@
-export default function Portfolio() {
+export default function SkillsSection() {
   return (
     <section className="min-h-screen">
-      <h1>Portfolio</h1>
+      <h1>Skills</h1>
     </section>
   );
 }

@@ -3,7 +3,7 @@ import {
   PortfolioSection,
   SkillsSection,
   GetInTouchSection,
-} from "@/app/sections";
+} from "./sections/home/";
 
 export default function Home() {
   return (

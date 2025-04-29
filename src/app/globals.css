@@ -1,15 +1,26 @@
 @import "tailwindcss";
 
 :root {
+  --custom-white: #ffffff;
+  --custom-black: #171717;
+  --white-fg: #ededed;
+  --black-fg: #171717;
+
   --bg: #ffffff;
   --fg: #171717;
 }
 
 @theme inline {
+  --color-custom-white: var(--custom-white);
+  --color-custom-black: var(--custom-black);
   --color-bg: var(--bg);
   --color-fg: var(--fg);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-white-fg: var(--white-fg);
+  --color-black-fg: var(--black-fg);
+
+  --font-raleway: var(--font-raleway);
+  --font-poppins: var(--font-poppins);
+  --font-dm-sans: var(--font-dm-sans);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,7 +40,20 @@ nav ul li {
   @apply hover:text-fg/60 hover:cursor-pointer px-2 py-1;
 }
 
+.a {
+  @apply font-raleway font-light text-xs md:text-sm uppercase;
+}
+
+/* Intro section */
+.intro-badge {
+  @apply lg:bg-bg lg:border-2 lg:border-fg lg:rounded-full lg:px-12 lg:py-2.5;
+}
+
+.intro-badge > p {
+  @apply text-fg text-sm max-[380px]:text-xs md:text-base;
+}
+
 .container-1600 {
   margin-inline: auto;
-  width: min(90%, 1600px);
+  width: min(94%, 1600px);
 }
