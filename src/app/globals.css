@@ -23,6 +23,9 @@
   --font-poppins: var(--font-poppins);
   --font-dm-sans: var(--font-dm-sans);
   --font-montserrat-alternates: var(--font-montserrat-alternates);
+  --font-dream-avenue: var(--font-dream-avenue);
+  --font-kanit: var(--font-kanit);
+  --font-fira-code: var(--font-fira-code);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,12 +41,33 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+section {
+  @apply py-6 lg:py-12;
+}
+
+section h1 {
+  @apply font-dream-avenue font-[500] text-6xl lg:text-8xl;
+}
+
 nav ul li {
   @apply hover:text-fg/60 hover:cursor-pointer px-2 py-1;
 }
 
+.section-title {
+  @apply font-dream-avenue font-[500] text-6xl lg:text-8xl;
+}
+
 .a {
   @apply font-raleway font-light text-xs md:text-sm uppercase;
+}
+
+.vt {
+  writing-mode: sideways-lr;
+}
+
+.container-1600 {
+  margin-inline: auto;
+  width: min(94%, 1600px);
 }
 
 /* Intro section */
@@ -52,12 +76,7 @@ nav ul li {
 }
 
 .intro-badge > p {
-  @apply text-fg text-sm max-[380px]:text-xs md:text-base;
-}
-
-.container-1600 {
-  margin-inline: auto;
-  width: min(94%, 1600px);
+  @apply font-raleway text-fg text-sm max-[380px]:text-xs md:text-base;
 }
 
 .td-text {
@@ -99,4 +118,34 @@ nav ul li {
     margin-left: 16px;
     display: block;
   }
+}
+
+/* Skills Section */
+.tool {
+  width: fit-content;
+  position: relative;
+}
+
+.tool span {
+  background-color: #171717;
+  color: white;
+  font-size: 0.8rem;
+  border-radius: 2px;
+  white-space: nowrap;
+  transition: transform 0.3s, opacity 0.3s;
+  transform: translateX(-50%) translateY(18px) scale(0.8);
+  opacity: 0;
+  pointer-events: none;
+
+  padding: 0.125rem 0.375rem;
+
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  z-index: 10;
+}
+
+.tool:hover span {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
 }

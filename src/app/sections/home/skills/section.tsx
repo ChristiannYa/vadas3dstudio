@@ -1,7 +1,13 @@
+import Skills from "./Skills";
+
+/**
+ * @note - The title of the section(element) is
+ * in the `Skills` component.
+ */
 export default function SkillsSection() {
   return (
-    <section className="min-h-screen">
-      <h1>Skills</h1>
-    </section>
+    <aside className="w-fit ml-8">
+      <Skills />
+    </aside>
   );
 }

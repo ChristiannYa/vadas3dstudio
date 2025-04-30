@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
-import { raleway, poppins, dmSans, montserratAlternates } from "./fonts";
+import {
+  raleway,
+  poppins,
+  dmSans,
+  montserratAlternates,
+  dreamAvenue,
+  kanit,
+  firaCode,
+} from "./fonts";
 import "./globals.css";
 import Header from "./components/layout/header/Header";
 
@@ -16,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${raleway.variable} ${poppins.variable} ${dmSans.variable} ${montserratAlternates.variable} antialiased`}
+        className={`${raleway.variable} ${poppins.variable} ${dmSans.variable} ${montserratAlternates.variable} ${dreamAvenue.variable} ${kanit.variable} ${firaCode.variable} antialiased`}
       >
         <Header />
         {children}

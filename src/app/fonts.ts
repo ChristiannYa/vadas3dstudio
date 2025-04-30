@@ -4,6 +4,8 @@ import {
   Poppins,
   DM_Sans,
   Montserrat_Alternates,
+  Kanit,
+  Fira_Code,
 } from "next/font/google";
 
 /*
@@ -43,7 +45,22 @@ export const montserratAlternates = Montserrat_Alternates({
   display: "swap",
 });
 
+export const kanit = Kanit({
+  subsets: ["latin"],
+  variable: "--font-kanit",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
+
+export const firaCode = Fira_Code({
+  subsets: ["latin"],
+  variable: "--font-fira-code",
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
 export const dreamAvenue = localFont({
   src: "../../public/fonts/Dream-Avenue.ttf",
   display: "swap",
+  variable: "--font-dream-avenue",
 });
