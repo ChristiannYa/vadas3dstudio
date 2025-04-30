@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { raleway, poppins, dmSans } from "./fonts";
+import { raleway, poppins, dmSans, montserratAlternates } from "./fonts";
 import "./globals.css";
 import Header from "./components/layout/header/Header";
 
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${raleway.variable} ${poppins.variable} ${dmSans.variable} antialiased`}
+        className={`${raleway.variable} ${poppins.variable} ${dmSans.variable} ${montserratAlternates.variable} antialiased`}
       >
         <Header />
         {children}

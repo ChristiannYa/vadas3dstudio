@@ -3,6 +3,7 @@
 :root {
   --custom-white: #ffffff;
   --custom-black: #171717;
+
   --white-fg: #ededed;
   --black-fg: #171717;
 
@@ -21,11 +22,12 @@
   --font-raleway: var(--font-raleway);
   --font-poppins: var(--font-poppins);
   --font-dm-sans: var(--font-dm-sans);
+  --font-montserrat-alternates: var(--font-montserrat-alternates);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0a0a0a;
+    --bg: #010101;
     --fg: #ededed;
   }
 }
@@ -56,4 +58,45 @@ nav ul li {
 .container-1600 {
   margin-inline: auto;
   width: min(94%, 1600px);
+}
+
+.td-text {
+  text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191,
+    1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191,
+    1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191,
+    1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4),
+    1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2),
+    1px 30px 60px rgba(16, 16, 16, 0.4);
+}
+
+@media (max-width: 1025px) {
+  .td-text {
+    text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191,
+      1px 4px 1px #919191, 1px 5px 1px #919191,
+      1px 10px 4px rgba(16, 16, 16, 0.3), 1px 15px 20px rgba(16, 16, 16, 0.2);
+  }
+}
+
+.an-lo::before {
+  content: "";
+  background-color: var(--fg);
+
+  height: 1px;
+  flex-grow: 1;
+}
+
+.an-lo::after {
+  content: "";
+  background-color: var(--fg);
+
+  height: 1px;
+  display: none;
+  flex-grow: 1;
+}
+
+@media (width < 64rem) {
+  .an-lo::after {
+    margin-left: 16px;
+    display: block;
+  }
 }

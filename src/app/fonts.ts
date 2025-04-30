@@ -1,5 +1,10 @@
 import localFont from "next/font/local";
-import { Raleway, Poppins, DM_Sans } from "next/font/google";
+import {
+  Raleway,
+  Poppins,
+  DM_Sans,
+  Montserrat_Alternates,
+} from "next/font/google";
 
 /*
   display:
@@ -28,6 +33,13 @@ export const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
   weight: ["300", "400", "500", "700"],
+  display: "swap",
+});
+
+export const montserratAlternates = Montserrat_Alternates({
+  subsets: ["latin"],
+  variable: "--font-montserrat-alternates",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
