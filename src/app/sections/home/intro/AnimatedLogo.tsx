@@ -74,7 +74,7 @@ export default function AnimatedLogo() {
     >
       <div></div>
       <div
-        className="rounded-full relative"
+        className="bg-[#010101] rounded-full relative"
         style={{
           padding: `${video_wrapper_padding}px`,
           border: `solid ${video_wrapper_borderWeight}px ${"var(--fg)"}`,
@@ -85,6 +85,7 @@ export default function AnimatedLogo() {
           autoPlay
           muted
           playsInline
+          loop
           style={{ minWidth: `${videoWidth}px` }}
         >
           <source src="/videos/logo.mp4" type="video/mp4" />

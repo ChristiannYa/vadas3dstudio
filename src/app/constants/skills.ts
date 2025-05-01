@@ -12,8 +12,8 @@ export const skills = [
 ];
 
 export const tools = [
-  { index: 1, Icon: Revit, name: "Revit" },
-  { index: 2, Icon: Skektchup, name: "SketchUp" },
-  { index: 3, Icon: TwinMotion, name: "Twin Motion" },
-  { index: 4, Icon: Vray, name: "V-Ray" },
+  { index: 1, icon: Revit, name: "Revit" },
+  { index: 2, icon: Skektchup, name: "SketchUp" },
+  { index: 3, icon: TwinMotion, name: "Twin Motion" },
+  { index: 4, icon: Vray, name: "V-Ray" },
 ];

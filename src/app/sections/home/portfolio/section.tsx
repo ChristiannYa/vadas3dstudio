@@ -1,12 +1,6 @@
 import { portfolioItems } from "@/app/constants/portfolio";
 import Image from "next/image";
 
-/*
-  The original images have a resolution of 1472 x 832.
-  To get the aspect ratio:
-  (original height / original width) x new width = new height
-*/
-
 export default function PortfolioSection() {
   return (
     <section className="min-h-screen container-1600">

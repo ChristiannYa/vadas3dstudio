@@ -42,7 +42,7 @@ body {
 }
 
 section {
-  @apply py-6 lg:py-12;
+  @apply py-8 lg:py-12;
 }
 
 section h1 {
@@ -62,12 +62,20 @@ nav ul li {
 }
 
 .vt {
-  writing-mode: sideways-lr;
+  transform: scaleX(-1) scaleY(-1);
+  writing-mode: vertical-lr;
+  -webkit-writing-mode: vertical-lr;
+  -ms-writing-mode: tb-lr;
 }
 
 .container-1600 {
   margin-inline: auto;
-  width: min(94%, 1600px);
+  width: min(96%, 1600px);
+}
+
+.container-1000 {
+  margin-inline: auto;
+  width: min(96%, 1000px);
 }
 
 /* Intro section */
@@ -145,7 +153,15 @@ nav ul li {
   z-index: 10;
 }
 
-.tool:hover span {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0) scale(1);
+@media (width < 64rem) {
+  .tool span {
+    font-size: 0.6rem;
+  }
+}
+
+@media (hover: hover) {
+  .tool:hover span {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
 }

@@ -1,18 +1,18 @@
 import {
   IntroSection,
   PortfolioSection,
-  SkillsSection,
   AboutSection,
   GetInTouchSection,
 } from "./sections/home/";
+import Collage from "./components/miscellaneous/Collage";
 
 export default function Home() {
   return (
     <main className="space-y-6 lg:space-y-12">
       <IntroSection />
       <PortfolioSection />
-      <SkillsSection />
       <AboutSection />
+      <Collage />
       <GetInTouchSection />
     </main>
   );

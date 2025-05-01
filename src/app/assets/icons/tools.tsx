@@ -1,8 +1,7 @@
-export function Revit() {
+export function Revit({ className = "" }) {
   return (
     <svg
-      width="32"
-      height="28"
+      className={className}
       viewBox="0 0 32 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -15,11 +14,10 @@ export function Revit() {
   );
 }
 
-export function Skektchup() {
+export function Skektchup({ className = "" }) {
   return (
     <svg
-      width="27"
-      height="28"
+      className={className}
       viewBox="0 0 27 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -32,28 +30,26 @@ export function Skektchup() {
   );
 }
 
-export function TwinMotion() {
+export function TwinMotion({ className = "" }) {
   return (
     <svg
-      width="28"
-      height="28"
+      className={className}
       viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
         d="M14 0.00117821C8.26 0.00117821 3.325 3.48984 1.167 8.48425H19.599V8.48896L16.8408 27.9848C23.2108 26.6592 28 20.9637 28 14.1397H20.6955L21.4982 8.48425H26.833C24.6727 3.48749 19.74 0 14 0M0 14.1385C0 20.9909 4.83 26.7051 11.2385 28L13.1997 14.1385H0Z"
-        fill="white"
+        className="fill-black dark:fill-white"
       />
     </svg>
   );
 }
 
-export function Vray() {
+export function Vray({ className = "" }) {
   return (
     <svg
-      width="28"
-      height="28"
+      className={className}
       viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
