@@ -1,7 +1,7 @@
 import Image from "next/image";
 import aboutPhoto from "@/app/assets/images/about/about-photo.jpg";
 import Tools from "./Tools";
-import { skills } from "@/app/constants/skills";
+import Skills from "./Skills";
 
 /*
   Try to fix the small gap below the image
@@ -25,11 +25,7 @@ export default function AboutAside() {
             Skills
           </h2>
           <Tools />
-          <ul className="font-dm-sans max-sm:text-sm leading-5">
-            {skills.map((skill, index) => (
-              <li key={index}> &#8226; {skill.name}</li>
-            ))}
-          </ul>
+          <Skills />
         </div>
       </div>
     </aside>
