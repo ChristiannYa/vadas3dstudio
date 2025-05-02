@@ -9,6 +9,8 @@
 
   --bg: #ffffff;
   --fg: #171717;
+
+  --accent-1: #cbb799;
 }
 
 @theme inline {
@@ -16,6 +18,7 @@
   --color-custom-black: var(--custom-black);
   --color-bg: var(--bg);
   --color-fg: var(--fg);
+  --color-accent-1: var(--accent-1);
   --color-white-fg: var(--white-fg);
   --color-black-fg: var(--black-fg);
 
@@ -50,32 +53,19 @@ section h1 {
 }
 
 nav ul li {
-  @apply hover:text-fg/60 hover:cursor-pointer px-2 py-1;
+  @apply hover:text-accent-1 hover:cursor-pointer px-2 py-1;
 }
 
 .section-title {
   @apply font-dream-avenue font-[500] text-6xl lg:text-8xl;
 }
 
+.section-title__mb {
+  @apply mb-4;
+}
+
 .a {
   @apply font-raleway font-light text-xs md:text-sm uppercase;
-}
-
-.vt {
-  transform: scaleX(-1) scaleY(-1);
-  writing-mode: vertical-lr;
-  -webkit-writing-mode: vertical-lr;
-  -ms-writing-mode: tb-lr;
-}
-
-.container-1600 {
-  margin-inline: auto;
-  width: min(96%, 1600px);
-}
-
-.container-1000 {
-  margin-inline: auto;
-  width: min(96%, 1000px);
 }
 
 /* Intro section */
@@ -84,9 +74,53 @@ nav ul li {
 }
 
 .intro-badge > p {
-  @apply font-raleway text-fg text-sm max-[380px]:text-xs md:text-base;
+  @apply font-raleway text-sm max-[380px]:text-xs md:text-base;
 }
 
+.an-lo::before {
+  content: "";
+  background-color: var(--color-accent-1);
+
+  height: 1px;
+  flex-grow: 1;
+}
+
+.an-lo::after {
+  content: "";
+  background-color: var(--color-accent-1);
+
+  height: 1px;
+  display: none;
+  flex-grow: 1;
+}
+
+@media (width < 64rem) {
+  .an-lo::before {
+    height: 2px;
+  }
+
+  .an-lo::after {
+    margin-left: 16px;
+    display: block;
+    height: 2px;
+  }
+}
+
+/* Skills Section */
+.tool span {
+  transition: transform 0.3s, opacity 0.3s;
+  transform: translateX(-50%) translateY(18px) scale(0.8);
+  opacity: 0;
+}
+
+@media (hover: hover) {
+  .tool:hover span {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* Helper Classes */
 .td-text {
   text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191,
     1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191,
@@ -104,41 +138,19 @@ nav ul li {
   }
 }
 
-.an-lo::before {
-  content: "";
-  background-color: var(--fg);
-
-  height: 1px;
-  flex-grow: 1;
+.vt {
+  transform: scaleX(-1) scaleY(-1);
+  writing-mode: vertical-lr;
+  -webkit-writing-mode: vertical-lr;
+  -ms-writing-mode: tb-lr;
 }
 
-.an-lo::after {
-  content: "";
-  background-color: var(--fg);
-
-  height: 1px;
-  display: none;
-  flex-grow: 1;
+.container-1600 {
+  margin-inline: auto;
+  width: min(94%, 1600px);
 }
 
-@media (width < 64rem) {
-  .an-lo::after {
-    margin-left: 16px;
-    display: block;
-  }
-}
-
-/* Skills Section */
-
-.tool span {
-  transition: transform 0.3s, opacity 0.3s;
-  transform: translateX(-50%) translateY(18px) scale(0.8);
-  opacity: 0;
-}
-
-@media (hover: hover) {
-  .tool:hover span {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
+.container-1000 {
+  margin-inline: auto;
+  width: min(94%, 1000px);
 }

@@ -102,7 +102,7 @@ export default function AnimatedLogo() {
               text="VISUALIZING CONCEPTS DESIGNING 3D REALITY."
               radius={curvedTextRadius}
               textSize={videoWidth < 70 ? 8 : 10}
-              color="var(--fg)"
+              color="var(--color-accent-1)"
             />
           )}
         </div>

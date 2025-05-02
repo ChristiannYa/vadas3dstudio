@@ -5,7 +5,7 @@ export default function Paragraph() {
     <div className="flex items-center max-lg:flex-col lg:gap-x-8 max-lg:gap-y-6">
       <AnimatedLogo />
       <div className="font-montserrat-alternates lg:w-[45%]">
-        <p className="text-fg/80 text-xl lg:text-2xl text-center lg:text-end font-[300] uppercase">
+        <p className="text-accent-1 text-xl lg:text-2xl text-center lg:text-end font-[500] uppercase">
           Need 2D floor plans or 3D renderings that actually impress?
         </p>
         <p className="text-fg text-xl lg:text-2xl text-center lg:text-end font-[300] uppercase">
@@ -14,7 +14,6 @@ export default function Paragraph() {
           style and timeline. Whether you are an Architect or a design
           professional, our team is ready to help.
         </p>
-        {/* Services: Available for freelance & ongoing partnerships */}
       </div>
     </div>
   );

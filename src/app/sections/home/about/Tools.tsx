@@ -1,7 +1,7 @@
 import { tools } from "@/app/constants/skills";
 
 /**
- * @note - The component has an additional margin to
+ * @note - The component (`ul`) has an additional margin to
  * the right because the title of the section has a
  * default spacer below it, so it compensates for that.
  */

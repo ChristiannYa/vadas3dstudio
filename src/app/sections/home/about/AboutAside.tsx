@@ -21,7 +21,7 @@ export default function AboutAside() {
           />
         </div>
         <div className="flex items-end gap-x-0.5 lg:gap-x-2">
-          <h2 className="font-[200] text-3xl sm:text-5xl lg:text-7xl font-dm-sans vt text-center">
+          <h2 className="text-accent-1 font-[200] text-3xl sm:text-5xl lg:text-7xl font-dm-sans vt text-center">
             Skills
           </h2>
           <Tools />

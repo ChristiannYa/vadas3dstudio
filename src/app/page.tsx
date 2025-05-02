@@ -2,6 +2,7 @@ import {
   IntroSection,
   PortfolioSection,
   AboutSection,
+  QuestionsAndAnswers,
   GetInTouchSection,
 } from "./sections/home/";
 import Collage from "./components/miscellaneous/Collage";
@@ -13,6 +14,7 @@ export default function Home() {
       <PortfolioSection />
       <AboutSection />
       <Collage />
+      <QuestionsAndAnswers />
       <GetInTouchSection />
     </main>
   );
