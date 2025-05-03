@@ -13,8 +13,36 @@ import Header from "./components/layout/header/component";
 import Footer from "./components/layout/footer/component";
 
 export const metadata: Metadata = {
-  title: "Vadastudio",
-  description: "3D renderig studio based in Houston, TX",
+  title: "Vadas 3D Studio",
+  description: "3D rendering studio based in Houston, TX",
+  viewport: "width=device-width, initial-scale=1.0",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: { url: "/apple-touch-icon.jpg", sizes: "180x180" },
+  },
+  openGraph: {
+    type: "website",
+    url: "https://vadas3dstudio.com/",
+    title: "Vadas 3D Studio",
+    description: "3D rendering studio based in Houston, TX",
+    images: [
+      {
+        url: "https://vadas3dstudio.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vadas 3D Studio",
+    description: "3D rendering studio based in Houston, TX",
+    images: ["https://vadas3dstudio.com/og-image.jpg"],
+  },
+  other: {
+    "twitter:domain": "vadas3dstudio.com",
+    "twitter:url": "https://vadas3dstudio.com",
+  },
 };
 
 export default function RootLayout({
