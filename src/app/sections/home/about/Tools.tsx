@@ -11,7 +11,7 @@ export default function Tools() {
       {tools.map((tool) => (
         <li key={tool.index} className="tool w-fit relative">
           <tool.icon className="w-5 h-5 lg:w-6 lg:h-6" />
-          <span className="bg-neutral-100 dark:bg-custom-black text-fg text-xs lg:text-sm rounded-xs whitespace-nowrap pointer-events-none py-0.5 px-1.5 absolute -top-8 left-1/2">
+          <span className="bg-accent-1 text-fg text-xs lg:text-sm rounded-xs whitespace-nowrap pointer-events-none py-0.5 px-1.5 absolute -top-8 left-1/2">
             {tool.name}
           </span>
         </li>

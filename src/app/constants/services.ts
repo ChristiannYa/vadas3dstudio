@@ -2,7 +2,10 @@ import { Service } from "../definitions";
 
 export const servicesList: Service[] = [
   {
-    category: "Architectural Visualization",
+    category: [
+      { text: "Architectural", highlight: true },
+      { text: " Visualization" },
+    ],
     description:
       "Helping architects, developers, and real estate professionals present their spaces with clarity and beauty.",
     items: [
@@ -29,7 +32,10 @@ export const servicesList: Service[] = [
     ],
   },
   {
-    category: "3D Product Visualization",
+    category: [
+      { text: "3D Product ", highlight: true },
+      { text: "Visualization" },
+    ],
     description: "Ideal for product designers, startups, and eCommerce brands.",
     items: [
       {

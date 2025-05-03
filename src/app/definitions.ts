@@ -13,8 +13,18 @@ export interface Qna {
   a: string;
 }
 
+export interface PortfolioItem {
+  id: number;
+  title: string;
+  description: string;
+  image: StaticImageData;
+}
+
 export interface Service {
-  category: string;
+  category: {
+    text: string;
+    highlight?: boolean;
+  }[];
   description: string;
   items: {
     title: string;
