@@ -1,4 +1,4 @@
-export function Revit({ className = "" }) {
+export function Revit({ className }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -14,7 +14,7 @@ export function Revit({ className = "" }) {
   );
 }
 
-export function Skektchup({ className = "" }) {
+export function Skektchup({ className }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -30,7 +30,7 @@ export function Skektchup({ className = "" }) {
   );
 }
 
-export function TwinMotion({ className = "" }) {
+export function TwinMotion({ className }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -46,7 +46,7 @@ export function TwinMotion({ className = "" }) {
   );
 }
 
-export function Vray({ className = "" }) {
+export function Vray({ className }: { className?: string }) {
   return (
     <svg
       className={className}

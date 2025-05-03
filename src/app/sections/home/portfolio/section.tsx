@@ -6,7 +6,7 @@ export default function PortfolioSection() {
     <section className="min-h-screen container-1600">
       <h1 className="section-title__mb text-center">Portfolio</h1>
 
-      <div className="flex justify-center flex-wrap gap-x-4 gap-y-6">
+      <div className="flex justify-center flex-wrap gap-3 ">
         {portfolioItems.map((item, i) => (
           <div key={item.id} className="space-y-2">
             <Image

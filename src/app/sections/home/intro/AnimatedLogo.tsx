@@ -31,9 +31,9 @@ export default function AnimatedLogo() {
       setIsLgScreen(lgScreen);
 
       if (smScreen) {
-        setVideoWidth(50);
+        setVideoWidth(80);
       } else if (lgScreen) {
-        setVideoWidth(70);
+        setVideoWidth(90);
       } else {
         setVideoWidth(100);
       }

@@ -10,7 +10,7 @@ export default function Header() {
       <div className="max-md:relative container-1600 flex justify-center md:justify-between items-start md:items-center">
         <div>
           <p
-            className={`font-poppins font-[400] text-accent-1 text-3xl md:text-4xl uppercase`}
+            className={`font-poppins font-[400] text-accent-1 dark:text-white-fg text-3xl md:text-4xl uppercase`}
           >
             Vadastudio
           </p>

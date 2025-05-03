@@ -15,7 +15,7 @@ export default function AboutAside() {
           <Image
             src={aboutPhoto}
             alt="About Photo"
-            className="rounded-xl w-full object-cover"
+            className="rounded-lg w-full object-cover"
             width={300}
             height={381}
           />

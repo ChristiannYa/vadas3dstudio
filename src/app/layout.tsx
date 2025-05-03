@@ -9,7 +9,8 @@ import {
   firaCode,
 } from "./fonts";
 import "./globals.css";
-import Header from "./components/layout/header/Header";
+import Header from "./components/layout/header/component";
+import Footer from "./components/layout/footer/component";
 
 export const metadata: Metadata = {
   title: "Vadastudio",
@@ -28,6 +29,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

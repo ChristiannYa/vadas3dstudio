@@ -21,14 +21,22 @@ export interface PortfolioItem {
 }
 
 export interface Service {
+  id: number;
   category: {
     text: string;
     highlight?: boolean;
   }[];
   description: string;
   items: {
+    id: number;
     title: string;
     description: string;
     details?: string[];
   }[];
+}
+
+export interface Industries {
+  id: number;
+  industry: string;
+  description: string;
 }
