@@ -11,13 +11,13 @@ export const portfolioItems: PortfolioItem[] = [
   {
     id: 2,
     title: "Sophisticated master bedroom",
-    description: "With oversized mirror lux headboard",
+    description: "With oversized mirrored lux headboard",
     image: porfolioImages.bedroom1,
   },
   {
     id: 3,
     title: "Modern hotel suite",
-    description: "Overlooking skyline view",
+    description: "Overlooking the city skyline",
     image: porfolioImages.bedroom2,
   },
   {
