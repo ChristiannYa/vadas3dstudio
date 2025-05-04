@@ -27,7 +27,7 @@ export default function List() {
           <ul className="space-y-1 border-l border-accent-1 px-2">
             {service.items.map((item) => (
               <li key={item.id}>
-                <h3 className="font-raleway font-[400] dark:font-[300] text-accent-2 text-xl lg:text-2xl text-start">
+                <h3 className="font-raleway font-[400] dark:font-[300] text-accent-1 text-xl lg:text-2xl text-start">
                   {item.title}
                 </h3>
                 <p className="font-raleway font-[400] dark:font-[300]">

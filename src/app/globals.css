@@ -10,9 +10,8 @@
   --bg: #ffffff;
   --fg: #171717;
 
-  --accent-1: #197cbc;
-  --accent-2: #5287d6;
-  /* cbb799 beige */
+  --accent-1: #cbb799;
+  --accent-1-hover: #b6a48b;
 }
 
 @theme inline {
@@ -21,7 +20,6 @@
   --color-bg: var(--bg);
   --color-fg: var(--fg);
   --color-accent-1: var(--accent-1);
-  --color-accent-2: var(--accent-2);
   --color-white-fg: var(--white-fg);
   --color-black-fg: var(--black-fg);
 
@@ -117,7 +115,7 @@ nav ul li {
 
 .cta::before {
   content: "";
-  background-color: var(--accent-2);
+  background-color: var(--accent-1-hover);
   inset: 0;
   transition: width 0.3s ease;
 
@@ -149,12 +147,12 @@ nav ul li {
 
 /* Helper Classes */
 .text-shine {
-  color: #fff;
+  color: #afabab;
   background: linear-gradient(
     to right,
     var(--color-accent-1) 0,
     #fff 10%,
-    var(--color-accent-2) 20%
+    var(--color-accent-1) 20%
   );
   background-position: 0;
   -webkit-background-clip: text;
