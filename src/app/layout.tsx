@@ -15,10 +15,18 @@ import Footer from "./components/layout/footer/component";
 export const metadata: Metadata = {
   title: "Vadas 3D Studio",
   description: "3D rendering studio based in Houston, TX",
-  viewport: "width=device-width, initial-scale=1.0",
+  manifest: "/site.webmanifest",
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: { url: "/apple-touch-icon.jpg", sizes: "180x180" },
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: {
+      url: "/apple-icon.png",
+      sizes: "180x180",
+      type: "image/png",
+    },
   },
   openGraph: {
     type: "website",
