@@ -16,11 +16,7 @@ export const metadata: Metadata = {
   title: "Vadas 3D Studio",
   description: "3D rendering studio based in Houston, TX",
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
+    icon: { url: "/favicon.svg", type: "image/svg+xml" },
   },
   openGraph: {
     type: "website",
