@@ -12,6 +12,12 @@
 
   --accent-1: #cbb799;
   --accent-1-hover: #b6a48b;
+  --accent-2: #3c3530;
+  --accent-2-hover: #2e2925;
+}
+
+:root:has(.no-doc-scroll) {
+  overflow: hidden;
 }
 
 @theme inline {
@@ -19,7 +25,12 @@
   --color-custom-black: var(--custom-black);
   --color-bg: var(--bg);
   --color-fg: var(--fg);
+
   --color-accent-1: var(--accent-1);
+  --color-accent-1-hover: var(--accent-1-hover);
+  --color-accent-2: var(--accent-2);
+  --color-accent-2-hover: var(--accent-2-hover);
+
   --color-white-fg: var(--white-fg);
   --color-black-fg: var(--black-fg);
 
@@ -53,7 +64,7 @@ section h1 {
   @apply font-dream-avenue font-[500] text-6xl lg:text-8xl;
 }
 
-nav ul li {
+.nav__item {
   @apply hover:text-accent-1 hover:cursor-pointer px-2 py-1;
 }
 
@@ -69,11 +80,31 @@ nav ul li {
   @apply font-raleway font-light text-xs md:text-sm uppercase;
 }
 
+/* Forms */
+.form {
+  @apply absolute inset-0 [backface-visibility:hidden] transition-opacity duration-700 w-full h-full p-6;
+}
+.form__title {
+  @apply font-dream-avenue font-[400] text-accent-1 text-center dark:text-white-fg text-2xl uppercase mb-3;
+}
+.form__label {
+  @apply font-poppins font-[300] text-base capitalize leading-none mb-2 block;
+}
+.form__input {
+  @apply bg-white/20 font-poppins text-fg text-base dark:placeholder:text-white-fg/40 dark:caret-fg outline-none border-2 border-transparent focus:border-white/40 rounded-md backdrop-blur-2xl w-full px-2 py-1;
+}
+.form__submit-btn__p {
+  @apply font-dm-sans font-[500] text-accent-2;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
 /* Intro section */
 .intro-badge {
   @apply lg:bg-bg lg:border-2 lg:border-fg lg:rounded-full lg:px-12 lg:py-2.5;
 }
-
 .intro-badge > p {
   @apply font-raleway text-sm max-[380px]:text-xs md:text-base;
 }
@@ -113,19 +144,6 @@ nav ul li {
   opacity: 0;
 }
 
-.cta::before {
-  content: "";
-  background-color: var(--accent-1-hover);
-  inset: 0;
-  transition: width 0.3s ease;
-
-  width: 0%;
-  height: 100%;
-
-  position: absolute;
-  z-index: 1;
-}
-
 .get-in-touch__banners {
   width: max-content;
 }
@@ -140,9 +158,33 @@ nav ul li {
     transform: translateX(-50%) translateY(0) scale(1);
   }
 
-  .cta:hover::before {
+  .accent-btn:hover::before {
     width: 100%;
   }
+}
+
+.accent-btn {
+  background-color: var(--accent-1);
+  color: white;
+  position: relative;
+}
+
+.accent-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.accent-btn::before {
+  content: "";
+  background-color: var(--accent-1-hover);
+  inset: 0;
+  transition: width 0.3s ease;
+
+  width: 0%;
+  height: 100%;
+
+  position: absolute;
+  z-index: 1;
 }
 
 /* Helper Classes */

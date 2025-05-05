@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 export default function CallToAction() {
   const externalLink = "https://form.jotform.com/251168329147157";
 
@@ -16,11 +18,11 @@ export default function CallToAction() {
             proposal.
           </p>
           <a href={externalLink} target="_blank" rel="noopener noreferrer">
-            <button className="cta bg-accent-1 text-white rounded-full font-poppins hover:cursor-pointer overflow-hidden py-2 px-3 mt-3 relative">
-              <span className="z-[2] relative">
+            <Button type="button" className="rounded-full mt-3">
+              <span className="font-poppins text-accent-2">
                 Let&apos;s Build Your Vision in 3D
               </span>
-            </button>
+            </Button>
           </a>
         </div>
       </div>
