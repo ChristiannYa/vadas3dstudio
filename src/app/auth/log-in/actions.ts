@@ -11,6 +11,7 @@ type LoginForm =
       errors?: {
         email?: string[];
         password?: string[];
+        form?: string[];
       };
     }
   | undefined;
@@ -19,13 +20,13 @@ const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }).trim(),
   password: z
     .string()
-    .min(8, { message: "Password must be at least 8 characters" })
+    .min(6, { message: "Password must be at least 6 characters" })
     .trim(),
 });
 
 export async function login(prevState: LoginForm, formData: FormData) {
   // Simulate a slow network request
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   // Will store our redirect path if login is successful
   let redirectPath: string | null = null;
@@ -33,22 +34,32 @@ export async function login(prevState: LoginForm, formData: FormData) {
   try {
     const result = loginSchema.safeParse(Object.fromEntries(formData));
 
+    // Format submission check
     if (!result.success) {
+      const fieldErrors = result.error.flatten().fieldErrors;
+      // state
       return {
-        errors: result.error.flatten().fieldErrors,
+        errors: {
+          email: fieldErrors.email,
+          password: fieldErrors.password,
+        },
       };
     }
 
     const { email, password } = result.data;
+    console.log("Form data:", result.data);
 
     const user = await prisma.user.findUnique({
       where: { email },
     });
 
+    // Check if user exists
     if (!user) {
+      // state
       return {
         errors: {
-          email: ["Invalid email or password"],
+          // Store the error message in the form property
+          form: ["Invalid email or password"],
         },
       };
     }
@@ -56,21 +67,24 @@ export async function login(prevState: LoginForm, formData: FormData) {
     // Compare password against password hash
     const isValidPassword = await bcrypt.compare(password, user.password_hash);
 
+    //  Check if password is valid
     if (!isValidPassword) {
+      // state
       return {
         errors: {
-          password: ["Invalid email or password"],
+          // Store the error message in the form property
+          form: ["Invalid email or password"],
         },
       };
     }
 
-    await createSession(user.user_id.toString());
-    redirectPath = "/";
+    await createSession(user.id.toString());
+    redirectPath = "/profile";
   } catch (error) {
     console.error("Login error:", error);
     return {
       errors: {
-        email: ["An error occurred during login"],
+        form: ["An error occurred during login"],
       },
     };
   } finally {

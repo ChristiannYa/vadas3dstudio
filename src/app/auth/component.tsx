@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Login from "./log-in/component";
 import Signup from "./sign-up/component";
 
-export default function LoginForm() {
+export function LoginForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -31,7 +31,7 @@ export default function LoginForm() {
               exit={{ y: -100, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative w-full h-[32rem] perspective-1000">
+              <div className="relative w-full min-h-[32rem] perspective-1000">
                 <div
                   className={`w-full h-full transition-all duration-700 [transform-style:preserve-3d] ${
                     isFlipped ? "[transform:rotateY(-180deg)]" : ""
