@@ -35,7 +35,7 @@ export default function LoginForm() {
               exit={{ y: -100, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative w-full h-[28rem] perspective-1000">
+              <div className="relative w-full h-[32rem] perspective-1000">
                 <div
                   className={`w-full h-full transition-all duration-700 [transform-style:preserve-3d] ${
                     isFlipped ? "[transform:rotateY(-180deg)]" : ""

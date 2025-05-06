@@ -7,10 +7,21 @@ export default function Form() {
       <div>
         <label className="form__label">Name</label>
         <input
-          id="name"
+          id="signup-name"
           name="name"
           type="text"
           placeholder="Name"
+          className="form__input"
+        />
+      </div>
+      {/* last name */}
+      <div>
+        <label className="form__label">Last Name</label>
+        <input
+          id="signup-lastName"
+          name="lastName"
+          type="text"
+          placeholder="Last Name"
           className="form__input"
         />
       </div>
@@ -18,7 +29,7 @@ export default function Form() {
       <div>
         <label className="form__label">Email</label>
         <input
-          id="email"
+          id="signup-email"
           name="email"
           type="email"
           placeholder="Email"
@@ -29,7 +40,7 @@ export default function Form() {
       <div>
         <label className="form__label">Password</label>
         <input
-          id="password"
+          id="signup-password"
           name="password"
           type="password"
           placeholder="Password"
@@ -40,7 +51,7 @@ export default function Form() {
       <div>
         <label className="form__label">Confirm Password</label>
         <input
-          id="confirmPassword"
+          id="signup-confirmPassword"
           name="confirmPassword"
           type="password"
           placeholder="Confirm your password"

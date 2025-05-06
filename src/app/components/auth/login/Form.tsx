@@ -6,7 +6,7 @@ export default function Form() {
       <div className="space-y-3">
         {/* email */}
         <input
-          id="email"
+          id="login-email"
           name="email"
           type="email"
           placeholder="Email"
@@ -14,7 +14,7 @@ export default function Form() {
         />
         {/* password */}
         <input
-          id="password"
+          id="login-password"
           name="password"
           type="password"
           placeholder="Password"
