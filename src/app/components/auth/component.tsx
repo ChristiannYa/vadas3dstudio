@@ -22,14 +22,14 @@ export default function LoginForm() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="dark:bg-bg/50 no-doc-scroll inset-0 h-dvh w-screen fixed top-0 left-0 z-50"
+            className="bg-black/50 dark:bg-bg/50 no-doc-scroll inset-0 h-dvh w-screen fixed top-0 left-0 z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              className="bg-white/20 backdrop-blur-lg rounded-lg overflow-hidden w-[300px] md:w-[350px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              className="bg-black/20 dark:bg-white/20 backdrop-blur-lg rounded-lg overflow-hidden w-[300px] md:w-[350px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -100, opacity: 0 }}
