@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../../auth/component";
+import LoginForm from "@/app/login/component";
 
 const LiDivisor = () => {
   return <span className="border-fg/50 border-l h-6 md:h-8"></span>;
