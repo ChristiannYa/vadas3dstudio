@@ -20,7 +20,12 @@ const registerSchema = z
     password: z
       .string()
       .min(6, { message: "Password must be at least 6 characters" })
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])/, {
+        message:
+          "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+      })
       .trim(),
+
     confirm_password: z
       .string()
       .min(1, { message: "Please confirm your password" })
