@@ -22,6 +22,7 @@ export function Form() {
             name="name"
             type="text"
             placeholder="Name"
+            defaultValue={state?.values?.name || ""}
             className="form__input"
           />
         </div>
@@ -38,6 +39,7 @@ export function Form() {
             name="last_name"
             type="text"
             placeholder="Last Name"
+            defaultValue={state?.values?.last_name || ""}
             className="form__input"
           />
         </div>
@@ -54,6 +56,7 @@ export function Form() {
             name="email"
             type="email"
             placeholder="Email"
+            defaultValue={state?.values?.email || ""}
             className="form__input"
           />
         </div>
