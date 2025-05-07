@@ -1,7 +1,7 @@
 import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { register } from "./actions";
 import Button from "@/app/components/page/Button";
-import { useFormStatus } from "react-dom";
 
 export function Form() {
   const [state, registerAction] = useActionState(register, undefined);
@@ -27,7 +27,9 @@ export function Form() {
           />
         </div>
         {state?.errors?.name && (
-          <p className="text-red-500">{state.errors.name}</p>
+          <p className="font-poppins text-red-500 text-sm normal-case">
+            {state.errors.name}
+          </p>
         )}
       </div>
       {/* last name */}
@@ -44,7 +46,9 @@ export function Form() {
           />
         </div>
         {state?.errors?.last_name && (
-          <p className="text-red-500">{state.errors.last_name}</p>
+          <p className="font-poppins text-red-500 text-sm normal-case">
+            {state.errors.last_name}
+          </p>
         )}
       </div>
       {/* email */}
@@ -61,7 +65,9 @@ export function Form() {
           />
         </div>
         {state?.errors?.email && (
-          <p className="text-red-500">{state.errors.email}</p>
+          <p className="font-poppins text-red-500 text-sm normal-case">
+            {state.errors.email}
+          </p>
         )}
       </div>
       {/* password */}
@@ -77,7 +83,9 @@ export function Form() {
           />
         </div>
         {state?.errors?.password && (
-          <p className="text-red-500">{state.errors.password}</p>
+          <p className="font-poppins text-red-500 text-sm normal-case">
+            {state.errors.password}
+          </p>
         )}
       </div>
       {/* confirm password */}
@@ -93,7 +101,9 @@ export function Form() {
           />
         </div>
         {state?.errors?.confirm_password && (
-          <p className="text-red-500">{state.errors.confirm_password}</p>
+          <p className="font-poppins text-red-500 text-sm normal-case">
+            {state.errors.confirm_password}
+          </p>
         )}
       </div>
       {/* submit */}

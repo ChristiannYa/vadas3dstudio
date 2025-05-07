@@ -19,10 +19,9 @@ const registerSchema = z
     email: z.string().email({ message: "Invalid email address" }).trim(),
     password: z
       .string()
-      .min(6, { message: "Password must be at least 6 characters" })
-      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])/, {
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{6,}$/, {
         message:
-          "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+          "Password must be at least 6 characters and contain at least one uppercase letter, one lowercase letter, one number, and one special character",
       })
       .trim(),
 

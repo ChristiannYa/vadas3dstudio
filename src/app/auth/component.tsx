@@ -1,13 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Login from "./log-in/component";
 import Signup from "./sign-up/component";
 
 export function LoginForm() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isFlipped, setIsFlipped] = useState<boolean>(false);
+
+  const [signUpHeight, setSignUpHeight] = useState<number>(0);
+
+  const handleSignupHeightChange = useCallback((height: number) => {
+    setSignUpHeight(height);
+  }, []);
+
+  const containerHeight = Math.max(signUpHeight, 16 * 32);
 
   return (
     <>
@@ -31,9 +39,12 @@ export function LoginForm() {
               exit={{ y: -100, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative w-full min-h-[32rem] perspective-1000">
+              <div
+                className={`relative w-full perspective-1000`}
+                style={{ minHeight: `${containerHeight}px` }}
+              >
                 <div
-                  className={`w-full h-full transition-all duration-700 [transform-style:preserve-3d] ${
+                  className={`transition-all duration-700 [transform-style:preserve-3d] w-full h-full ${
                     isFlipped ? "[transform:rotateY(-180deg)]" : ""
                   }`}
                 >
@@ -56,7 +67,12 @@ export function LoginForm() {
                         : "opacity-0 pointer-events-none"
                     }`}
                   >
-                    <Signup setIsFlipped={setIsFlipped} />
+                    <Signup
+                      setIsFlipped={setIsFlipped}
+                      isOpen={isOpen}
+                      isFlipped={isFlipped}
+                      onHeightChange={handleSignupHeightChange}
+                    />
                   </div>
                 </div>
               </div>
