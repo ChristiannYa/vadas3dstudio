@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
+import { useMediaQuery } from "@/hooks/responsive";
 import { Form } from "./Form";
 
 type SignupProps = {
@@ -16,14 +17,22 @@ export default function Signup({
 }: SignupProps) {
   const signUpRef = useRef<HTMLDivElement>(null);
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
+  const isLargeScreen = useMediaQuery("(min-width: 1024px)");
 
   const updateHeight = useCallback(() => {
     if (isOpen && signUpRef.current) {
-      // Height of the signup form + 48px (padding)
-      const height = signUpRef.current.offsetHeight + 48;
-      onHeightChange?.(height);
+      // p-6: 24px / 16 = 3rem
+      // p-3: 12px / 16 = 1.5rem
+      const pixelsToRem = (pixels: number) => pixels / 16;
+
+      const remPadding = isLargeScreen ? 3 : 1.5;
+
+      const remHeight =
+        pixelsToRem(signUpRef.current.offsetHeight) + remPadding;
+
+      onHeightChange?.(remHeight);
     }
-  }, [isOpen, onHeightChange]);
+  }, [isOpen, onHeightChange, isLargeScreen]);
 
   useEffect(() => {
     if (isOpen && isFlipped && signUpRef.current) {

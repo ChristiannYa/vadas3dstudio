@@ -82,16 +82,25 @@ section h1 {
 
 /* Forms */
 .form {
-  @apply absolute inset-0 [backface-visibility:hidden] transition-opacity duration-700 w-full h-full p-6;
+  @apply absolute inset-0 [backface-visibility:hidden] transition-opacity duration-700 w-full h-full p-3 lg:p-6;
 }
 .form__title {
-  @apply font-dream-avenue font-[400] text-white-fg text-center dark:text-white-fg text-2xl uppercase mb-3;
+  @apply font-dream-avenue font-[400] text-white-fg text-center dark:text-white-fg text-2xl uppercase mb-1 lg:mb-3;
+}
+form {
+  @apply space-y-3;
+}
+.form__field {
+  @apply space-y-0.5 lg:space-y-1.5;
+}
+.form__labels {
+  @apply space-y-2 lg:space-y-3;
 }
 .form__label {
-  @apply font-poppins font-[300] text-base capitalize leading-none mb-2 block;
+  @apply font-poppins font-[300] text-base capitalize leading-none mb-1 lg:mb-2 block;
 }
 .form__input {
-  @apply bg-white/20 font-poppins text-white-fg dark:text-fg text-base placeholder:text-white-fg/40 dark:placeholder:text-white-fg/40 dark:caret-fg outline-none border-2 border-transparent focus:border-white/40 rounded-md backdrop-blur-2xl w-full px-2 py-1;
+  @apply bg-white/20 font-poppins text-white-fg dark:text-fg text-base placeholder:text-white-fg/40 dark:placeholder:text-white-fg/40 dark:caret-fg outline-none border-2 border-transparent focus:border-white/40 rounded-md backdrop-blur-2xl w-full px-1 lg:px-2 py-[1px] lg:py-1;
 }
 .form__submit-btn__p {
   @apply font-dm-sans font-[500] text-accent-2;
