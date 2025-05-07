@@ -118,7 +118,7 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit" className="w-full">
+    <Button type="submit" disabled={pending} className="w-full">
       <span className="form__submit-btn__p">
         {pending ? "Signing up..." : "Sign up"}
       </span>

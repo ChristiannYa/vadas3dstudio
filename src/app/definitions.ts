@@ -1,4 +1,11 @@
 import { StaticImageData } from "next/image";
+import { ButtonHTMLAttributes, ReactNode } from "react";
+
+export interface AccentButton extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  type: "button" | "submit";
+  className?: string;
+}
 
 export interface PortfolioItem {
   id: number;

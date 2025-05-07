@@ -147,12 +147,14 @@ form {
   }
 }
 
+/* About section */
 .tool span {
   transition: transform 0.3s, opacity 0.3s;
   transform: translateX(-50%) translateY(18px) scale(0.8);
   opacity: 0;
 }
 
+/* Get in touch section */
 .get-in-touch__banners {
   width: max-content;
 }
@@ -161,21 +163,15 @@ form {
   @apply border-2 border-fg/60 text-center rounded-full w-full p-2;
 }
 
-@media (hover: hover) {
-  .tool:hover span {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
-
-  .accent-btn:hover::before {
-    width: 100%;
-  }
-}
-
 .accent-btn {
   background-color: var(--accent-1);
   color: white;
   position: relative;
+}
+
+.accent-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .accent-btn span {
@@ -194,6 +190,22 @@ form {
 
   position: absolute;
   z-index: 1;
+}
+
+.accent-btn.disabled::before {
+  width: 0 !important;
+  transition: none;
+}
+
+@media (hover: hover) {
+  .tool:hover span {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .accent-btn:hover::before {
+    width: 100%;
+  }
 }
 
 /* Helper Classes */
