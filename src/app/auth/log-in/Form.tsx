@@ -15,7 +15,7 @@ export function Form() {
           </div>
         )}
         {/* email */}
-        <div>
+        <div className="space-y-1.5">
           <input
             id="login-email"
             name="email"
@@ -24,12 +24,12 @@ export function Form() {
             className="form__input"
           />
           {state?.errors?.email && (
-            <p className="text-red-500 mt-1.5">{state.errors.email}</p>
+            <p className="text-red-500">{state.errors.email}</p>
           )}
         </div>
 
         {/* password */}
-        <div>
+        <div className="space-y-1.5">
           <input
             id="login-password"
             name="password"
@@ -38,7 +38,7 @@ export function Form() {
             className="form__input"
           />
           {state?.errors?.password && (
-            <p className="text-red-500 mt-1.5">{state.errors.password}</p>
+            <p className="text-red-500">{state.errors.password}</p>
           )}
         </div>
       </div>

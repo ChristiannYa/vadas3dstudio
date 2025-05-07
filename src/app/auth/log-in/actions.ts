@@ -6,16 +6,6 @@ import { z } from "zod";
 import { redirect } from "next/navigation";
 import { createSession, deleteSession } from "@/lib/session";
 
-type LoginForm =
-  | {
-      errors?: {
-        email?: string[];
-        password?: string[];
-        form?: string[];
-      };
-    }
-  | undefined;
-
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }).trim(),
   password: z
@@ -24,41 +14,54 @@ const loginSchema = z.object({
     .trim(),
 });
 
-export async function login(prevState: LoginForm, formData: FormData) {
-  // Simulate a slow network request
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+type LoginFormFields = z.infer<typeof loginSchema>;
 
-  // Will store our redirect path if login is successful
+type LoginFormErrors = {
+  // Set the type to an array of strings because a
+  // field might have multiple errors
+  [K in keyof LoginFormFields]?: string[];
+} & {
+  form?: string[];
+};
+
+type LoginForm =
+  | {
+      errors?: LoginFormErrors;
+    }
+  | undefined;
+
+export async function login(
+  prevState: LoginForm,
+  formData: FormData
+): Promise<LoginForm> {
+  // Simulate a slow network request
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  // Redirect path to be stored if login is successful
   let redirectPath: string | null = null;
 
   try {
     const result = loginSchema.safeParse(Object.fromEntries(formData));
 
-    // Format submission check
+    // Format submission - check
     if (!result.success) {
-      const fieldErrors = result.error.flatten().fieldErrors;
-      // state
       return {
-        errors: {
-          email: fieldErrors.email,
-          password: fieldErrors.password,
-        },
+        errors: result.error.flatten().fieldErrors,
       };
     }
 
     const { email, password } = result.data;
-    console.log("Form data:", result.data);
 
     const user = await prisma.user.findUnique({
       where: { email },
     });
 
-    // Check if user exists
     if (!user) {
       // state
       return {
         errors: {
           // Store the error message in the form property
+          // for ambiguous errors
           form: ["Invalid email or password"],
         },
       };
@@ -73,13 +76,14 @@ export async function login(prevState: LoginForm, formData: FormData) {
       return {
         errors: {
           // Store the error message in the form property
+          // for ambiguous errors
           form: ["Invalid email or password"],
         },
       };
     }
 
     await createSession(user.id.toString());
-    redirectPath = "/profile";
+    redirectPath = "/";
   } catch (error) {
     console.error("Login error:", error);
     return {
@@ -92,10 +96,6 @@ export async function login(prevState: LoginForm, formData: FormData) {
       redirect(redirectPath);
     }
   }
-
-  // This return is needed for TypeScript, though it will never be reached
-  // if redirect is called in the finally block
-  return { success: true };
 }
 
 export async function logout() {
