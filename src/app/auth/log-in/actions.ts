@@ -98,12 +98,41 @@ export async function login(
   }
 }
 
+/**
+ * Since the project strucure has the `Header` component in the
+ * root layout, the `useUser` hook won't be triggered when being
+ * routed to '/'. Which means that the UI when displaying the
+ * username or the login button will not be updated until a page
+ * refresh. So we can't redirect the user here to the '/' route.
+ *
+ * To fix this we could use a custom logout function in the
+ * `LogoutButton` component that will force a page reload,
+ * which will trigger the `useUser` hook, properly updating the UI.
+ * @returns
+ */
 export async function logout() {
+  try {
+    await deleteSession();
+    return { success: true };
+  } catch (error) {
+    console.error("Logout error:", error);
+    return { success: false, error: "Failed to logout" };
+  }
+}
+
+/*
+  * 
+    We'd use this IF wherever the UI that conditionally shows
+    the user's name on whether or not they are logged in is in 
+    a route that calls the `useUser` hook on mount.
+  *
+
+  export async function logout() {
   let redirectPath: string | null = null;
 
   try {
     await deleteSession();
-    redirectPath = "/";
+    redirectPath = "/login";
   } catch (error) {
     console.error("Logout error:", error);
   } finally {
@@ -112,3 +141,4 @@ export async function logout() {
     }
   }
 }
+*/

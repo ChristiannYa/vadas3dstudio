@@ -22,7 +22,7 @@ export function GoogleLoginButton() {
       type="button"
       onClick={handleGoogleLogin}
       disabled={isLoading}
-      className="border-gray-300 bg-white text-gray-700 hover:bg-white/85 hover:cursor-pointer transition-colors border rounded-md shadow-sm flex items-center justify-center gap-2 w-full py-2 px-4"
+      className="border-gray-300 bg-white text-gray-700 hover:bg-white/85 hover:cursor-pointer transition-colors border shadow-sm flex items-center justify-center gap-2 w-full py-2 px-4"
     >
       {isLoading ? (
         "Loading..."
