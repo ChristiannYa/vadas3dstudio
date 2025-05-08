@@ -1,10 +1,16 @@
 import { StaticImageData } from "next/image";
 import { ButtonHTMLAttributes, ReactNode } from "react";
 
-export interface AccentButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
-  type: "button" | "submit";
-  className?: string;
+export interface UserData {
+  isLoggedIn: boolean;
+  user?: {
+    id: number | string;
+    name: string;
+    last_name: string;
+    email: string;
+    created_at?: string;
+  };
+  authType?: "custom" | "nextauth";
 }
 
 export interface PortfolioItem {
@@ -18,13 +24,6 @@ export interface Qna {
   id: number;
   q: string;
   a: string;
-}
-
-export interface PortfolioItem {
-  id: number;
-  title: string;
-  description: string;
-  image: StaticImageData;
 }
 
 export interface Service {
@@ -46,4 +45,10 @@ export interface Industries {
   id: number;
   industry: string;
   description: string;
+}
+
+export interface AccentButton extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  type: "button" | "submit";
+  className?: string;
 }

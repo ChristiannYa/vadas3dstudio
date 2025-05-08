@@ -2,18 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-
-interface UserData {
-  isLoggedIn: boolean;
-  user?: {
-    id: number | string;
-    name: string;
-    last_name: string;
-    email: string;
-    created_at?: string;
-  };
-  authType?: "custom" | "nextauth";
-}
+import { UserData } from "@/app/definitions";
 
 export function useUser() {
   // NextAuth session
