@@ -166,8 +166,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id             Int      @id @default(autoincrement())\n  name           String\n  last_name      String\n  email          String   @unique\n  email_verified Boolean  @default(false)\n  password_hash  String\n  created_at     DateTime @default(now())\n  updated_at     DateTime @updatedAt\n}\n",
-  "inlineSchemaHash": "0c7875b599631d13cc149d644d4baf0b913bf1967d623ad0e5391beb97583d68",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id             Int      @id @default(autoincrement())\n  name           String\n  last_name      String\n  email          String   @unique\n  email_verified Boolean  @default(false)\n  password_hash  String\n  created_at     DateTime @default(now())\n  updated_at     DateTime @updatedAt\n}\n",
+  "inlineSchemaHash": "c80a037ff6f78708ec9518623b863c988b5b2c16efdbe5d2e54cbb86b81968a9",
   "copyEngine": true
 }
 

@@ -1,7 +1,8 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import Button from "@/app/components/page/Button";
 import { login } from "./actions";
+import { GoogleLoginButton } from "../GoogleLoginButton";
+import Button from "@/app/components/page/Button";
 
 export function Form() {
   const [state, loginAction] = useActionState(login, undefined);
@@ -41,7 +42,10 @@ export function Form() {
         )}
       </div>
       {/* submit */}
-      <SubmitButton />
+      <div className="flex gap-x-4">
+        <SubmitButton />
+        <GoogleLoginButton />
+      </div>
     </form>
   );
 }

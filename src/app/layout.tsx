@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AuthProvider } from "./providers";
 import {
   raleway,
   poppins,
@@ -57,9 +58,11 @@ export default function RootLayout({
       <body
         className={`${raleway.variable} ${poppins.variable} ${dmSans.variable} ${montserratAlternates.variable} ${dreamAvenue.variable} ${kanit.variable} ${firaCode.variable} antialiased`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
