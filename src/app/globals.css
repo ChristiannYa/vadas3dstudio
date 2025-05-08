@@ -80,6 +80,10 @@ section h1 {
   @apply font-raleway font-light text-xs md:text-sm uppercase;
 }
 
+.profile__home-btn {
+  @apply bg-accent-1 hover:text-fg hover:bg-accent-1-hover rounded-sm py-1 px-1.5;
+}
+
 /* Forms */
 .form {
   @apply absolute inset-0 [backface-visibility:hidden] transition-opacity duration-700 w-full h-full p-3 lg:p-6;

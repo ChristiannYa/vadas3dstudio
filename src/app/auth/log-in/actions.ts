@@ -103,7 +103,7 @@ export async function logout() {
 
   try {
     await deleteSession();
-    redirectPath = "/login";
+    redirectPath = "/";
   } catch (error) {
     console.error("Logout error:", error);
   } finally {
