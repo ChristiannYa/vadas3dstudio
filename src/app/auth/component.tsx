@@ -91,13 +91,15 @@ export function LoginForm() {
 
   return (
     <>
-      <button onClick={handleButtonClick} className={`nav__item a`}>
-        {loading ? (
+      {loading ? (
+        <div className="px-2 py-1 flex items-center justify-center">
           <span className="inline-block w-3 h-3 border-2 border-t-transparent border-white rounded-full animate-spin"></span>
-        ) : (
-          displayName
-        )}
-      </button>
+        </div>
+      ) : (
+        <button onClick={handleButtonClick} className="nav__item a">
+          {displayName}
+        </button>
+      )}
 
       <AnimatePresence>
         {isOpen && (
