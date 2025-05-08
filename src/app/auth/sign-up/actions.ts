@@ -107,7 +107,7 @@ export async function register(
     });
 
     // Create session for the new user
-    await createSession(newUser.id.toString());
+    await createSession(newUser.id);
 
     redirectPath = "/";
   } catch (error) {

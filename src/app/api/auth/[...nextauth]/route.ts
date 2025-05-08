@@ -67,7 +67,7 @@ export const authConfig: NextAuthConfig = {
 
         // Check if user exists and create session
         if (existingUser) {
-          await createSession(existingUser.id.toString());
+          await createSession(existingUser.id);
         }
       }
     },

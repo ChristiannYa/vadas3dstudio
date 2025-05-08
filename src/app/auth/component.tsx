@@ -2,7 +2,9 @@
 
 import { useCallback, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { useMediaQuery } from "@/hooks/responsive";
+import { useUser } from "@/hooks/auth";
 import Login from "./log-in/component";
 import Signup from "./sign-up/component";
 
@@ -12,11 +14,25 @@ import Signup from "./sign-up/component";
       components to avoid manual calculation 
 */
 export function LoginForm() {
+  const router = useRouter();
+  const { user, loading } = useUser();
+  const displayName = user?.isLoggedIn
+    ? `${user.user?.name} ${user.user?.last_name}`.trim()
+    : "Login";
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
 
   const [signUpHeight, setSignUpHeight] = useState<number>(0);
   const isLargeScreen = useMediaQuery("(min-width: 1024px)");
+
+  const handleButtonClick = () => {
+    if (user?.isLoggedIn) {
+      router.push("/profile");
+    } else {
+      setIsOpen(true);
+    }
+  };
 
   const handleSignupHeightChange = useCallback((height: number) => {
     setSignUpHeight(height);
@@ -75,8 +91,12 @@ export function LoginForm() {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)} className={`nav__item a`}>
-        Login
+      <button onClick={handleButtonClick} className={`nav__item a`}>
+        {loading ? (
+          <span className="inline-block w-3 h-3 border-2 border-t-transparent border-white rounded-full animate-spin"></span>
+        ) : (
+          displayName
+        )}
       </button>
 
       <AnimatePresence>

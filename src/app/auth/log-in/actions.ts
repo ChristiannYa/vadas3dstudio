@@ -82,7 +82,7 @@ export async function login(
       };
     }
 
-    await createSession(user.id.toString());
+    await createSession(user.id);
     redirectPath = "/";
   } catch (error) {
     console.error("Login error:", error);
