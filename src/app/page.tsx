@@ -10,7 +10,7 @@ import CallToAction from "./components/page/CallToAction";
 
 export default function Home() {
   return (
-    <main>
+    <div>
       <div className="space-y-6 lg:space-y-12">
         <IntroSection />
         <PortfolioSection />
@@ -21,6 +21,6 @@ export default function Home() {
       <CallToAction />
       <hr />
       <GetInTouchSection />
-    </main>
+    </div>
   );
 }

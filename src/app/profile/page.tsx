@@ -33,7 +33,7 @@ export default function Profile() {
   const { name, last_name, email, created_at } = user.user || {};
 
   return (
-    <div className="min-h-screen container-1600">
+    <div className="container-1600 pb-6">
       <div className="mb-4 space-y-1.5">
         <h1 className="text-accent-1 text-2xl lg:text-3xl text-start font-[400] font-montserrat-alternates capitalize">
           {formatPossessive(name!)} Profile
