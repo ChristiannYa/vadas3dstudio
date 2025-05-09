@@ -41,15 +41,15 @@ export function LoginForm() {
 
       {/* Modal overlay with transition */}
       <div
-        className={`fixed inset-0 bg-black/10 z-40 transition-opacity duration-300 ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        className={`bg-black/10 transition-opacity duration-300 fixed inset-0 z-10 ${
+          isOpen ? "opacity-100 no-doc-scroll" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsOpen(false)}
       />
 
       <div>
         <div
-          className={`backdrop-blur-lg no-doc-scroll w-[100dvw] h-[100dvh] rounded-lg overflow-hidden flex justify-center items-center z-50 fixed left-1/2 -translate-x-1/2 transition-all duration-500 ease-in-out ${
+          className={`backdrop-blur-lg w-[100dvw] h-[100dvh] rounded-lg overflow-hidden flex justify-center items-center z-50 fixed left-1/2 -translate-x-1/2 transition-all duration-500 ease-in-out ${
             isOpen
               ? "top-1/2 -translate-y-1/2 opacity-100"
               : "top-[60%] -translate-y-1/2 opacity-0 pointer-events-none"
