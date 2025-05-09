@@ -94,7 +94,9 @@ section h1 {
 }
 
 .card__face--closeBtn {
-  @apply cursor-pointer bg-gray-600 hover:bg-gray-700 rounded-full w-5 h-5 flex flex-col justify-center items-center leading-none absolute top-4 right-4;
+  @apply cursor-pointer bg-gray-500 hover:bg-red-500 rounded-full w-5 h-5 
+  flex justify-center items-center absolute top-4 right-4
+  transition-colors duration-200 ease-in-out;
 }
 
 /* Forms */
