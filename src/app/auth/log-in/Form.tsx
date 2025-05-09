@@ -1,7 +1,7 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { login } from "./actions";
-import { GoogleLoginButton } from "../GoogleLoginButton";
+import { GoogleLoginButton } from "./GoogleLoginButton";
 import Button from "@/app/components/page/Button";
 
 export function Form() {

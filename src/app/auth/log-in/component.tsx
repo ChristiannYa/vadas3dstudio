@@ -11,7 +11,7 @@ export default function Login({ setIsFlipped }: LoginProps) {
   };
 
   return (
-    <div className="">
+    <div>
       <h2 className="form__title">Log in</h2>
       <Form />
       <button onClick={handleFlip} className="block mt-3 mx-auto">

@@ -58,13 +58,13 @@ export default function RootLayout({
       <body
         className={`${raleway.variable} ${poppins.variable} ${dmSans.variable} ${montserratAlternates.variable} ${dreamAvenue.variable} ${kanit.variable} ${firaCode.variable} antialiased`}
       >
-        <div className="min-h-dvh grid grid-rows-[auto_1fr_auto]">
-          <AuthProvider>
+        <AuthProvider>
+          <div className="min-h-dvh grid grid-rows-[auto_1fr_auto]">
             <Header />
             <main>{children}</main>
             <Footer />
-          </AuthProvider>
-        </div>
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

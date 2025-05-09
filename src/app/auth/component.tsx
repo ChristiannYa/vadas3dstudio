@@ -1,30 +1,23 @@
 "use client";
-
-import { useCallback, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useMediaQuery } from "@/hooks/responsive";
 import { useUser } from "@/hooks/auth";
-import Login from "./log-in/component";
-import Signup from "./sign-up/component";
+import { WhiteLogo } from "../assets/icons/page";
+import { Form as FormLogin } from "./log-in/Form";
+import { Form as FormSignup } from "./sign-up/Form";
 
-/*
-  To do:
-    - Find a way to obtain in the class values of the form
-      components to avoid manual calculation 
-*/
 export function LoginForm() {
   const router = useRouter();
   const { user, loading } = useUser();
   const displayName = user?.isLoggedIn
     ? `${user.user?.name} ${user.user?.last_name}`.trim()
     : "Login";
-
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isFlipped, setIsFlipped] = useState<boolean>(false);
+  const [isFlipped, setIsFlipped] = useState(false);
 
-  const [signUpHeight, setSignUpHeight] = useState<number>(0);
-  const isLargeScreen = useMediaQuery("(min-width: 1024px)");
+  const toggleFlip = () => {
+    setIsFlipped(!isFlipped);
+  };
 
   const handleButtonClick = () => {
     if (user?.isLoggedIn) {
@@ -33,61 +26,6 @@ export function LoginForm() {
       setIsOpen(true);
     }
   };
-
-  const handleSignupHeightChange = useCallback((height: number) => {
-    setSignUpHeight(height);
-  }, []);
-
-  /*
-    The height on small screens is obtained by
-      * There are 5 labels
-
-      .form - py
-      - py of the form on large screens 24 (2)  = 48
-      - py of the form on small screens 12 (2) = 24
-      - py - to be substracted = 24
-      - why? because we are subtracting the vertical padding
-        24 = total padding to remove
-      
-      .form__title - mb
-      - mb of the form title on large screens 12
-      - mb of the form title on small screens 4
-      - to be substracted = 8
-
-      .form__input - py
-      - py of input fields on large screens 4 (2) = 8
-      - py of input fields on small screens 1 (2) = 2
-      - to be substracted = 10
-      - why? because we are substracting the vertical padding from
-        the input fields. There are 5 input fields. So, 
-        (5 inputs) * (vertical padding) = (5) * (2) 
-        5 * 2 = 10 
-        10 = total padding to remove
-      
-      .form__labels - space-y
-      - space-y between form labels on large screens 12
-      - space-y between form labels on small screens 8
-      - to be substracted = 32
-      - why? because there are 4 gaps in beteween the 5 form fields.
-        So, (4 gaps) * (space-y) = (4) * (8)
-        4 * 8 = 32
-        32 = total padding to remove
-
-      .form__label - mb
-      - mb of the form label on large screens 8
-      - mb of the form label on small screens 4
-      - to be substracted = 20
-      - why? because there are 5 form labels.
-        So, (5 labels) * (mb) = (5) * (4)
-        5 * 4 = 20
-        20 = total padding to remove
-
-      - Total = 512 - (24 + 8 + 10 + 32 + 20) = 418
-        512 / 16 = 32
-        418 / 16 = 26
-  */
-  const minHeight = isLargeScreen ? 32 : 26;
-  const containerHeight = Math.max(signUpHeight, minHeight);
 
   return (
     <>
@@ -101,63 +39,79 @@ export function LoginForm() {
         </button>
       )}
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="bg-black/50 dark:bg-bg/50 no-doc-scroll inset-0 h-dvh w-screen fixed top-0 left-0 z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
-          >
-            <motion.div
-              className="bg-black/20 dark:bg-white/20 backdrop-blur-lg rounded-lg overflow-hidden w-[300px] md:w-[350px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              initial={{ y: -100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -100, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div
-                className={`relative w-full perspective-1000`}
-                style={{ minHeight: `${containerHeight}rem` }}
-              >
-                <div
-                  className={`transition-all duration-700 [transform-style:preserve-3d] w-full h-full ${
-                    isFlipped ? "[transform:rotateY(-180deg)]" : ""
-                  }`}
-                >
-                  {/* Login Form - Front */}
-                  <div
-                    className={`form ${
-                      isFlipped
-                        ? "opacity-0 pointer-events-none"
-                        : "opacity-100"
-                    }`}
-                  >
-                    <Login setIsFlipped={setIsFlipped} />
-                  </div>
+      {/* Modal overlay with transition */}
+      <div
+        className={`fixed inset-0 bg-black/10 z-40 transition-opacity duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setIsOpen(false)}
+      />
 
-                  {/* Signup Form - Back */}
-                  <div
-                    className={`form [transform:rotateY(-180deg)] ${
-                      isFlipped
-                        ? "opacity-100"
-                        : "opacity-0 pointer-events-none"
-                    }`}
-                  >
-                    <Signup
-                      setIsFlipped={setIsFlipped}
-                      isOpen={isOpen}
-                      isFlipped={isFlipped}
-                      onHeightChange={handleSignupHeightChange}
-                    />
-                  </div>
-                </div>
+      <div>
+        <div
+          className={`backdrop-blur-lg no-doc-scroll w-[100dvw] h-[100dvh] rounded-lg overflow-hidden flex justify-center items-center z-50 fixed left-1/2 -translate-x-1/2 transition-all duration-500 ease-in-out ${
+            isOpen
+              ? "top-1/2 -translate-y-1/2 opacity-100"
+              : "top-[60%] -translate-y-1/2 opacity-0 pointer-events-none"
+          }`}
+        >
+          <div
+            className={`relative w-[296px] lg:w-[304px] min-h-full [perspective:1000px] [transform-style:preserve-3d]`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Front of card */}
+            <div
+              className={`bg-white/20 rounded-2xl p-4 lg:p-6 absolute top-1/2 left-0 w-full h-fit flex flex-col justify-center [backface-visibility:hidden] transition-transform duration-600 ${
+                isFlipped
+                  ? "[transform:translateY(-50%)_rotateY(-180deg)]"
+                  : "[transform:translateY(-50%)_rotateY(0deg)]"
+              }`}
+            >
+              <button
+                onClick={() => setIsOpen(false)}
+                className="cursor-pointer bg-accent-1 hover:bg-accent-1-hover rounded-full w-5 h-5 flex flex-col justify-center items-center leading-none absolute top-4 right-4"
+              >
+                x
+              </button>
+              <h2 className="form__title">Log in</h2>
+              <FormLogin />
+              <button className="block mt-3 mx-auto" onClick={toggleFlip}>
+                <p className="font-raleway text-white-fg dark:text-fg text-sm text-center hover:text-accent-1 leading-none cursor-pointer">
+                  Sign up for a new account
+                </p>
+              </button>
+              <div className="mt-6 flex flex-col justify-center items-center">
+                <WhiteLogo />
               </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </div>
+            {/* Back of card */}
+            <div
+              className={`bg-white/20 rounded-2xl overflow-hidden p-4 lg:p-6 absolute top-1/2 left-0 w-full h-fit flex flex-col justify-center [backface-visibility:hidden] transition-transform duration-600 ${
+                isFlipped
+                  ? "[transform:translateY(-50%)_rotateY(0deg)]"
+                  : "[transform:translateY(-50%)_rotateY(180deg)]"
+              }`}
+            >
+              <button
+                onClick={() => setIsOpen(false)}
+                className="cursor-pointer bg-accent-1 hover:bg-accent-1-hover rounded-full w-5 h-5 flex flex-col justify-center items-center leading-none absolute top-4 right-4"
+              >
+                x
+              </button>
+              <h2 className="form__title">Sign Up</h2>
+              <FormSignup />
+              <p className="font-raleway text-sm text-center normal-case leading-none mt-3">
+                Already have an account?{" "}
+                <button onClick={toggleFlip}>
+                  <p className="font-raleway text-sm text-center hover:text-accent-1 leading-none cursor-pointer">
+                    Log in
+                  </p>
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
