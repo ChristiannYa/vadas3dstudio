@@ -3,7 +3,7 @@ import { useFormStatus } from "react-dom";
 import { register } from "./actions";
 import Button from "@/app/components/page/Button";
 
-export function Form() {
+export default function SignupForm() {
   const [state, registerAction] = useActionState(register, undefined);
 
   return (
@@ -118,7 +118,11 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit" disabled={pending} className="w-full">
+    <Button
+      type="submit"
+      disabled={pending}
+      className="bg-accent-1 before:bg-accent-1-hover w-full"
+    >
       <span className="form__submit-btn__p">
         {pending ? "Signing up..." : "Sign up"}
       </span>

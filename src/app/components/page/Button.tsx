@@ -16,13 +16,15 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`${className} accent-btn hover:cursor-pointer overflow-hidden py-2 px-3 ${
-        disabled ? "disabled" : ""
+      className={`${className} width-grow-btn overflow-hidden py-2 px-3 relative ${
+        disabled
+          ? "disabled hover:cursor-default opacity-50"
+          : "hover:cursor-pointer"
       }`}
       disabled={disabled}
       {...props}
     >
-      <span>{children}</span>
+      <span className="relative z-[2]">{children}</span>
     </button>
   );
 }

@@ -84,6 +84,19 @@ section h1 {
   @apply bg-accent-1 hover:text-fg hover:bg-accent-1-hover rounded-sm py-1 px-1.5;
 }
 
+/* Auth */
+.card__wrapper {
+  @apply relative w-[296px] lg:w-[304px] min-h-full [perspective:1000px] [transform-style:preserve-3d];
+}
+
+.card__face {
+  @apply bg-white/20 rounded-2xl p-4 lg:p-6 absolute top-1/2 left-0 w-full h-fit flex flex-col justify-center [backface-visibility:hidden] transition-transform duration-600;
+}
+
+.card__face--closeBtn {
+  @apply cursor-pointer bg-gray-600 hover:bg-gray-700 rounded-full w-5 h-5 flex flex-col justify-center items-center leading-none absolute top-4 right-4;
+}
+
 /* Forms */
 .form {
   @apply p-3 lg:p-6;
@@ -163,25 +176,8 @@ form {
   @apply border-2 border-fg/60 text-center rounded-full w-full p-2;
 }
 
-.accent-btn {
-  background-color: var(--accent-1);
-  color: white;
-  position: relative;
-}
-
-.accent-btn.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.accent-btn span {
-  position: relative;
-  z-index: 2;
-}
-
-.accent-btn::before {
+.width-grow-btn::before {
   content: "";
-  background-color: var(--accent-1-hover);
   inset: 0;
   transition: width 0.3s ease;
 
@@ -192,7 +188,7 @@ form {
   z-index: 1;
 }
 
-.accent-btn.disabled::before {
+.width-grow-btn.disabled::before {
   width: 0 !important;
   transition: none;
 }
@@ -203,7 +199,7 @@ form {
     transform: translateX(-50%) translateY(0) scale(1);
   }
 
-  .accent-btn:hover::before {
+  .width-grow-btn:hover::before {
     width: 100%;
   }
 }

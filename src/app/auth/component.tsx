@@ -2,9 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/auth";
-import { WhiteLogo } from "../assets/icons/page";
-import { Form as FormLogin } from "./log-in/Form";
-import { Form as FormSignup } from "./sign-up/Form";
+import LogInFace from "./log-in/LogInFace";
+import SignupFace from "./signup/SignupFace";
 
 export function LoginForm() {
   const router = useRouter();
@@ -55,60 +54,19 @@ export function LoginForm() {
               : "top-[60%] -translate-y-1/2 opacity-0 pointer-events-none"
           }`}
         >
-          <div
-            className={`relative w-[296px] lg:w-[304px] min-h-full [perspective:1000px] [transform-style:preserve-3d]`}
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="card__wrapper" onClick={(e) => e.stopPropagation()}>
             {/* Front of card */}
-            <div
-              className={`bg-white/20 rounded-2xl p-4 lg:p-6 absolute top-1/2 left-0 w-full h-fit flex flex-col justify-center [backface-visibility:hidden] transition-transform duration-600 ${
-                isFlipped
-                  ? "[transform:translateY(-50%)_rotateY(-180deg)]"
-                  : "[transform:translateY(-50%)_rotateY(0deg)]"
-              }`}
-            >
-              <button
-                onClick={() => setIsOpen(false)}
-                className="cursor-pointer bg-accent-1 hover:bg-accent-1-hover rounded-full w-5 h-5 flex flex-col justify-center items-center leading-none absolute top-4 right-4"
-              >
-                x
-              </button>
-              <h2 className="form__title">Log in</h2>
-              <FormLogin />
-              <button className="block mt-3 mx-auto" onClick={toggleFlip}>
-                <p className="font-raleway text-white-fg dark:text-fg text-sm text-center hover:text-accent-1 leading-none cursor-pointer">
-                  Sign up for a new account
-                </p>
-              </button>
-              <div className="mt-6 flex flex-col justify-center items-center">
-                <WhiteLogo />
-              </div>
-            </div>
+            <LogInFace
+              toggleFlip={toggleFlip}
+              closeModal={() => setIsOpen(false)}
+              isFlipped={isFlipped}
+            />
             {/* Back of card */}
-            <div
-              className={`bg-white/20 rounded-2xl overflow-hidden p-4 lg:p-6 absolute top-1/2 left-0 w-full h-fit flex flex-col justify-center [backface-visibility:hidden] transition-transform duration-600 ${
-                isFlipped
-                  ? "[transform:translateY(-50%)_rotateY(0deg)]"
-                  : "[transform:translateY(-50%)_rotateY(180deg)]"
-              }`}
-            >
-              <button
-                onClick={() => setIsOpen(false)}
-                className="cursor-pointer bg-accent-1 hover:bg-accent-1-hover rounded-full w-5 h-5 flex flex-col justify-center items-center leading-none absolute top-4 right-4"
-              >
-                x
-              </button>
-              <h2 className="form__title">Sign Up</h2>
-              <FormSignup />
-              <p className="font-raleway text-sm text-center normal-case leading-none mt-3">
-                Already have an account?{" "}
-                <button onClick={toggleFlip}>
-                  <p className="font-raleway text-sm text-center hover:text-accent-1 leading-none cursor-pointer">
-                    Log in
-                  </p>
-                </button>
-              </p>
-            </div>
+            <SignupFace
+              toggleFlip={toggleFlip}
+              closeModal={() => setIsOpen(false)}
+              isFlipped={isFlipped}
+            />
           </div>
         </div>
       </div>

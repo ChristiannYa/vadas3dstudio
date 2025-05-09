@@ -20,6 +20,12 @@ export interface PortfolioItem {
   image: StaticImageData;
 }
 
+export interface CardFace {
+  toggleFlip: () => void;
+  closeModal: () => void;
+  isFlipped: boolean;
+}
+
 export interface Qna {
   id: number;
   q: string;
