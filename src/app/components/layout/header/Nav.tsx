@@ -6,21 +6,9 @@ const LiDivisor = () => {
   return <span className="border-fg/50 border-l h-6 md:h-8"></span>;
 };
 
-export function MobileNavbar() {
+export function Nav() {
   return (
-    <nav className="md:hidden">
-      <ul className="a flex justify-center items-center">
-        <HomeButton variant="header" />
-        <LiDivisor />
-        <LoginForm />
-      </ul>
-    </nav>
-  );
-}
-
-export function DesktopNavBar() {
-  return (
-    <nav className="hidden md:block">
+    <nav>
       <ul className="a flex justify-center items-center">
         <HomeButton variant="header" />
         <LiDivisor />

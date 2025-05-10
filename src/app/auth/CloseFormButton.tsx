@@ -1,12 +1,17 @@
 export default function CloseFormButton({
   closeModal,
+  disabled = false,
 }: {
   closeModal: () => void;
+  disabled?: boolean;
 }) {
   return (
     <button
       onClick={closeModal}
-      className="card__face--closeBtn"
+      disabled={disabled}
+      className={`card__face--closeBtn ${
+        disabled ? "opacity-50 cursor-not-allowed" : ""
+      }`}
       aria-label="Close"
     >
       <svg

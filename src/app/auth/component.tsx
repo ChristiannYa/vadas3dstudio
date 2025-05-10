@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { FormProvider } from "@/contexts/FormContext";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/auth";
 import LogInFace from "./log-in/LogInFace";
@@ -37,7 +38,6 @@ export function LoginForm() {
           {displayName}
         </button>
       )}
-
       {/* Modal overlay with transition */}
       <div
         className={`bg-black/10 transition-opacity duration-300 fixed inset-0 z-10 ${
@@ -45,7 +45,6 @@ export function LoginForm() {
         }`}
         onClick={() => setIsOpen(false)}
       />
-
       <div>
         <div
           className={`backdrop-blur-lg w-[100dvw] h-[100dvh] rounded-lg overflow-hidden flex justify-center items-center z-50 fixed left-1/2 -translate-x-1/2 transition-all duration-500 ease-in-out ${
@@ -54,20 +53,22 @@ export function LoginForm() {
               : "top-[60%] -translate-y-1/2 opacity-0 pointer-events-none"
           }`}
         >
-          <div className="card__wrapper" onClick={(e) => e.stopPropagation()}>
-            {/* Front of card */}
-            <LogInFace
-              toggleFlip={toggleFlip}
-              closeModal={() => setIsOpen(false)}
-              isFlipped={isFlipped}
-            />
-            {/* Back of card */}
-            <SignupFace
-              toggleFlip={toggleFlip}
-              closeModal={() => setIsOpen(false)}
-              isFlipped={isFlipped}
-            />
-          </div>
+          <FormProvider>
+            <div className="card__wrapper" onClick={(e) => e.stopPropagation()}>
+              {/* Front of card */}
+              <LogInFace
+                toggleFlip={toggleFlip}
+                closeModal={() => setIsOpen(false)}
+                isFlipped={isFlipped}
+              />
+              {/* Back of card */}
+              <SignupFace
+                toggleFlip={toggleFlip}
+                closeModal={() => setIsOpen(false)}
+                isFlipped={isFlipped}
+              />
+            </div>
+          </FormProvider>
         </div>
       </div>
     </>

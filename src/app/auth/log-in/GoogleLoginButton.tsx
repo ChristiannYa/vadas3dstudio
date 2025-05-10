@@ -27,13 +27,13 @@ export function GoogleLoginButton() {
       type="button"
       onClick={handleGoogleLogin}
       disabled={pending || isGoogleLoading}
-      className="border-gray-300 bg-white before:bg-neutral-300 hover:cursor-pointer flex items-center justify-center w-full"
+      className="border-gray-300 bg-white before:bg-neutral-300 transition-colors border shadow-sm flex items-center justify-center gap-2 w-full py-2 px-4"
     >
       {isGoogleLoading ? (
         <p className="form__submit-btn__p">Loading...</p>
       ) : (
-        <div className="flex items-center gap-x-1">
-          <GoogleIcon className="w-4 h-4" />
+        <div className="flex items-center gap-x-2">
+          <GoogleIcon />
           <p className="form__submit-btn__p">Continue with Google</p>
         </div>
       )}
