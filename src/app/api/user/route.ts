@@ -3,12 +3,15 @@ import { NextResponse } from "next/server";
 import { decrypt } from "@/lib/session";
 import prisma from "@/lib/prisma";
 import { getToken } from "next-auth/jwt";
+import { authConstants } from "@/lib/constants/auth";
 
 export async function GET(request: Request) {
   try {
     // Check for custom session
     const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get("session")?.value;
+    const sessionCookie = cookieStore.get(
+      authConstants.SESSION_COOKIE_NAME
+    )?.value;
 
     // First try the custom session
     if (sessionCookie) {
@@ -30,7 +33,7 @@ export async function GET(request: Request) {
             return NextResponse.json({
               isLoggedIn: true,
               user,
-              authType: "custom",
+              authType: authConstants.AUTH.TYPES.CUSTOM,
             });
           }
         }
@@ -62,7 +65,7 @@ export async function GET(request: Request) {
           return NextResponse.json({
             isLoggedIn: true,
             user,
-            authType: "nextauth",
+            authType: authConstants.AUTH.TYPES.NEXTAUTH,
           });
         }
       }

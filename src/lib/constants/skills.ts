@@ -1,4 +1,9 @@
-import { Revit, Skektchup, TwinMotion, Vray } from "../assets/icons/tools";
+import {
+  Revit,
+  Skektchup,
+  TwinMotion,
+  Vray,
+} from "../../app/assets/icons/tools";
 
 export const skills = [
   { id: 1, name: "Lighting" },

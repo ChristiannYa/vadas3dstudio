@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { qnaList } from "@/app/constants/qna";
+import { qnaList } from "@/lib/constants/qna";
 
 export default function QuestionsAndAnswers() {
   const [openQuestionIndex, setOpenQuestionIndex] = useState<number | null>(

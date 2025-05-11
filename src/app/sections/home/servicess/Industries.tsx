@@ -1,4 +1,4 @@
-import { IndustriesServed } from "@/app/constants/services";
+import { IndustriesServed } from "@/lib/constants/services";
 
 export default function Industries() {
   return (

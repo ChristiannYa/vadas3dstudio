@@ -4,6 +4,7 @@ import type { NextAuthConfig } from "next-auth";
 import NextAuth from "next-auth";
 import prisma from "@/lib/prisma";
 import { createSession } from "@/lib/session";
+import { authConstants } from "@/lib/constants/auth";
 
 export const authConfig: NextAuthConfig = {
   providers: [
@@ -14,7 +15,10 @@ export const authConfig: NextAuthConfig = {
   ],
   callbacks: {
     async signIn({ user, account }): Promise<boolean> {
-      if (account?.provider === "google" && user.email) {
+      if (
+        account?.provider === authConstants.AUTH.PROVIDERS.GOOGLE &&
+        user.email
+      ) {
         try {
           const existingUser = await prisma.user.findUnique({
             where: { email: user.email },

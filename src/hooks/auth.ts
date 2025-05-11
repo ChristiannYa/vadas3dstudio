@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { UserData } from "@/app/definitions";
+import { authConstants } from "@/lib/constants/auth";
 import { logout as customLogout } from "@/app/auth/log-in/actions";
 
 export function useUser() {
@@ -26,7 +27,7 @@ export function useUser() {
           last_name: user.name?.split(" ").slice(1).join(" ") || "",
           email: user.email || "",
         },
-        authType: "nextauth",
+        authType: authConstants.AUTH.TYPES.NEXTAUTH,
       });
       setLoading(false);
       return;

@@ -1,4 +1,4 @@
-import { servicesList } from "@/app/constants/services";
+import { servicesList } from "@/lib/constants/services";
 
 export default function List() {
   return (

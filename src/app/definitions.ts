@@ -1,5 +1,12 @@
+import { authConstants } from "@/lib/constants/auth";
 import { StaticImageData } from "next/image";
 import { ButtonHTMLAttributes, ReactNode } from "react";
+
+export type AuthType =
+  (typeof authConstants.AUTH.TYPES)[keyof typeof authConstants.AUTH.TYPES];
+
+export type AuthProvider =
+  (typeof authConstants.AUTH.PROVIDERS)[keyof typeof authConstants.AUTH.PROVIDERS];
 
 export interface UserData {
   isLoggedIn: boolean;
@@ -10,7 +17,8 @@ export interface UserData {
     email: string;
     created_at?: string;
   };
-  authType?: "custom" | "nextauth";
+  authType?: AuthType;
+  provider?: AuthProvider;
 }
 
 export interface PortfolioItem {

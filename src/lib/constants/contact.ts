@@ -1,4 +1,9 @@
-import { Gmail, Instagram, Location, Phone } from "../assets/icons/contact";
+import {
+  Gmail,
+  Instagram,
+  Location,
+  Phone,
+} from "../../app/assets/icons/contact";
 
 export const contactInfo = [
   {

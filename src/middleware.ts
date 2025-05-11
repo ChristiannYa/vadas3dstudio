@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { decrypt } from "./lib/session";
+import { authConstants } from "./lib/constants/auth";
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
@@ -19,7 +20,9 @@ export async function middleware(request: NextRequest) {
 
     // Check custom session
     try {
-      const sessionCookie = request.cookies.get("session")?.value;
+      const sessionCookie = request.cookies.get(
+        authConstants.SESSION_COOKIE_NAME
+      )?.value;
 
       if (sessionCookie) {
         const payload = await decrypt(sessionCookie);

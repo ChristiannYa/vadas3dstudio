@@ -1,4 +1,4 @@
-import { Service, Industries } from "../definitions";
+import { Service, Industries } from "../../app/definitions";
 
 export const servicesList: Service[] = [
   {

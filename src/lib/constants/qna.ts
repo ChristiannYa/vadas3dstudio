@@ -1,4 +1,4 @@
-import { Qna } from "../definitions";
+import { Qna } from "../../app/definitions";
 
 export const qnaList: Qna[] = [
   {

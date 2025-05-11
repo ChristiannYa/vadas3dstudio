@@ -1,4 +1,4 @@
-import { skills } from "@/app/constants/skills";
+import { skills } from "@/lib/constants/skills";
 
 export default function Skills() {
   return (

@@ -1,4 +1,4 @@
-import { contactInfo } from "@/app/constants/contact";
+import { contactInfo } from "@/lib/constants/contact";
 
 export default function GetInTouchSection() {
   return (

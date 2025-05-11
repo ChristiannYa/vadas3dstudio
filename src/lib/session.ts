@@ -1,6 +1,7 @@
 import "server-only";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
+import { authConstants } from "./constants/auth";
 
 const secretKey = process.env.SESSION_TOKEN;
 const encodedKey = new TextEncoder().encode(secretKey);
@@ -15,7 +16,7 @@ export async function createSession(userId: number) {
   const session = await encrypt({ userId, expiresAt });
   const cookieStore = await cookies();
 
-  cookieStore.set("session", session, {
+  cookieStore.set(authConstants.SESSION_COOKIE_NAME, session, {
     httpOnly: true,
     secure: true,
     expires: expiresAt,
@@ -24,7 +25,7 @@ export async function createSession(userId: number) {
 
 export async function deleteSession() {
   const cookieStore = await cookies();
-  cookieStore.delete("session");
+  cookieStore.delete(authConstants.SESSION_COOKIE_NAME);
 }
 
 export async function encrypt(payload: SessionPayload) {

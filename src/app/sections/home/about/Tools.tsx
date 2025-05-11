@@ -1,4 +1,4 @@
-import { tools } from "@/app/constants/skills";
+import { tools } from "@/lib/constants/skills";
 
 /**
  * @note - The component (`ul`) has an additional margin to

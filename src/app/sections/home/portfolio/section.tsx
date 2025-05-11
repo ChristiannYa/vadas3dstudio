@@ -1,4 +1,4 @@
-import { portfolioItems } from "@/app/constants/portfolio";
+import { portfolioItems } from "@/lib/constants/portfolio";
 import Image from "next/image";
 
 export default function PortfolioSection() {
