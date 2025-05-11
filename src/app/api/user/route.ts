@@ -5,6 +5,14 @@ import prisma from "@/lib/prisma";
 import { getToken } from "next-auth/jwt";
 import { authConstants } from "@/lib/constants/auth";
 
+const userSelect = {
+  id: true,
+  name: true,
+  last_name: true,
+  email: true,
+  created_at: true,
+};
+
 export async function GET(request: Request) {
   try {
     // Check for custom session
@@ -20,13 +28,7 @@ export async function GET(request: Request) {
         if (session?.userId) {
           const user = await prisma.user.findUnique({
             where: { id: session.userId },
-            select: {
-              id: true,
-              name: true,
-              last_name: true,
-              email: true,
-              created_at: true,
-            },
+            select: userSelect,
           });
 
           if (user) {
@@ -49,16 +51,10 @@ export async function GET(request: Request) {
         secret: process.env.NEXTAUTH_SECRET,
       });
 
-      if (token?.sub) {
+      if (token?.sub && token.email) {
         const user = await prisma.user.findUnique({
-          where: { email: token.email as string },
-          select: {
-            id: true,
-            name: true,
-            last_name: true,
-            email: true,
-            created_at: true,
-          },
+          where: { email: token.email },
+          select: userSelect,
         });
 
         if (user) {
