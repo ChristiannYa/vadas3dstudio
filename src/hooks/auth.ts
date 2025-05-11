@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { useState, useEffect, useCallback } from "react";
+import { useSession, signOut } from "next-auth/react";
 import { UserData } from "@/app/definitions";
+import { logout as customLogout } from "@/app/auth/log-in/actions";
 
 export function useUser() {
   // NextAuth session
@@ -60,4 +61,39 @@ export function useUser() {
     loading: nextAuthStatus === "loading" || loading,
     error,
   };
+}
+
+export function useLogOut() {
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const logOut = useCallback(async (redirectPath: string = "/") => {
+    setIsLoggingOut(true);
+    setError(null);
+
+    try {
+      // Handle custom session logout
+      const customLogoutPromise = customLogout();
+
+      // Handle NextAuth session logout
+      const nextAuthLogoutPromise = signOut({ redirect: false });
+
+      // Wait for both logout operations to complete
+      await Promise.all([customLogoutPromise, nextAuthLogoutPromise]);
+
+      // Redirect to specified path
+      window.location.href = redirectPath;
+      return { success: true };
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "An unexpected error occurred";
+      console.error("Logout failed:", err);
+      setError(errorMessage);
+      return { success: false, error: errorMessage };
+    } finally {
+      setIsLoggingOut(false);
+    }
+  }, []);
+
+  return { logOut, isLoggingOut, error };
 }

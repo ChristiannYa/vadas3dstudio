@@ -1,36 +1,14 @@
 "use client";
 
-import { logout } from "@/app/auth/log-in/actions";
-import { useState } from "react";
+import { useLogOut } from "@/hooks/auth";
 
 const LogoutButton = () => {
-  const [isLoggingOut, setIsLoggingOut] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleLogout = async () => {
-    setIsLoggingOut(true);
-
-    try {
-      const result = await logout();
-
-      if (result.success) {
-        window.location.href = "/";
-      } else {
-        setError(result.error || "Logout Failed");
-        setIsLoggingOut(false);
-      }
-    } catch (error) {
-      console.error("Logout failed: ", error);
-
-      setError("An unexpected error occurred.");
-      setIsLoggingOut(false);
-    }
-  };
+  const { logOut, isLoggingOut, error } = useLogOut();
 
   return (
     <>
       <button
-        onClick={handleLogout}
+        onClick={() => logOut()}
         disabled={isLoggingOut}
         className="bg-red-500 hover:bg-red-600 hover:cursor-pointer text-white text-sm rounded-sm px-2 py-1"
       >
