@@ -3,37 +3,18 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { UserData } from "@/app/definitions";
-import { authConstants } from "@/lib/constants/auth";
 import { logout as customLogout } from "@/app/auth/log-in/actions";
 
 export function useUser() {
   // NextAuth session
-  const { data: nextAuthSession, status: nextAuthStatus } = useSession();
+  const { status: nextAuthStatus } = useSession();
 
-  // Custom session data
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // If NextAuth has a session, use that data
-    if (nextAuthStatus === "authenticated" && nextAuthSession?.user) {
-      const user = nextAuthSession.user;
-      setUserData({
-        isLoggedIn: true,
-        user: {
-          id: user.id || "",
-          name: user.name?.split(" ")[0] || "",
-          last_name: user.name?.split(" ").slice(1).join(" ") || "",
-          email: user.email || "",
-        },
-        authType: authConstants.AUTH.TYPES.NEXTAUTH,
-      });
-      setLoading(false);
-      return;
-    }
-
-    // If NextAuth is not loading, check for custom session via API
+    // Only fetch user data when NextAuth is not in loading state
     if (nextAuthStatus !== "loading") {
       const fetchUser = async () => {
         try {
@@ -55,7 +36,7 @@ export function useUser() {
 
       fetchUser();
     }
-  }, [nextAuthStatus, nextAuthSession]);
+  }, [nextAuthStatus]);
 
   return {
     user: userData,

@@ -97,6 +97,11 @@ export async function register(
     // Hash the password
     const passwordHash = await bcrypt.hash(password, 10);
 
+    /**
+     * @note - There is no need to include the id, email_verified,
+     * created_at, or updated_at fields since they are auto-generated
+     * by the database schema.
+     */
     const newUser = await prisma.user.create({
       data: {
         name,
