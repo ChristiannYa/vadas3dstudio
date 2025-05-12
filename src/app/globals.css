@@ -77,7 +77,7 @@ section h1 {
 }
 
 .a {
-  @apply font-raleway font-light text-xs md:text-sm uppercase;
+  @apply font-raleway font-light text-sm uppercase;
 }
 
 .profile__home-btn {
