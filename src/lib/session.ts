@@ -18,7 +18,9 @@ export async function createSession(userId: number) {
 
   cookieStore.set(authConstants.SESSION_COOKIE_NAME, session, {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
     expires: expiresAt,
   });
 }
