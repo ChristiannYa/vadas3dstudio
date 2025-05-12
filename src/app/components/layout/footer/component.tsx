@@ -5,7 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="pb-6">
+    <footer className="pb-6 pt-4">
       <div className="container-1600">
         <div className="font-montserrat-alternates flex justify-between items-center max-md:flex-col">
           <p className="text-center opacity-70">Terms & Conditions</p>

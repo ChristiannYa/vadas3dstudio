@@ -19,3 +19,8 @@ export function formatDate(dateString: string | null | undefined): string {
     return "Invalid Date";
   }
 }
+
+export function capitalizeFirstLetter(text: string | null | undefined): string {
+  if (!text) return "";
+  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+}

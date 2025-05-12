@@ -61,7 +61,7 @@ export default function RootLayout({
         <AuthProvider>
           <div className="min-h-dvh grid grid-rows-[auto_1fr_auto]">
             <Header />
-            <main>{children}</main>
+            <main className="h-full">{children}</main>
             <Footer />
           </div>
         </AuthProvider>
