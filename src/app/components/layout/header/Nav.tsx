@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { LoginForm } from "@/app/auth/component";
 import HomeButton from "@/app/components/navigation/HomeButton";

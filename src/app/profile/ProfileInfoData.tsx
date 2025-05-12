@@ -41,8 +41,8 @@ export default function ProfileInfoData() {
 
   return (
     <div>
-      <h1 className="text-accent-1 text-2xl text-start font-[400] font-montserrat-alternates capitalize">
-        {formatPossessive(name!)} Profile
+      <h1 className="text-accent-1 text-2xl text-start font-[400] font-montserrat-alternates capitalize mb-0.5">
+        {formatPossessive(name!)} Account information
       </h1>
       <div className="font-poppins font-[300] w-fit mb-4 space-y-1">
         {profileFields.map((field, index) => (

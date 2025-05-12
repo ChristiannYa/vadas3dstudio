@@ -68,6 +68,10 @@ section h1 {
   @apply hover:text-accent-1 hover:cursor-pointer px-2 py-1;
 }
 
+.nav__item.active {
+  @apply text-accent-1;
+}
+
 .section-title {
   @apply font-dream-avenue font-[500] text-6xl lg:text-8xl;
 }

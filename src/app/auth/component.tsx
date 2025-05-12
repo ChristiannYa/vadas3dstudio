@@ -1,17 +1,15 @@
 "use client";
 import { useState } from "react";
 import { FormProvider } from "@/contexts/FormContext";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "@/hooks/auth";
 import LogInFace from "./log-in/LogInFace";
 import SignupFace from "./signup/SignupFace";
 
 export function LoginForm() {
+  const pathname = usePathname();
   const router = useRouter();
   const { user, loading } = useUser();
-  const displayName = user?.isLoggedIn
-    ? `${user.user?.name} ${user.user?.last_name}`.trim()
-    : "Login";
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -34,8 +32,13 @@ export function LoginForm() {
           <span className="inline-block w-3 h-3 border-2 border-t-transparent border-white rounded-full animate-spin"></span>
         </div>
       ) : (
-        <button onClick={handleButtonClick} className="nav__item a">
-          {displayName}
+        <button
+          onClick={handleButtonClick}
+          className={`nav__item a ${
+            pathname.startsWith("/profile") ? "active" : ""
+          }`}
+        >
+          <p>Profile</p>
         </button>
       )}
       {/* Modal overlay with transition */}
