@@ -17,14 +17,14 @@ export async function GET(request: Request) {
   try {
     // Check for custom session
     const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get(
+    const jwtSessionCookie = cookieStore.get(
       authConstants.SESSION_COOKIE_NAME
     )?.value;
 
     // First try the custom session
-    if (sessionCookie) {
+    if (jwtSessionCookie) {
       try {
-        const session = await decrypt(sessionCookie);
+        const session = await decrypt(jwtSessionCookie);
         if (session?.userId) {
           const user = await prisma.user.findUnique({
             where: { id: session.userId },

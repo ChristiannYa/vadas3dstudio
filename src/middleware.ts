@@ -20,12 +20,12 @@ export async function middleware(request: NextRequest) {
 
     // Check custom session
     try {
-      const sessionCookie = request.cookies.get(
+      const jwtSessionCookie = request.cookies.get(
         authConstants.SESSION_COOKIE_NAME
       )?.value;
 
-      if (sessionCookie) {
-        const payload = await decrypt(sessionCookie);
+      if (jwtSessionCookie) {
+        const payload = await decrypt(jwtSessionCookie);
 
         if (payload && payload.userId) {
           isAuthenticated = true;

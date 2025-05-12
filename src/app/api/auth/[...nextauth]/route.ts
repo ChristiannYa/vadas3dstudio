@@ -3,7 +3,6 @@ import { randomUUID } from "crypto";
 import type { NextAuthConfig } from "next-auth";
 import NextAuth from "next-auth";
 import prisma from "@/lib/prisma";
-import { createSession } from "@/lib/session";
 import { authConstants } from "@/lib/constants/auth";
 
 export const authConfig: NextAuthConfig = {
@@ -11,6 +10,11 @@ export const authConfig: NextAuthConfig = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          prompt: "select_account",
+        },
+      },
     }),
   ],
   callbacks: {
@@ -60,20 +64,6 @@ export const authConfig: NextAuthConfig = {
         }
       }
       return true;
-    },
-  },
-  events: {
-    async signIn({ user }): Promise<void> {
-      if (user.email) {
-        const existingUser = await prisma.user.findUnique({
-          where: { email: user.email },
-        });
-
-        // Check if user exists and create session
-        if (existingUser) {
-          await createSession(existingUser.id);
-        }
-      }
     },
   },
 };
