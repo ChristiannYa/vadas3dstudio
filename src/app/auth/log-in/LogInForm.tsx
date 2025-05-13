@@ -1,12 +1,20 @@
 import { useActionState, useContext } from "react";
 import { useFormStatus } from "react-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FormContext } from "@/contexts/FormContext";
 import { login } from "./actions";
 import { GoogleLoginButton } from "./GoogleLoginButton";
 import Button from "@/app/components/page/Button";
+import { usePasswordToggle } from "@/hooks/auth";
 
 export default function LogInForm() {
   const [state, loginAction] = useActionState(login, undefined);
+  const {
+    inputRef: passwordInputRef,
+    showPassword,
+    togglePasswordVisibility,
+  } = usePasswordToggle();
 
   return (
     <form action={loginAction}>
@@ -35,18 +43,27 @@ export default function LogInForm() {
         )}
       </div>
       {/* password */}
-      <div className="form__field">
+      <div className="form__field relative">
         <label htmlFor="login-password" className="form__label sr-only">
           Password
         </label>
         <input
+          ref={passwordInputRef}
           id="login-password"
           name="password"
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Password"
-          className="form__input"
+          className="form__input pr-10"
           autoComplete="current-password"
         />
+        <button
+          type="button"
+          onMouseDown={togglePasswordVisibility}
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white focus:outline-none hover:cursor-pointer"
+          aria-label={showPassword ? "Hide password" : "Show password"}
+        >
+          <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+        </button>
         {state?.errors?.password && (
           <p className="font-poppins text-red-500 text-xs md:text-sm normal-case">
             {state.errors.password}

@@ -1,15 +1,13 @@
 "use client";
 
-import { useContext, useState } from "react";
-import { FormContext, FormProvider } from "@/contexts/FormContext";
+import { useState } from "react";
+import { FormProvider } from "@/contexts/FormContext";
 import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "@/hooks/auth";
 import LogInFace from "./log-in/LogInFace";
 import SignupFace from "./signup/SignupFace";
 
 export function LoginForm() {
-  const { loginFormReset, signupFormReset } = useContext(FormContext);
-
   const pathname = usePathname();
   const router = useRouter();
   const { user, loading } = useUser();
@@ -26,13 +24,6 @@ export function LoginForm() {
     } else {
       setIsOpen(true);
     }
-  };
-
-  const handleCloseModal = () => {
-    loginFormReset();
-    signupFormReset();
-    setIsOpen(false);
-    setIsFlipped(false);
   };
 
   return (
@@ -60,7 +51,7 @@ export function LoginForm() {
         className={`bg-black/10 transition-opacity duration-300 fixed inset-0 z-10 ${
           isOpen ? "opacity-100 no-doc-scroll" : "opacity-0 pointer-events-none"
         }`}
-        onClick={handleCloseModal}
+        onClick={() => setIsOpen(false)}
       />
       <div>
         <div

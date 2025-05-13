@@ -1,10 +1,24 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { register } from "./actions";
 import Button from "@/app/components/page/Button";
+import { usePasswordToggle } from "@/hooks/auth";
 
 export default function SignupForm() {
   const [state, registerAction] = useActionState(register, undefined);
+  const {
+    inputRef: passwordInputRef,
+    showPassword,
+    togglePasswordVisibility,
+  } = usePasswordToggle();
+
+  const {
+    inputRef: confirmPasswordInputRef,
+    showPassword: showConfirmPassword,
+    togglePasswordVisibility: toggleConfirmPasswordVisibility,
+  } = usePasswordToggle();
 
   return (
     <form action={registerAction}>
@@ -82,14 +96,25 @@ export default function SignupForm() {
             <label htmlFor="signup-password" className="form__label">
               Password
             </label>
-            <input
-              id="signup-password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              className="form__input"
-              autoComplete="new-password"
-            />
+            <div className="relative">
+              <input
+                ref={passwordInputRef}
+                id="signup-password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                className="form__input pr-10"
+                autoComplete="new-password"
+              />
+              <button
+                type="button"
+                onMouseDown={togglePasswordVisibility}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white focus:outline-none"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </button>
+            </div>
           </div>
           {state?.errors?.password && (
             <p className="form__field--error-message">
@@ -103,14 +128,29 @@ export default function SignupForm() {
             <label htmlFor="signup-confirmPassword" className="form__label">
               Confirm Password
             </label>
-            <input
-              id="signup-confirmPassword"
-              name="confirm_password"
-              type="password"
-              placeholder="Confirm your password"
-              className="form__input"
-              autoComplete="new-password"
-            />
+            <div className="relative">
+              <input
+                ref={confirmPasswordInputRef}
+                id="signup-confirmPassword"
+                name="confirm_password"
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirm your password"
+                className="form__input pr-10"
+                autoComplete="new-password"
+              />
+              <button
+                type="button"
+                onMouseDown={toggleConfirmPasswordVisibility}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white focus:outline-none"
+                aria-label={
+                  showConfirmPassword ? "Hide password" : "Show password"
+                }
+              >
+                <FontAwesomeIcon
+                  icon={showConfirmPassword ? faEyeSlash : faEye}
+                />
+              </button>
+            </div>
           </div>
           {state?.errors?.confirm_password && (
             <p className="form__field--error-message">

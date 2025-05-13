@@ -1,8 +1,6 @@
-"use client";
-
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useSession, signOut } from "next-auth/react";
-import { UserData } from "@/app/definitions";
+import { UsePasswordToggleResult, UserData } from "@/app/definitions";
 import { logout as customLogout } from "@/app/auth/log-in/actions";
 
 export function useUser() {
@@ -78,4 +76,41 @@ export function useLogOut() {
   }, []);
 
   return { logOut, isLoggingOut, error };
+}
+
+export function usePasswordToggle(): UsePasswordToggleResult {
+  const [showPassword, setShowPassword] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const togglePasswordVisibility = (e: React.MouseEvent) => {
+    e.preventDefault(); // Crucial to prevent focus loss on mobile
+
+    // Store current selection
+    const selectionStart = inputRef.current?.selectionStart;
+    const selectionEnd = inputRef.current?.selectionEnd;
+
+    // Toggle state
+    setShowPassword(!showPassword);
+
+    // Restore focus and selection after state update
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+
+        // Only set selection range if we have valid positions
+        if (
+          typeof selectionStart === "number" &&
+          typeof selectionEnd === "number"
+        ) {
+          inputRef.current.setSelectionRange(selectionStart, selectionEnd);
+        }
+      }
+    }, 0);
+  };
+
+  return {
+    inputRef,
+    showPassword,
+    togglePasswordVisibility,
+  };
 }
