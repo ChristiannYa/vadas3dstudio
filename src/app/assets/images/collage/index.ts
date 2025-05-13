@@ -6,7 +6,6 @@ import collage5 from "./collage-5.jpg";
 import collage6 from "./collage-6.jpg";
 import collage7 from "./collage-7.jpg";
 import collage8 from "./collage-8.jpg";
-import collage9 from "./collage-9.jpg";
 
 export {
   collage1,
@@ -17,5 +16,4 @@ export {
   collage6,
   collage7,
   collage8,
-  collage9,
 };

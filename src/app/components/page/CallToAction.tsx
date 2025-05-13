@@ -18,7 +18,10 @@ export default function CallToAction() {
             proposal.
           </p>
           <a href={externalLink} target="_blank" rel="noopener noreferrer">
-            <Button type="button" className="rounded-full mt-3">
+            <Button
+              type="button"
+              className="bg-accent-1 before:bg-accent-1-hover rounded-full mt-3"
+            >
               <span className="font-poppins text-accent-2">
                 Let&apos;s Build Your Vision in 3D
               </span>
