@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { decrypt } from "@/lib/session";
 import prisma from "@/lib/prisma";
-import { getToken } from "next-auth/jwt";
+import { auth } from "@/lib/auth";
 import { authConstants } from "@/lib/constants/auth";
 
 const userSelect = {
@@ -13,7 +13,7 @@ const userSelect = {
   created_at: true,
 };
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     // Check for custom session
     const cookieStore = await cookies();
@@ -44,27 +44,32 @@ export async function GET(request: Request) {
       }
     }
 
-    // If custom session failed, try NextAuth
+    // If custom session failed, try NextAuth using the auth() function
     try {
-      console.log("Trying NextAuth session");
-      const token = await getToken({
-        req: request,
-        secret: process.env.NEXTAUTH_SECRET,
-      });
-
+      console.log("Trying NextAuth session using auth()");
+      const session = await auth();
       console.log(
-        "NextAuth token:",
-        token ? { sub: token.sub, email: token.email } : "No token found"
+        "NextAuth session:",
+        session
+          ? {
+              user: session.user
+                ? {
+                    name: session.user.name,
+                    email: session.user.email,
+                  }
+                : "No user in session",
+            }
+          : "No session found"
       );
 
-      if (token?.sub && token.email) {
+      if (session?.user?.email) {
         const user = await prisma.user.findUnique({
-          where: { email: token.email },
+          where: { email: session.user.email },
           select: userSelect,
         });
 
         console.log(
-          "User found from token:",
+          "User found from session:",
           user ? { id: user.id, email: user.email } : "No user found"
         );
 
