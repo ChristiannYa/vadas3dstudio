@@ -37,9 +37,19 @@ export async function middleware(request: NextRequest) {
 
     // Check NextAuth session
     if (!isAuthenticated) {
-      const session = await auth();
-      if (session) {
-        isAuthenticated = true;
+      try {
+        console.log("Checking NextAuth session in middleware");
+        const session = await auth();
+        console.log(
+          "NextAuth session in middleware:",
+          session ? "Found" : "Not found"
+        );
+        if (session) {
+          isAuthenticated = true;
+          console.log("Authenticated with NextAuth in middleware");
+        }
+      } catch (error) {
+        console.error("NextAuth session check error in middleware:", error);
       }
     }
 
