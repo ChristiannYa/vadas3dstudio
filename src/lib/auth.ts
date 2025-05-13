@@ -1,8 +1,15 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { randomUUID } from "crypto";
 import prisma from "@/lib/prisma";
 import { authConstants } from "@/lib/constants/auth";
+
+const generateUUID = () => {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0;
+    const v = c === "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+};
 
 export const { auth, handlers } = NextAuth({
   providers: [
@@ -34,7 +41,8 @@ export const { auth, handlers } = NextAuth({
                 name: user.name?.split(" ")[0] || "",
                 last_name: user.name?.split(" ").slice(1).join(" ") || "",
                 email: user.email,
-                password_hash: `oauth_${randomUUID()}`,
+                // Use the generateUUID function instead of randomUUID
+                password_hash: `oauth_${generateUUID()}`,
               },
             });
           }
