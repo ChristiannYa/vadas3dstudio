@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
+import { auth } from "@/lib/auth";
 import { decrypt } from "./lib/session";
 import { authConstants } from "./lib/constants/auth";
 
@@ -35,19 +35,11 @@ export async function middleware(request: NextRequest) {
       console.error("Custom session check error:", error);
     }
 
-    // Check NextAuth session if custom session not authenticated
+    // Check NextAuth session
     if (!isAuthenticated) {
-      try {
-        const token = await getToken({
-          req: request,
-          secret: process.env.NEXTAUTH_SECRET,
-        });
-
-        if (token) {
-          isAuthenticated = true;
-        }
-      } catch (error) {
-        console.error("NextAuth session check error:", error);
+      const session = await auth();
+      if (session) {
+        isAuthenticated = true;
       }
     }
 
@@ -57,15 +49,9 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return undefined;
+  return NextResponse.next();
 }
 
-/**
- * @note - without this, the middleware will run on every request.
- * It will trigger the middleware whenever the path starts with "/profile",
- * and paths that may have additional segments after "/profile/"
- * (e.g., '/profile/settings')
- */
 export const config = {
   matcher: ["/profile/:path*"],
 };
