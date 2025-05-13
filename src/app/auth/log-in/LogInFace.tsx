@@ -19,7 +19,7 @@ export default function LogInFace({
       <CloseFormButton closeModal={closeModal} />
       <h2 className="form__title">Log in</h2>
       <LoginForm />
-      <button className="block mt-3 mx-auto" onClick={toggleFlip}>
+      <button className="block mt-4 mx-auto" onClick={toggleFlip}>
         <p className="font-raleway text-white-fg dark:text-fg text-sm text-center hover:text-accent-1 leading-none cursor-pointer">
           Sign up for a new account
         </p>

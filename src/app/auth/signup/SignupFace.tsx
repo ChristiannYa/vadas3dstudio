@@ -18,7 +18,7 @@ export default function SignupFace({
       <CloseFormButton closeModal={closeModal} />
       <h2 className="form__title">Sign Up</h2>
       <SignupForm />
-      <p className="font-raleway text-sm text-center normal-case leading-none mt-3">
+      <p className="font-raleway text-sm text-center normal-case leading-none mt-4">
         Already have an account?{" "}
         <button onClick={toggleFlip}>
           <p className="font-raleway text-sm text-center hover:text-accent-1 leading-none cursor-pointer">

@@ -17,7 +17,9 @@ export default function SignupForm() {
         {/* name */}
         <div className="form__field">
           <div>
-            <label className="form__label">Name</label>
+            <label htmlFor="signup-name" className="form__label">
+              Name
+            </label>
             <input
               id="signup-name"
               name="name"
@@ -25,18 +27,19 @@ export default function SignupForm() {
               placeholder="Name"
               defaultValue={state?.values?.name || ""}
               className="form__input"
+              autoComplete="given-name"
             />
           </div>
           {state?.errors?.name && (
-            <p className="font-poppins text-red-500 text-xs md:text-sm normal-case">
-              {state.errors.name}
-            </p>
+            <p className="form__field--error-message">{state.errors.name}</p>
           )}
         </div>
         {/* last name */}
         <div className="form__field">
           <div>
-            <label className="form__label">Last Name</label>
+            <label htmlFor="signup-lastName" className="form__label">
+              Last Name
+            </label>
             <input
               id="signup-lastName"
               name="last_name"
@@ -44,10 +47,11 @@ export default function SignupForm() {
               placeholder="Last Name"
               defaultValue={state?.values?.last_name || ""}
               className="form__input"
+              autoComplete="family-name"
             />
           </div>
           {state?.errors?.last_name && (
-            <p className="font-poppins text-red-500 text-xs md:text-sm normal-case">
+            <p className="form__field--error-message">
               {state.errors.last_name}
             </p>
           )}
@@ -55,7 +59,9 @@ export default function SignupForm() {
         {/* email */}
         <div className="form__field">
           <div>
-            <label className="form__label">Email</label>
+            <label htmlFor="signup-email" className="form__label">
+              Email
+            </label>
             <input
               id="signup-email"
               name="email"
@@ -63,28 +69,30 @@ export default function SignupForm() {
               placeholder="Email"
               defaultValue={state?.values?.email || ""}
               className="form__input"
+              autoComplete="email"
             />
           </div>
           {state?.errors?.email && (
-            <p className="font-poppins text-red-500 text-xs md:text-sm normal-case">
-              {state.errors.email}
-            </p>
+            <p className="form__field--error-message">{state.errors.email}</p>
           )}
         </div>
         {/* password */}
         <div className="form__field">
           <div>
-            <label className="form__label">Password</label>
+            <label htmlFor="signup-password" className="form__label">
+              Password
+            </label>
             <input
               id="signup-password"
               name="password"
               type="password"
               placeholder="Password"
               className="form__input"
+              autoComplete="new-password"
             />
           </div>
           {state?.errors?.password && (
-            <p className="font-poppins text-red-500 text-xs md:text-sm normal-case">
+            <p className="form__field--error-message">
               {state.errors.password}
             </p>
           )}
@@ -92,17 +100,20 @@ export default function SignupForm() {
         {/* confirm password */}
         <div className="form__field">
           <div>
-            <label className="form__label">Confirm Password</label>
+            <label htmlFor="signup-confirmPassword" className="form__label">
+              Confirm Password
+            </label>
             <input
               id="signup-confirmPassword"
               name="confirm_password"
               type="password"
               placeholder="Confirm your password"
               className="form__input"
+              autoComplete="new-password"
             />
           </div>
           {state?.errors?.confirm_password && (
-            <p className="font-poppins text-red-500 text-xs md:text-sm normal-case">
+            <p className="form__field--error-message">
               {state.errors.confirm_password}
             </p>
           )}

@@ -17,12 +17,16 @@ export default function LogInForm() {
       )}
       {/* email */}
       <div className="form__field">
+        <label htmlFor="login-email" className="form__label sr-only">
+          Email
+        </label>
         <input
           id="login-email"
           name="email"
           type="email"
           placeholder="Email"
           className="form__input"
+          autoComplete="email"
         />
         {state?.errors?.email && (
           <p className="font-poppins text-red-500 text-xs md:text-sm normal-case">
@@ -32,12 +36,16 @@ export default function LogInForm() {
       </div>
       {/* password */}
       <div className="form__field">
+        <label htmlFor="login-password" className="form__label sr-only">
+          Password
+        </label>
         <input
           id="login-password"
           name="password"
           type="password"
           placeholder="Password"
           className="form__input"
+          autoComplete="current-password"
         />
         {state?.errors?.password && (
           <p className="font-poppins text-red-500 text-xs md:text-sm normal-case">
