@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { signIn } from "next-auth/react";
 import { useFormStatus } from "react-dom";
 import { FormContext } from "@/contexts/FormContext";
-import { GoogleIcon } from "@/app/assets/icons/page";
+import { GoogleIcon } from "@/app/assets/icons/main";
 import Button from "@/app/components/page/Button";
 
 export function GoogleLoginButton() {

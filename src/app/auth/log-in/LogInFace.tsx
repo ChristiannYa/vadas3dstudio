@@ -1,5 +1,5 @@
 import { CardFace } from "@/app/definitions";
-import { WhiteLogo } from "@/app/assets/icons/page";
+import { WhiteLogo } from "@/app/assets/icons/main";
 import CloseFormButton from "../CloseFormButton";
 import LoginForm from "./LogInForm";
 
