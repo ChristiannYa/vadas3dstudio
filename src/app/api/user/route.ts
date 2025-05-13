@@ -46,16 +46,27 @@ export async function GET(request: Request) {
 
     // If custom session failed, try NextAuth
     try {
+      console.log("Trying NextAuth session");
       const token = await getToken({
         req: request,
         secret: process.env.NEXTAUTH_SECRET,
       });
+
+      console.log(
+        "NextAuth token:",
+        token ? { sub: token.sub, email: token.email } : "No token found"
+      );
 
       if (token?.sub && token.email) {
         const user = await prisma.user.findUnique({
           where: { email: token.email },
           select: userSelect,
         });
+
+        console.log(
+          "User found from token:",
+          user ? { id: user.id, email: user.email } : "No user found"
+        );
 
         if (user) {
           return NextResponse.json({
