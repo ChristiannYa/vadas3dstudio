@@ -5,7 +5,7 @@ import NextAuth from "next-auth";
 import prisma from "@/lib/prisma";
 import { authConstants } from "@/lib/constants/auth";
 
-export const authConfig: NextAuthConfig = {
+const authConfig: NextAuthConfig = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
