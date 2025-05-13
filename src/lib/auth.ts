@@ -45,6 +45,9 @@ export const { auth, handlers } = NextAuth({
                 password_hash: `oauth_${generateUUID()}`,
               },
             });
+            console.log("New user created:", user.email);
+          } else {
+            console.log("User already exists:", user.email);
           }
           return true;
         } catch (error) {
@@ -54,5 +57,36 @@ export const { auth, handlers } = NextAuth({
       }
       return true;
     },
+    async session({ session, token }) {
+      console.log("Session callback", {
+        sessionUser: session.user,
+        token: { sub: token.sub, email: token.email },
+      });
+      return session;
+    },
+    // JWT callback to log token information
+    async jwt({ token, user, account }) {
+      if (account && user) {
+        console.log("JWT callback - new sign in", {
+          userId: user.id,
+          accountType: account.provider,
+        });
+      } else {
+        console.log("JWT callback - existing token");
+      }
+      return token;
+    },
+
+    // Redirect callback to see where NextAuth is redirecting
+    async redirect({ url, baseUrl }) {
+      console.log("Redirect callback", { url, baseUrl });
+      return url.startsWith(baseUrl) ? url : baseUrl;
+    },
+  },
+  debug: process.env.NODE_ENV !== "production",
+
+  pages: {
+    signIn: "/auth/log-in",
+    error: "/auth/error",
   },
 });
