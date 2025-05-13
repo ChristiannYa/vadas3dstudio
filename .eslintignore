@@ -1,2 +1,2 @@
 # Ignore Prisma generated files
-**/generated/prisma/**
+prisma/src/app/generated/prisma/**
