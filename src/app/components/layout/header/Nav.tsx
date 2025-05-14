@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LoginForm } from "@/app/auth/component";
 import HomeButton from "@/app/components/navigation/HomeButton";
 
@@ -9,10 +11,19 @@ const LiDivisor = () => {
 };
 
 export function Nav() {
+  const pathname = usePathname();
+
   return (
     <nav>
       <ul className="a flex justify-center items-center">
         <HomeButton variant="header" />
+        <LiDivisor />
+        <Link
+          href="/store"
+          className={`nav__item ${pathname === "/store" ? "active" : ""}`}
+        >
+          <p>Store</p>
+        </Link>
         <LiDivisor />
         <LoginForm />
       </ul>

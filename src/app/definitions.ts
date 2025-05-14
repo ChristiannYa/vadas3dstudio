@@ -80,3 +80,10 @@ export interface PricingGuide {
   features: string[];
   price: string;
 }
+
+export interface CartItem {
+  product_id: number;
+  quantity: number;
+  name: string;
+  price: number;
+}

@@ -1,8 +1,9 @@
 import { pricingGuideList } from "@/lib/constants/pricing";
+import Button from "@/app/components/page/Button";
 
 export default function Store() {
   return (
-    <div className="container-1000">
+    <div className="container-1000 pt-4 pb-12">
       <h1 className="font-dream-avenue font-[500] text-5xl lg:text-7xl text-center md:text-start mb-4">
         Pricing Guide
       </h1>
@@ -18,7 +19,7 @@ export default function Store() {
             <p className="text-fg/90 font-dm-sans font-[300] text-base lg:text-lg text-preset-3">
               {item.description}
             </p>
-            <ul className="list-disc list-inside">
+            <ul className="list-disc list-inside rounded-xl max-md:mx-auto">
               {item.features.map((feature, index) => (
                 <li
                   key={index}
@@ -28,7 +29,18 @@ export default function Store() {
                 </li>
               ))}
             </ul>
-            <p className="font-dm-sans text-lg">Price: {item.price}</p>
+            <div className="font-dm-sans flex gap-x-1 items-center">
+              <p className="text-lg">Price: {item.price}</p>
+              <p className="text-gray-500 text-sm">(Per image)</p>
+            </div>
+            <div className="max-md:mt-1 md:absolute bottom-4 right-4">
+              <Button
+                type="button"
+                className="bg-black/90 dark:bg-white/90 before:bg-accent-1 text-sm text-white dark:text-black hover:text-white transition-colors duration-100"
+              >
+                Select
+              </Button>
+            </div>
           </div>
         ))}
       </div>

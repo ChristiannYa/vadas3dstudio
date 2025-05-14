@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AuthProvider } from "./providers";
+import { AuthProvider, StoreProvider } from "./providers";
 import {
   raleway,
   poppins,
@@ -12,6 +12,12 @@ import {
 import "./globals.css";
 import Header from "./components/layout/header/component";
 import Footer from "./components/layout/footer/component";
+/*
+import {
+  selectCartTabStatus,
+  selectOrderStatus,
+} from "@/lib/features/cart/cartSlice";
+*/
 
 export const metadata: Metadata = {
   title: "Vadas 3D Studio",
@@ -59,11 +65,13 @@ export default function RootLayout({
         className={`${raleway.variable} ${poppins.variable} ${dmSans.variable} ${montserratAlternates.variable} ${dreamAvenue.variable} ${kanit.variable} ${firaCode.variable} antialiased`}
       >
         <AuthProvider>
-          <div className="min-h-dvh grid grid-rows-[auto_1fr_auto]">
-            <Header />
-            <main className="h-full">{children}</main>
-            <Footer />
-          </div>
+          <StoreProvider>
+            <div className="min-h-dvh grid grid-rows-[auto_1fr_auto]">
+              <Header />
+              <main className="h-full">{children}</main>
+              <Footer />
+            </div>
+          </StoreProvider>
         </AuthProvider>
       </body>
     </html>
