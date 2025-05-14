@@ -1,6 +1,6 @@
 export default function Paragraph() {
   return (
-    <div className="font-montserrat-alternates text-fg text-xl sm:text-2xl max-sm:text-justify font-[300] max-lg:pt-6">
+    <div className="font-raleway text-fg text-2xl sm:text-3xl max-sm:text-justify font-[300] max-lg:pt-6">
       <p className="relative">
         <span className="text-shine leading-0">About Me</span> I&apos;m Vada, a
         visionary creative 3D artist specializing in photorealistic renderings,

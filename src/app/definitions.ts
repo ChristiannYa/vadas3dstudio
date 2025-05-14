@@ -72,3 +72,11 @@ export interface AccentButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   type: "button" | "submit";
   className?: string;
 }
+
+export interface PricingGuide {
+  id: number;
+  title: string;
+  description: string;
+  features: string[];
+  price: string;
+}

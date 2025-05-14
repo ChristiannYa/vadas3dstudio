@@ -1,7 +1,13 @@
+"use client";
+
 import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Nav } from "@/app/components/layout/header/Nav";
 
 export default function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="py-6 lg:py-8">
       <div className="container-1600">
@@ -13,11 +19,16 @@ export default function Header() {
           </p>
           <div className="flex items-center gap-x-4 max-md:flex-col gap-y-2.5">
             <Nav />
-            <button
-              className={`a bg-accent-1 text-custom-white rounded-full w-fit py-0.5 md:py-1 px-2 md:px-4`}
+            <Link
+              href="/store"
+              className={`a bg-accent-1 rounded-full w-fit py-0.5 md:py-1 px-2 md:px-4 ${
+                pathname === "/store"
+                  ? "text-white bg-black/50 dark:bg-white/50"
+                  : ""
+              }`}
             >
               Store
-            </button>
+            </Link>
           </div>
         </div>
       </div>
