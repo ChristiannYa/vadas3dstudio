@@ -48,7 +48,7 @@ export default function ProfileInfoData() {
         {profileFields.map((field, index) => (
           <div key={index} className="flex items-center gap-x-1 flex-wrap">
             <p>{field.label}</p>
-            <p className="text-white/60">{field.value}</p>
+            <p className="text-black/60 dark:text-white/60">{field.value}</p>
           </div>
         ))}
       </div>
