@@ -84,6 +84,10 @@ section h1 {
   @apply font-raleway font-light text-sm uppercase;
 }
 
+.error-popup {
+  @apply bg-red-200 border border-red-500 text-red-500 text-center font-raleway uppercase rounded-md p-2;
+}
+
 .profile__home-btn {
   @apply bg-accent-1 hover:text-fg hover:bg-accent-1-hover rounded-sm py-1 px-1.5;
 }
@@ -275,6 +279,21 @@ video {
 }
 
 /* Animations */
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translate(0%, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0%, 0);
+    opacity: 1;
+  }
+}
+
 @-moz-keyframes shine {
   0% {
     background-position: 0;

@@ -19,7 +19,7 @@ export default function LogInForm() {
   return (
     <form action={loginAction}>
       {state?.errors?.form && (
-        <div className="bg-red-200 border border-red-500 text-red-500 text-center font-raleway rounded-md p-2 mb-3">
+        <div className="error-popup mb-3">
           <p>{state.errors.form}</p>
         </div>
       )}

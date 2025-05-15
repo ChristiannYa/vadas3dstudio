@@ -16,4 +16,25 @@ model User {
   password_hash  String
   created_at     DateTime @default(now())
   updated_at     DateTime @updatedAt
+  orders         Order[]
+}
+
+model Order {
+  id             Int           @id @default(autoincrement())
+  userId         Int
+  user           User          @relation(fields: [userId], references: [id])
+  total          Float
+  payment_intent String?       @unique // Stripe payment intent ID
+  created_at     DateTime      @default(now())
+  orderItems     OrderItem[]
+}
+
+model OrderItem {
+  id         Int      @id @default(autoincrement())
+  orderId    Int
+  order      Order    @relation(fields: [orderId], references: [id])
+  productId  Int
+  title      String
+  price      Float
+  quantity   Int
 }

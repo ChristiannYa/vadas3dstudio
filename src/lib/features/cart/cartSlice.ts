@@ -5,7 +5,6 @@ import { CartItem } from "@/app/definitions";
 const initialState = {
   items: [] as CartItem[],
   cartTabStatus: false,
-  orderStatus: false,
 };
 
 const findCartItem = (items: CartItem[], id: number) =>
@@ -60,14 +59,6 @@ export const cartSlice = createSlice({
     toggleCartTabStatus: (state) => {
       state.cartTabStatus = !state.cartTabStatus;
     },
-    toggleOrderStatus: (state) => {
-      if (state.items.length < 1) {
-        state.orderStatus = false;
-        return;
-      } else {
-        state.orderStatus = !state.orderStatus;
-      }
-    },
   },
 });
 
@@ -78,7 +69,6 @@ export const {
   decrementQuantity,
   clearCart,
   toggleCartTabStatus,
-  toggleOrderStatus,
 } = cartSlice.actions;
 
 export const selectCartItems = (state: RootState) => state.cart.items;
@@ -106,7 +96,5 @@ export const selectCartTotal = createSelector([selectCartItems], (items) =>
 
 export const selectCartTabStatus = (state: RootState) =>
   state.cart.cartTabStatus;
-
-export const selectOrderStatus = (state: RootState) => state.cart.orderStatus;
 
 export default cartSlice.reducer;
