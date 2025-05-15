@@ -2,18 +2,6 @@ import { authConstants } from "@/lib/constants/auth";
 import { StaticImageData } from "next/image";
 import { ButtonHTMLAttributes, ReactNode, RefObject } from "react";
 
-export type AuthType =
-  (typeof authConstants.AUTH.TYPES)[keyof typeof authConstants.AUTH.TYPES];
-
-export type AuthProvider =
-  (typeof authConstants.AUTH.PROVIDERS)[keyof typeof authConstants.AUTH.PROVIDERS];
-
-export interface UsePasswordToggleResult {
-  inputRef: RefObject<HTMLInputElement | null>;
-  showPassword: boolean;
-  togglePasswordVisibility: (e: React.MouseEvent) => void;
-}
-
 export interface UserData {
   isLoggedIn: boolean;
   user?: {
@@ -78,12 +66,24 @@ export interface PricingGuide {
   title: string;
   description: string;
   features: string[];
-  price: string;
+  price: number;
 }
 
 export interface CartItem {
-  product_id: number;
+  id: number;
   quantity: number;
-  name: string;
+  title: string;
   price: number;
+}
+
+export type AuthType =
+  (typeof authConstants.AUTH.TYPES)[keyof typeof authConstants.AUTH.TYPES];
+
+export type AuthProvider =
+  (typeof authConstants.AUTH.PROVIDERS)[keyof typeof authConstants.AUTH.PROVIDERS];
+
+export interface UsePasswordToggleResult {
+  inputRef: RefObject<HTMLInputElement | null>;
+  showPassword: boolean;
+  togglePasswordVisibility: (e: React.MouseEvent) => void;
 }

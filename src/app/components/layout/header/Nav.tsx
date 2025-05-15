@@ -19,10 +19,10 @@ export function Nav() {
         <HomeButton variant="header" />
         <LiDivisor />
         <Link
-          href="/store"
-          className={`nav__item ${pathname === "/store" ? "active" : ""}`}
+          href="/shop"
+          className={`nav__item ${pathname === "/shop" ? "active" : ""}`}
         >
-          <p>Store</p>
+          <p>Shop</p>
         </Link>
         <LiDivisor />
         <LoginForm />

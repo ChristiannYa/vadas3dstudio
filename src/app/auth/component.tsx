@@ -30,7 +30,7 @@ export function LoginForm() {
     <>
       {loading ? (
         <div className="px-2 py-1 flex items-center justify-center">
-          <span className="inline-block w-3.5 h-3.5 border border-t-transparent border-black dark:border-white rounded-full animate-spin"></span>
+          <span className="inline-block w-3.5 h-3.5 border-2 border-t-transparent border-black dark:border-white rounded-full animate-spin"></span>
         </div>
       ) : user?.isLoggedIn ? (
         <button

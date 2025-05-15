@@ -12,7 +12,7 @@ export const pricingGuideList: PricingGuide[] = [
       "Basic landscaping (grass, trees, etc.)",
       "Basic lighting (sun, moon, etc.)",
     ],
-    price: "$200",
+    price: 200,
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ export const pricingGuideList: PricingGuide[] = [
       "Customizable lighting and materials",
       "Customizable furniture and accessories",
     ],
-    price: "$400",
+    price: 400,
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ export const pricingGuideList: PricingGuide[] = [
       "Customizable lighting and materials",
       "Interactive elements and animations",
     ],
-    price: "$600",
+    price: 600,
   },
   {
     id: 4,
@@ -51,6 +51,6 @@ export const pricingGuideList: PricingGuide[] = [
       "Customizable lighting and materials",
       "Customizable furniture and accessories",
     ],
-    price: "$600",
+    price: 600,
   },
 ];

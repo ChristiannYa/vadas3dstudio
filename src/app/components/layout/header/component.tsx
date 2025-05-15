@@ -1,11 +1,16 @@
 "use client";
 
 import React from "react";
+import { useAppSelector, useCartTab } from "@/hooks/redux";
+import { selectCartItemsLength } from "@/lib/features/cart/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { Nav } from "@/app/components/layout/header/Nav";
 
 export default function Header() {
+  const { handleCartTabStatus } = useCartTab();
+  const cartItemsLength = useAppSelector(selectCartItemsLength);
+
   return (
     <header className="py-6 lg:py-8">
       <div className="container-1600">
@@ -17,15 +22,15 @@ export default function Header() {
           </p>
           <div className="flex items-center max-md:flex-col gap-y-2.5 gap-x-3">
             <Nav />
-            <div className="relative">
-              <FontAwesomeIcon
-                icon={faCartShopping}
-                className="bg-accent-1 rounded-full p-2"
-              />
-              <span className="bg-white-fg font-poppins text-black-fg text-sm rounded-full w-[20px] h-[20px] flex items-center justify-center absolute -top-1.5 -right-1.5">
-                0
+            <button
+              onClick={handleCartTabStatus}
+              className="bg-accent-1 hover:bg-accent-1-hover rounded-full cursor-pointer w-10 h-10 relative"
+            >
+              <FontAwesomeIcon icon={faCartShopping} />
+              <span className="bg-white-fg font-poppins text-black-fg text-xs rounded-full w-[20px] h-[20px] flex items-center justify-center absolute -top-1.5 -right-1.5">
+                {cartItemsLength}
               </span>
-            </div>
+            </button>
           </div>
         </div>
       </div>

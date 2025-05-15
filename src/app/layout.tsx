@@ -10,14 +10,7 @@ import {
   firaCode,
 } from "./fonts";
 import "./globals.css";
-import Header from "./components/layout/header/component";
-import Footer from "./components/layout/footer/component";
-/*
-import {
-  selectCartTabStatus,
-  selectOrderStatus,
-} from "@/lib/features/cart/cartSlice";
-*/
+import Layout from "./components/layout/Layout";
 
 export const metadata: Metadata = {
   title: "Vadas 3D Studio",
@@ -66,11 +59,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <StoreProvider>
-            <div className="min-h-dvh grid grid-rows-[auto_1fr_auto]">
-              <Header />
-              <main className="h-full">{children}</main>
-              <Footer />
-            </div>
+            <Layout>{children}</Layout>
           </StoreProvider>
         </AuthProvider>
       </body>
