@@ -76,6 +76,14 @@ export interface CartItem {
   price: number;
 }
 
+export interface StripeCheckoutMetadata {
+  userId: string;
+  cartItems: string;
+  // Maintain type safety by using a string
+  // representation of the CartItem
+  [key: string]: string;
+}
+
 export type AuthType =
   (typeof authConstants.AUTH.TYPES)[keyof typeof authConstants.AUTH.TYPES];
 

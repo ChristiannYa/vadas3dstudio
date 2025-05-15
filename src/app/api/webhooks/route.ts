@@ -1,0 +1,74 @@
+import { NextResponse } from "next/server";
+import { headers } from "next/headers";
+import { Stripe } from "stripe";
+import {
+  handleCheckoutSessionCompleted,
+  handlePaymentIntentSucceeded,
+  handlePaymentIntentFailed,
+} from "@/lib/stripe";
+
+// Initialize Stripe
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+
+// This is needed because Stripe needs the raw body to validate the webhook
+export async function POST(request: Request) {
+  const body = await request.text();
+  const signature = (await headers()).get("stripe-signature")!;
+
+  let event: Stripe.Event;
+
+  try {
+    event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
+  } catch (err) {
+    const error = err as Error;
+    console.error(`Webhook signature verification failed: ${error.message}`);
+    return NextResponse.json({ error: error.message }, { status: 400 });
+  }
+
+  // Handle the event
+  try {
+    let result;
+
+    switch (event.type) {
+      case "checkout.session.completed":
+        result = await handleCheckoutSessionCompleted(
+          event.data.object as Stripe.Checkout.Session
+        );
+        break;
+
+      case "payment_intent.succeeded":
+        result = await handlePaymentIntentSucceeded(
+          event.data.object as Stripe.PaymentIntent
+        );
+        break;
+
+      case "payment_intent.payment_failed":
+        result = await handlePaymentIntentFailed(
+          event.data.object as Stripe.PaymentIntent
+        );
+        break;
+
+      default:
+        // Unexpected event type
+        console.log(`Unhandled event type: ${event.type}`);
+        result = { success: true, unhandled: true };
+    }
+
+    return NextResponse.json({ received: true, result });
+  } catch (err) {
+    const error = err as Error;
+    console.error(`Webhook handler failed: ${error.message}`);
+    return NextResponse.json(
+      { error: `Webhook handler failed: ${error.message}` },
+      { status: 500 }
+    );
+  }
+}
+
+// This disables the default body parser
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};

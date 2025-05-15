@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { auth } from "@/lib/auth";
 import { pricingGuideList } from "@/lib/constants/pricing";
-import { CartItem } from "@/app/definitions";
+import { CartItem, StripeCheckoutMetadata } from "@/app/definitions";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -27,7 +27,9 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     // Create line items for Stripe checkout
     const lineItems = items.map((item: CartItem) => {
-      const product = pricingGuideList.find((p) => p.id === item.id);
+      const product = pricingGuideList.find(
+        (product) => product.id === item.id
+      );
       if (!product) {
         throw new Error(`Product not found: ${item.id}`);
       }
@@ -45,6 +47,11 @@ export async function POST(request: Request): Promise<NextResponse> {
       };
     });
 
+    const metadataValues: StripeCheckoutMetadata = {
+      userId: session.user.email,
+      cartItems: JSON.stringify(items),
+    };
+
     // Create Stripe checkout session
     const params: Stripe.Checkout.SessionCreateParams = {
       payment_method_types: ["card"],
@@ -54,11 +61,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         "origin"
       )}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${request.headers.get("origin")}/checkout/canceled`,
-      metadata: {
-        // This to identify the user in the webhook.
-        // Used later when Stripe sends webhook events back to your server
-        userId: session.user.email,
-      },
+      metadata: metadataValues,
     };
 
     const checkoutSession = await stripe.checkout.sessions.create(params);

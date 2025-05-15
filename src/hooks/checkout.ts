@@ -1,5 +1,5 @@
 import { useState } from "react";
-import getStripe from "@/utils/getStripe";
+import getStripe from "@/utils/stripe";
 import { CartItem } from "@/app/definitions";
 
 /**
