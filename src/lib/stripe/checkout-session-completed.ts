@@ -77,14 +77,34 @@ export async function handleCheckoutSessionCompleted(
 
     console.log(`Order created: ${order?.id} for user: ${user.id}`);
 
+    // 2. Send a confirmation email to the customer
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/send-order-emails`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ orderId: order?.id }),
+        }
+      );
+
+      if (!response.ok) {
+        console.error("Failed to send order emails:", await response.text());
+      } else {
+        console.log("Order emails sent successfully");
+      }
+    } catch (error) {
+      console.error("Error sending order emails:", error);
+      // Don't throw here - we don't want to fail the order creation if email sending fails
+    }
+
     return { success: true, userId: user?.id, orderId: order?.id };
   } catch (error) {
     console.error("Error creating order:", error);
     throw new Error(`Error creating order: ${error}`);
   }
-
-  // 2. Send a confirmation email to the customer
-  // TODO: Implement email sending functionality
 
   // 3. Update any other relevant data
   // TODO: Update user data, inventory, etc.

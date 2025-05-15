@@ -76,6 +76,15 @@ export interface CartItem {
   price: number;
 }
 
+export interface OrderItem {
+  id: number;
+  orderId: number;
+  productId: number;
+  title: string;
+  price: number;
+  quantity: number;
+}
+
 export interface StripeCheckoutMetadata {
   userId: string;
   cartItems: string;
