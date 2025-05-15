@@ -20,7 +20,7 @@ const Cart = () => {
 
   return (
     <div
-      className={`bg-white/3 backdrop-blur-xl transform transition-transform duration-500 w-80 md:w-96 h-full p-2 grid grid-rows-[60px_1fr_40px] fixed top-0 right-0 ${
+      className={`bg-black-fg/10 dark:bg-white/5 backdrop-blur-xl transform transition-transform duration-500 w-80 md:w-96 h-full p-2 grid grid-rows-[60px_1fr_40px] fixed top-0 right-0 ${
         statusTab === false ? "translate-x-full" : ""
       }`}
     >
@@ -45,7 +45,7 @@ const Cart = () => {
             <div className="mr-3 flex justify-end">
               <button
                 onClick={() => dispatch(clearCart())}
-                className="bg-red-500 hover:bg-red-600 hover:text-red-100 rounded-full cursor-pointer w-[22px] h-[22px] flex justify-center items-center"
+                className="bg-red-500 hover:bg-red-500/80 dark:hover:bg-red-600 text-white-fg dark:hover:text-red-100 rounded-full cursor-pointer w-[22px] h-[22px] flex justify-center items-center"
               >
                 <FontAwesomeIcon icon={faTrash} className="text-[0.6rem]" />
               </button>
@@ -56,7 +56,7 @@ const Cart = () => {
       <div className="font-dm-sans w-full flex gap-x-2">
         <button
           onClick={handleCartTabStatus}
-          className="bg-neutral-900 hover:bg-[#1d1d1d] text-white-fg cursor-pointer w-full py-1"
+          className="bg-neutral-900/95 hover:bg-neutral-900/90 dark:bg-neutral-900 dark:hover:bg-[#1d1d1d] text-white-fg cursor-pointer w-full py-1"
         >
           Close
         </button>
@@ -68,7 +68,7 @@ const Cart = () => {
             dispatch(toggleOrderStatus());
             handleCartTabStatus();
           }}
-          className="bg-white-fg hover:bg-neutral-300 text-black-fg cursor-pointer w-full py-1"
+          className="bg-white hover:bg-neutral-100/95 dark:bg-white-fg dark:hover:bg-neutral-300 text-black-fg cursor-pointer w-full py-1"
         >
           Order
         </button>

@@ -19,15 +19,17 @@ const CartItem = ({ item }: ItemProps) => {
 
   return (
     <div className="w-full p-2">
-      <div className="bg-accent-1-hover rounded-xs px-2 py-1 flex justify-between items-center max-sm:flex-col max-sm:items-start">
+      <div className="bg-accent-1 dark:bg-accent-1-hover rounded-xs px-2 py-1 flex justify-between items-center max-sm:flex-col max-sm:items-start">
         <div className="font-dm-sans space-y-1">
           <div className="flex gap-x-1 items-center">
-            <h3 className="font-[500] text-gray-700">{item.title}</h3>
-            <p className="font-fira-code text-sm text-gray-700/65">
+            <h3 className="font-[500] text-black-fg dark:text-gray-700">
+              {item.title}
+            </h3>
+            <p className="font-fira-code text-sm text-black-fg/70 dark:text-gray-700/65">
               *{item.quantity}
             </p>
           </div>
-          <p className="text-gray-700 border-l-2 leading-tight w-fit pl-1">
+          <p className="text-black/90 dark:text-gray-700 border-l-2 leading-tight w-fit pl-1">
             ${item.price.toFixed(2)}
           </p>
         </div>
