@@ -6,27 +6,7 @@ import { formatDate } from "@/utils/ui";
 import { useOrders } from "@/hooks/user";
 
 export default function OrderHistory() {
-  const { orders, loading, error } = useOrders();
-
-  if (loading) {
-    return (
-      <div className="flex items-center gap-x-2">
-        <p>Loading your orders</p>
-        <span className="inline-block w-4 h-4 border-2 border-accent-1 border-t-amber-200 rounded-full animate-spin"></span>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <aside className="error-popup w-[300px] bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md p-3 shadow-md fixed top-5 left-1/2 -translate-x-1/2 z-10 animate-slide-down">
-        <p className="text-red-500 text-sm font-dm-sans px-4">{error}</p>
-        <button className="bg-red-100 hover:bg-red-300 text-red-500 rounded-full cursor-pointer w-[22px] h-[22px] flex justify-center items-center absolute top-2 right-2">
-          <FontAwesomeIcon icon={faXmark} width={10} height={10} />
-        </button>
-      </aside>
-    );
-  }
+  const { orders } = useOrders();
 
   if (orders.length === 0) {
     return (
@@ -37,16 +17,24 @@ export default function OrderHistory() {
   }
 
   return (
-    <div className="dark:bg-white/5 rounded-lg mt-6 p-4">
-      <h1 className="font-[400] font-dm-sans text-white-fg text-2xl text-start mb-2">
-        Purchase History
-      </h1>
+    <div className="dark:bg-white/5 rounded-lg p-3 md:p-4">
+      <div className="mb-2">
+        <h1 className="font-[400] font-dm-sans text-white-fg text-2xl text-start">
+          Order History
+        </h1>
+        <h2 className="text-white-fg/90 font-poppins font-[300]">
+          Total: <span className="text-white-fg/90">{orders.length}</span>
+        </h2>
+      </div>
       <div className="space-y-6">
-        {orders.map((order) => (
+        {orders.map((order, index) => (
           <div
             key={order.id}
-            className="bg-white/2 font-poppins font-[300] px-4 py-3 rounded-lg"
+            className="bg-white/2 font-poppins font-[300] px-3 md:px-4 py-2.5 md:py-3 rounded-lg relative"
           >
+            <div className="bg-white/5 rounded-full w-4.5 h-4.5 flex justify-center items-center absolute top-2 right-2">
+              <p className="font-poppins text-white-fg text-xs">{index + 1}</p>
+            </div>
             <div className="flex items-center gap-x-1 flex-wrap">
               <p>Order #:</p>
               <p className="text-black/60 dark:text-white">{order.id}</p>
@@ -57,30 +45,48 @@ export default function OrderHistory() {
                 {formatDate(order.created_at.toLocaleString())}
               </p>
             </div>
-            <div className="flex items-center gap-x-1 flex-wrap">
-              <p>Total:</p>
-              <p className="text-black/60 dark:text-white/60">
-                ${order.total.toFixed(2)}
-              </p>
-            </div>
-            <div className="space-y-1.5 mt-2">
+            <div className="mt-1">
+              {/* Order items title */}
               <p>Items:</p>
-              <div className="ml-4 space-y-1">
+              {/* Order items list */}
+              <ul className="list-disc pl-5 relative">
                 {order.orderItems.map((item) => (
-                  <div key={item.id} className="flex justify-between text-sm">
-                    <p className="text-black/60 dark:text-white/60">
-                      {item.title} × {item.quantity}
-                    </p>
-                    <p className="text-black/60 dark:text-white/70">
-                      ${(item.price * item.quantity).toFixed(2)}
-                    </p>
-                  </div>
+                  <li key={item.id}>
+                    <div className="text-sm flex justify-between">
+                      <div className="flex items-center gap-x-1">
+                        <div className="flex items-center gap-x-1">
+                          <p className="text-black/60 dark:text-white/60">
+                            {item.title}
+                          </p>
+                          <p className="text-black/60 dark:text-white/60 text-xs">
+                            (${item.price})
+                          </p>
+                        </div>
+                        <p className="text-black/70 dark:text-white/70">
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            width={6}
+                            height={6}
+                          />{" "}
+                          {item.quantity}
+                        </p>
+                      </div>
+                      <p className="text-black/60 dark:text-white/70">
+                        ${(item.price * item.quantity).toFixed(2)}
+                      </p>
+                    </div>
+                  </li>
                 ))}
+              </ul>
+              {/* Order items total */}
+              <div className="text-sm mt-2 flex justify-end items-center gap-x-1 flex-wrap">
+                <p>Total:</p>
+                <p className="text-black/60 dark:text-white/60">
+                  ${order.total.toFixed(2)}
+                </p>
               </div>
             </div>
-            {orders.indexOf(order) < orders.length - 1 && (
-              <hr className="my-4 border-gray-200 dark:border-gray-700" />
-            )}
+            <hr className="my-2 border-gray-200 dark:border-gray-700" />
           </div>
         ))}
       </div>

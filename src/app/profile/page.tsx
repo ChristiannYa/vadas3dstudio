@@ -10,7 +10,7 @@ export default function Profile() {
     <ProfileLoader>
       <div className="h-full">
         <div className="h-full container-1600">
-          <div className="h-full grid grid-rows-[auto_1fr_30px]">
+          <div className="h-full grid grid-rows-[auto_1fr_50px]">
             <ProfileInfoData />
             <OrderHistory />
             <div className="flex justify-end items-end">

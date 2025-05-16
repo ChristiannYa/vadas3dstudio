@@ -37,7 +37,7 @@ export default function CheckoutSuccessPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-dream-avenue mb-4">
             Processing your order...
