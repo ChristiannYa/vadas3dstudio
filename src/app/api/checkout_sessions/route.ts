@@ -113,6 +113,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       )}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${request.headers.get("origin")}/checkout/canceled`,
       metadata: metadataValues,
+      customer_email: userEmail,
     };
 
     const checkoutSession = await stripe.checkout.sessions.create(params);

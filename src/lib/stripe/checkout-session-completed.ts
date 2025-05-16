@@ -3,6 +3,20 @@ import prisma from "@/lib/prisma";
 import { CartItem, StripeCheckoutMetadata } from "@/app/definitions";
 import { createOrderWithRetry } from "@/utils/stripe";
 
+/**
+ * Handles the checkout.session.completed webhook event from Stripe.
+ *
+ * User lookup strategy:
+ * 1. First attempts to find a user by the email provided during
+ *    checkout (session.customer_deatils.email)
+ * 2. If no user is found with that email, falls back to using the
+ *    authenticated user's email stored in the session metadata
+ *    (metadata.userId)
+ *
+ * This two-step approach ensures orders are correctly associated with
+ * users even if they enter a different email address during the Stripe
+ * checkout process.
+ */
 export async function handleCheckoutSessionCompleted(
   session: Stripe.Checkout.Session
 ) {
@@ -40,7 +54,11 @@ export async function handleCheckoutSessionCompleted(
       `⚠️ USER NOT FOUND: Email used in checkout (${customerEmail}) does not match any user in the database`
     );
 
-    // Try to find the user by the userId in metadata
+    /*
+      - Fallback: Try to find user by the authenticated user's email stored 
+        in metadata
+      - This handles cases where users enter a different email during checkout
+    */
     if (metadata.userId) {
       console.log(`Trying to find user by metadata userId: ${metadata.userId}`);
       user = await prisma.user.findUnique({
@@ -111,7 +129,7 @@ export async function handleCheckoutSessionCompleted(
     // 2. Send a confirmation email to the customer
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/send-order-emails`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/send-order-emails`,
         {
           method: "POST",
           headers: {
