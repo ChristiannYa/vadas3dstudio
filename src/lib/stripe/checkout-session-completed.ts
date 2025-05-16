@@ -10,35 +10,66 @@ export async function handleCheckoutSessionCompleted(
   const customerEmail = session.customer_details?.email;
 
   if (!customerEmail) {
+    console.error("No customer email found in session");
     throw new Error("No customer email found in session");
   }
 
   if (!session.amount_total) {
+    console.error("No amount total found in session");
     throw new Error("No amount total found in session");
   }
 
   if (!session.payment_intent) {
+    console.error("No payment intent found in session");
     throw new Error("No payment intent found in session");
   }
 
   if (!metadata.cartItems) {
+    console.error("No cart items found in session metadata");
     throw new Error("No cart items found in session metadata");
   }
 
   // Find the user by email
-  const user = await prisma.user.findUnique({
+  console.log(`Looking for user with email: ${customerEmail}`);
+  let user = await prisma.user.findUnique({
     where: { email: customerEmail },
   });
 
   if (!user) {
-    throw new Error(`User not found for email: ${customerEmail}`);
+    console.error(
+      `⚠️ USER NOT FOUND: Email used in checkout (${customerEmail}) does not match any user in the database`
+    );
+
+    // Try to find the user by the userId in metadata
+    if (metadata.userId) {
+      console.log(`Trying to find user by metadata userId: ${metadata.userId}`);
+      user = await prisma.user.findUnique({
+        where: { email: metadata.userId },
+      });
+
+      if (user) {
+        console.log(
+          `Found user by metadata userId: ${user.id} (${user.email})`
+        );
+      } else {
+        console.error(
+          `User not found by metadata userId either: ${metadata.userId}`
+        );
+        throw new Error(`User not found for email: ${customerEmail}`);
+      }
+    } else {
+      throw new Error(`User not found for email: ${customerEmail}`);
+    }
   }
+
+  console.log(`Found user: ${user.id} (${user.email})`);
 
   try {
     let cartItems: CartItem[] = [];
     try {
       cartItems = metadata.cartItems ? JSON.parse(metadata.cartItems) : [];
     } catch (error) {
+      console.error(`Failed to parse cart items: ${error}`);
       throw new Error(`Failed to parse cart items: ${error}`);
     }
 
@@ -105,7 +136,4 @@ export async function handleCheckoutSessionCompleted(
     console.error("Error creating order:", error);
     throw new Error(`Error creating order: ${error}`);
   }
-
-  // 3. Update any other relevant data
-  // TODO: Update user data, inventory, etc.
 }

@@ -30,23 +30,57 @@ export async function POST(request: Request) {
   try {
     let result;
 
+    console.log(`Processing webhook event: ${event.type}`);
+    console.log(`Event data:`, JSON.stringify(event.data.object, null, 2));
+
     switch (event.type) {
       case "checkout.session.completed":
-        result = await handleCheckoutSessionCompleted(
-          event.data.object as Stripe.Checkout.Session
-        );
+        try {
+          console.log("Starting checkout.session.completed handler");
+          const sessionObj = event.data.object as Stripe.Checkout.Session;
+          console.log("Session ID:", sessionObj.id);
+          console.log("Customer email:", sessionObj.customer_details?.email);
+          console.log("Metadata:", sessionObj.metadata);
+
+          result = await handleCheckoutSessionCompleted(sessionObj);
+          console.log("Checkout session completed successfully:", result);
+        } catch (error) {
+          console.error("ERROR IN CHECKOUT SESSION COMPLETED:");
+          console.error(error);
+          if (error instanceof Error) {
+            console.error("Error message:", error.message);
+            console.error("Error stack:", error.stack);
+          } else {
+            console.error("Unknown error type:", error);
+          }
+          // Don't rethrow the error - this is key
+          result = {
+            success: false,
+            error: error instanceof Error ? error.message : String(error),
+          };
+        }
         break;
 
       case "payment_intent.succeeded":
-        result = await handlePaymentIntentSucceeded(
-          event.data.object as Stripe.PaymentIntent
-        );
+        try {
+          result = await handlePaymentIntentSucceeded(
+            event.data.object as Stripe.PaymentIntent
+          );
+        } catch (error) {
+          console.error("Error in handlePaymentIntentSucceeded:", error);
+          throw error;
+        }
         break;
 
       case "payment_intent.payment_failed":
-        result = await handlePaymentIntentFailed(
-          event.data.object as Stripe.PaymentIntent
-        );
+        try {
+          result = await handlePaymentIntentFailed(
+            event.data.object as Stripe.PaymentIntent
+          );
+        } catch (error) {
+          console.error("Error in handlePaymentIntentFailed:", error);
+          throw error;
+        }
         break;
 
       default:
@@ -58,7 +92,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ received: true, result });
   } catch (err) {
     const error = err as Error;
-    console.error(`Webhook handler failed: ${error.message}`);
+    console.error("========== WEBHOOK HANDLER FAILED ==========");
+    console.error(`Error message: ${error.message}`);
+    console.error(`Error stack: ${error.stack}`);
+    console.error("=============================================");
+
     return NextResponse.json(
       { error: `Webhook handler failed: ${error.message}` },
       { status: 500 }

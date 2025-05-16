@@ -6,22 +6,8 @@ import {
 } from "@/utils/ui";
 
 export default function ProfileInfoData() {
-  const { user, loading, error } = useUser();
-
-  if (loading) {
-    return (
-      <div className="flex items-center gap-x-2">
-        <p>Loading Profile Data</p>
-        <span className="inline-block w-4 h-4 border-2 border-accent-1 border-t-amber-200 rounded-full animate-spin"></span>
-      </div>
-    );
-  }
-
-  if (error || !user?.isLoggedIn) {
-    return <p className="text-red-500">Error loading profile</p>;
-  }
-
-  const { name, last_name, email, created_at } = user.user || {};
+  const { user } = useUser();
+  const { name, last_name, email, created_at } = user?.user || {};
 
   const profileFields = [
     {
