@@ -19,8 +19,11 @@ export async function middleware(request: NextRequest) {
   if (isProtectedRoute) {
     console.log("Checking authentication in middleware");
 
-    // Pass request cookies to the authentication function
-    const { isAuthenticated } = await checkAuthentication(request.cookies);
+    // Pass request cookies to the authentication function and skip database check
+    const { isAuthenticated } = await checkAuthentication(
+      request.cookies,
+      true
+    );
 
     console.log(`Authentication result: ${isAuthenticated}`);
 

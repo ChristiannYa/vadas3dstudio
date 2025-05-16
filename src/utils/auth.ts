@@ -11,6 +11,7 @@ export type AuthResult = {
   authType?: string;
 };
 
+// Define a minimal interface for cookie access
 interface CookieAccessor {
   get: (name: string) => { value?: string } | undefined;
 }
@@ -18,9 +19,13 @@ interface CookieAccessor {
 /**
  * Checks authentication using both custom session and NextAuth
  * Returns authentication status and user information if authenticated
+ *
+ * @param requestCookies Optional cookie accessor for middleware
+ * @param skipDatabaseCheck Set to true when called from middleware to avoid Prisma errors
  */
 export async function checkAuthentication(
-  requestCookies?: CookieAccessor
+  requestCookies?: CookieAccessor,
+  skipDatabaseCheck = false
 ): Promise<AuthResult> {
   let jwtSessionCookie;
 
@@ -57,6 +62,16 @@ export async function checkAuthentication(
       );
 
       if (session?.userId) {
+        // For middleware, just check if session exists without database validation
+        if (skipDatabaseCheck) {
+          return {
+            isAuthenticated: true,
+            userId: session.userId,
+            authType: authConstants.AUTH.TYPES.CUSTOM,
+          };
+        }
+
+        // For API routes, validate against database
         const user = await prisma.user.findUnique({
           where: { id: session.userId },
         });
@@ -90,6 +105,16 @@ export async function checkAuthentication(
     );
 
     if (session?.user?.email) {
+      // For middleware, just check if session exists without database validation
+      if (skipDatabaseCheck) {
+        return {
+          isAuthenticated: true,
+          userEmail: session.user.email,
+          authType: authConstants.AUTH.TYPES.NEXTAUTH,
+        };
+      }
+
+      // For API routes, validate against database
       const user = await prisma.user.findUnique({
         where: { email: session.user.email },
       });
