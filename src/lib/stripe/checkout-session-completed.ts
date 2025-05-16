@@ -44,46 +44,34 @@ export async function handleCheckoutSessionCompleted(
   }
 
   // Find the user by email
-  console.log(`Looking for user with email: ${customerEmail}`);
   let user = await prisma.user.findUnique({
     where: { email: customerEmail },
   });
 
   if (!user) {
-    console.error(
-      `⚠️ USER NOT FOUND: Email used in checkout (${customerEmail}) does not match any user in the database`
-    );
-
     /*
       - Fallback: Try to find user by the authenticated user's email stored 
         in metadata
       - This handles cases where users enter a different email during checkout
     */
     if (metadata.userId) {
-      console.log(`Trying to find user by metadata userId: ${metadata.userId}`);
       user = await prisma.user.findUnique({
         where: { email: metadata.userId },
       });
 
-      if (user) {
-        console.log(
-          `Found user by metadata userId: ${user.id} (${user.email})`
-        );
-      } else {
-        console.error(
-          `User not found by metadata userId either: ${metadata.userId}`
-        );
+      if (!user) {
+        console.error(`User not found for email: ${customerEmail}`);
         throw new Error(`User not found for email: ${customerEmail}`);
       }
     } else {
+      console.error(`User not found for email: ${customerEmail}`);
       throw new Error(`User not found for email: ${customerEmail}`);
     }
   }
 
-  console.log(`Found user: ${user.id} (${user.email})`);
-
   try {
     let cartItems: CartItem[] = [];
+
     try {
       cartItems = metadata.cartItems ? JSON.parse(metadata.cartItems) : [];
     } catch (error) {
@@ -97,9 +85,6 @@ export async function handleCheckoutSessionCompleted(
     });
 
     if (existingOrder) {
-      console.log(
-        `Order already exists for payment intent: ${session.payment_intent}`
-      );
       return { success: true, userId: user.id, orderId: existingOrder.id };
     }
 
@@ -123,8 +108,6 @@ export async function handleCheckoutSessionCompleted(
         orderItems: true,
       },
     });
-
-    console.log(`Order created: ${order?.id} for user: ${user.id}`);
 
     // 2. Send a confirmation email to the customer
     try {

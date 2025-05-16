@@ -39,7 +39,6 @@ export async function POST(request: Request) {
     }
 
     // Send confirmation email to customer
-    console.log("Sending customer email to:", order.user.email);
     const customerEmailResult = await resend.emails.send({
       from: `Vada 3D Studio <${FROM_EMAIL}>`,
       to: [order.user.email],
@@ -51,10 +50,14 @@ export async function POST(request: Request) {
         total: order.total,
       }),
     });
-    console.log("Customer email result:", customerEmailResult);
+
+    if (customerEmailResult.error) {
+      console.error("Customer email error:", customerEmailResult.error);
+    } else if (process.env.NODE_ENV !== "production") {
+      console.log("Customer email sent successfully");
+    }
 
     // Send notification email to store owner
-    console.log("Sending owner email to:", STORE_EMAIL);
     const ownerEmailResult = await resend.emails.send({
       from: `Vada 3D Studio <${FROM_EMAIL}>`,
       to: [STORE_EMAIL],
@@ -67,7 +70,12 @@ export async function POST(request: Request) {
         total: order.total,
       }),
     });
-    console.log("Owner email result:", ownerEmailResult);
+
+    if (ownerEmailResult.error) {
+      console.error("Owner email error:", ownerEmailResult.error);
+    } else if (process.env.NODE_ENV !== "production") {
+      console.log("Owner email sent successfully");
+    }
 
     return Response.json({
       customerEmail: customerEmailResult,

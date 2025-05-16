@@ -75,6 +75,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         (product) => product.id === item.id
       );
       if (!product) {
+        console.error(`Product not found: ${item.id}`);
         throw new Error(`Product not found: ${item.id}`);
       }
 
