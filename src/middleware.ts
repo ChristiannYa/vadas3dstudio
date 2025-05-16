@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
-import { decrypt } from "./lib/session";
-import { authConstants } from "./lib/constants/auth";
+import { checkAuthentication } from "./utils/auth";
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  console.log(`Middleware processing path: ${path}`);
 
   // Protected routes that require authentication
   const protectedRoutes = ["/profile"];
@@ -14,49 +13,24 @@ export async function middleware(request: NextRequest) {
     (route) => path === route || path.startsWith(`${route}/`)
   );
 
+  console.log(`Is protected route: ${isProtectedRoute}`);
+
   // Only check authentication for protected routes
   if (isProtectedRoute) {
-    let isAuthenticated = false;
+    console.log("Checking authentication in middleware");
 
-    // Check custom session
-    try {
-      const jwtSessionCookie = request.cookies.get(
-        authConstants.SESSION_COOKIE_NAME
-      )?.value;
+    // Pass request cookies to the authentication function
+    const { isAuthenticated } = await checkAuthentication(request.cookies);
 
-      if (jwtSessionCookie) {
-        const payload = await decrypt(jwtSessionCookie);
-
-        if (payload && payload.userId) {
-          isAuthenticated = true;
-        }
-      }
-    } catch (error) {
-      console.error("Custom session check error:", error);
-    }
-
-    // Check NextAuth session
-    if (!isAuthenticated) {
-      try {
-        console.log("Checking NextAuth session in middleware");
-        const session = await auth();
-        console.log(
-          "NextAuth session in middleware:",
-          session ? "Found" : "Not found"
-        );
-        if (session) {
-          isAuthenticated = true;
-          console.log("Authenticated with NextAuth in middleware");
-        }
-      } catch (error) {
-        console.error("NextAuth session check error in middleware:", error);
-      }
-    }
+    console.log(`Authentication result: ${isAuthenticated}`);
 
     // Redirect unauthenticated users
     if (!isAuthenticated) {
+      console.log("User not authenticated, redirecting to home page");
       return NextResponse.redirect(new URL("/", request.url));
     }
+
+    console.log("User authenticated, allowing access to protected route");
   }
 
   return NextResponse.next();

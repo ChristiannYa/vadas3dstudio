@@ -28,6 +28,7 @@ export default function CheckoutSuccessPage() {
 
     // You could verify the session with your backend here
     // For now, we'll just simulate a successful order
+    //  Todo: Add backend verification
     setIsLoading(false);
 
     // In a real implementation, you would fetch the order details
@@ -49,9 +50,9 @@ export default function CheckoutSuccessPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white dark:bg-black-fg/30 shadow-lg rounded-lg p-8 text-center">
-        <div className="mb-6">
+    <div className="min-h-full flex items-center justify-center">
+      <div className="max-w-md w-full bg-white dark:bg-gray-300/10 rounded-lg p-8 text-center">
+        <div className="mb-4">
           <svg
             className="w-16 h-16 text-green-500 mx-auto"
             fill="none"
