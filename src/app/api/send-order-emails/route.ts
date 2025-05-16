@@ -6,11 +6,19 @@ import { OrderItem } from "@/app/definitions";
 import React from "react";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const STORE_EMAIL = process.env.STORE_EMAIL || "owner@vadas3dstudio.com";
-const FROM_EMAIL = process.env.FROM_EMAIL || "orders@vadas3dstudio.com";
+const STORE_EMAIL = process.env.STORE_EMAIL;
+// During development/testing, use Resend's test domain
+const FROM_EMAIL =
+  process.env.NODE_ENV === "production"
+    ? process.env.FROM_EMAIL
+    : "onboarding@resend.dev";
 
 export async function POST(request: Request) {
   try {
+    if (!STORE_EMAIL) {
+      throw new Error("STORE_EMAIL is not defined");
+    }
+
     const { orderId } = await request.json();
 
     if (!orderId) {
@@ -31,6 +39,7 @@ export async function POST(request: Request) {
     }
 
     // Send confirmation email to customer
+    console.log("Sending customer email to:", order.user.email);
     const customerEmailResult = await resend.emails.send({
       from: `Vada 3D Studio <${FROM_EMAIL}>`,
       to: [order.user.email],
@@ -42,8 +51,10 @@ export async function POST(request: Request) {
         total: order.total,
       }),
     });
+    console.log("Customer email result:", customerEmailResult);
 
     // Send notification email to store owner
+    console.log("Sending owner email to:", STORE_EMAIL);
     const ownerEmailResult = await resend.emails.send({
       from: `Vada 3D Studio <${FROM_EMAIL}>`,
       to: [STORE_EMAIL],
@@ -56,6 +67,7 @@ export async function POST(request: Request) {
         total: order.total,
       }),
     });
+    console.log("Owner email result:", ownerEmailResult);
 
     return Response.json({
       customerEmail: customerEmailResult,
