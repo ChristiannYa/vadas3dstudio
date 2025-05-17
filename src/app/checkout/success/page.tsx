@@ -9,6 +9,7 @@ import { clearCart } from "@/lib/features/cart/cartSlice";
 export default function CheckoutSuccessPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [orderNumber, setOrderNumber] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -26,24 +27,74 @@ export default function CheckoutSuccessPage() {
       return;
     }
 
-    // You could verify the session with your backend here
-    // For now, we'll just simulate a successful order
-    //  Todo: Add backend verification
-    setIsLoading(false);
+    const fetchOrderDetails = async () => {
+      try {
+        const response = await fetch(
+          `/api/orders/by-session?session_id=${sessionId}`
+        );
+        const data = await response.json();
 
-    // In a real implementation, you would fetch the order details
-    // from your backend using the session ID
-    setOrderNumber(Math.floor(Math.random() * 10000));
+        if (data.error) {
+          const errorData = data.error;
+
+          console.error("Error fetching order details:", errorData);
+          throw new Error(errorData.message || "Failed to fetch order details");
+        }
+        setOrderNumber(data.order.id);
+      } catch (error) {
+        console.error("Error fetching order details:", error);
+        setError(
+          "Error fetching order details. Please try again later or contact support."
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchOrderDetails();
   }, [searchParams, router, dispatch]);
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center">
+      <div className="min-h-full flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-dream-avenue mb-4">
             Processing your order...
           </h1>
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent-1 mx-auto"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-full flex items-center justify-center">
+        <div className="max-w-md w-full bg-white dark:bg-gray-300/10 rounded-lg p-8 text-center">
+          <div className="mb-4">
+            <svg
+              className="w-16 h-16 text-red-500 mx-auto"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+          </div>
+          <h1 className="text-3xl font-dream-avenue mb-4">Oops!</h1>
+          <p className="mb-6">{error}</p>
+          <Link
+            href="/"
+            className="bg-accent-1 hover:bg-accent-1/90 text-white py-2 px-4 rounded transition"
+          >
+            Return to Home
+          </Link>
         </div>
       </div>
     );
