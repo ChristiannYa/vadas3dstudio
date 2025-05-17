@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import { z } from "zod";
 import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
+import { authConstants } from "@/lib/constants/auth";
 
 const registerSchema = z
   .object({
@@ -108,6 +109,7 @@ export async function register(
         last_name,
         email,
         password_hash: passwordHash,
+        auth_provider: authConstants.AUTH.PROVIDERS.JWT,
       },
     });
 

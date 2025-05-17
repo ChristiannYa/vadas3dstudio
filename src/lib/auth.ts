@@ -26,6 +26,13 @@ export const { auth, handlers } = NextAuth({
           const existingUser = await prisma.user.findUnique({
             where: { email: user.email },
           });
+          // Check if user exists and was created with credentials
+          if (
+            existingUser &&
+            existingUser.auth_provider === authConstants.AUTH.PROVIDERS.JWT
+          ) {
+            return `/auth/error?error=EmailExists&email=${encodeURIComponent(user.email)}`;
+          }
           // Check if user exists
           if (!existingUser) {
             // Create new user if they don't exist
@@ -35,6 +42,8 @@ export const { auth, handlers } = NextAuth({
                 last_name: user.name?.split(" ").slice(1).join(" ") || "",
                 email: user.email,
                 password_hash: `oauth_${generateUUID()}`,
+                auth_provider: authConstants.AUTH.PROVIDERS.GOOGLE,
+                email_verified: true, // Google emails always verified
               },
             });
             console.log("New user created:", user.email);

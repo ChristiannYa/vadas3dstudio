@@ -57,7 +57,6 @@ export async function login(
     });
 
     if (!user) {
-      // state
       return {
         errors: {
           // Store the error message in the form property
@@ -72,7 +71,6 @@ export async function login(
 
     //  Check if password is valid
     if (!isValidPassword) {
-      // state
       return {
         errors: {
           // Store the error message in the form property
