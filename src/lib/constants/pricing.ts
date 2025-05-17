@@ -13,6 +13,7 @@ export const pricingGuideList: PricingGuide[] = [
       "Basic lighting (sun, moon, etc.)",
     ],
     price: 200,
+    image: true,
   },
   {
     id: 2,
@@ -26,6 +27,7 @@ export const pricingGuideList: PricingGuide[] = [
       "Customizable furniture and accessories",
     ],
     price: 400,
+    image: true,
   },
   {
     id: 3,
@@ -39,6 +41,7 @@ export const pricingGuideList: PricingGuide[] = [
       "Interactive elements and animations",
     ],
     price: 600,
+    image: true,
   },
   {
     id: 4,
@@ -51,6 +54,7 @@ export const pricingGuideList: PricingGuide[] = [
       "Customizable lighting and materials",
       "Customizable furniture and accessories",
     ],
-    price: 600,
+    price: 750,
+    image: false,
   },
 ];

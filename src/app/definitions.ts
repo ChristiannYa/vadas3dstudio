@@ -74,6 +74,7 @@ export interface PricingGuide {
   description: string;
   features: string[];
   price: number;
+  image: boolean;
 }
 
 export interface ShopItemProps {

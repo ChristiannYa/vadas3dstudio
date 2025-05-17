@@ -15,7 +15,7 @@ const CartItem = ({ item }: ItemProps) => {
 
   return (
     <div className="w-full">
-      <div className="bg-accent-1 dark:bg-gray-200/10 rounded-xs px-2.5 py-2 flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-y-2">
+      <div className="bg-black-fg/10 dark:bg-gray-200/10 rounded-xs px-2.5 py-2 flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-y-2">
         <div className="font-dm-sans space-y-1">
           <div className="flex gap-x-1 items-center">
             <h3 className="font-[500] text-black-fg dark:text-gray-300">
@@ -37,25 +37,34 @@ const CartItem = ({ item }: ItemProps) => {
         </div>
 
         <div className="flex items-center gap-x-3 max-md:mt-1">
-          <div className="bg-white-fg/3 rounded-full p-1.5 flex gap-x-2.5 items-center">
+          <div className="bg-black-fg/5 dark:bg-white-fg/3 rounded-full p-1.5 flex gap-x-2.5 items-center">
             <button
-              className="hover:bg-fg/2 rounded-full cursor-pointer w-[26px] h-[26px] flex justify-center items-center"
+              className="hover:bg-black-fg/4 dark:hover:bg-white-fg/4 rounded-full cursor-pointer w-[1.625rem] h-[1.625rem] flex justify-center items-center"
               onClick={() => dispatch(decrementQuantity(item.id))}
             >
-              <FontAwesomeIcon icon={faMinus} className="text-white-fg/90" />
+              <FontAwesomeIcon
+                icon={faMinus}
+                className="text-black-fg/70 dark:text-white-fg/90"
+              />
             </button>
             <button
-              className="hover:bg-fg/2 rounded-full cursor-pointer w-[26px] h-[26px] flex justify-center items-center"
+              className="hover:bg-black-fg/4 dark:hover:bg-white-fg/4 rounded-full cursor-pointer w-[1.625rem] h-[1.625rem] flex justify-center items-center"
               onClick={() => dispatch(incrementQuantity(item.id))}
             >
-              <FontAwesomeIcon icon={faPlus} className="text-white-fg/90" />
+              <FontAwesomeIcon
+                icon={faPlus}
+                className="text-black-fg/70 dark:text-white-fg/90"
+              />
             </button>
           </div>
           <button
             onClick={() => dispatch(removeItemFromCart(item.id))}
-            className="hover:bg-fg/2 rounded-full cursor-pointer w-[26px] h-[26px] flex justify-center items-center"
+            className="hover:bg-black-fg/4 dark:hover:bg-white-fg/4 rounded-full cursor-pointer w-[1.625rem] h-[1.625rem] flex justify-center items-center"
           >
-            <FontAwesomeIcon icon={faXmark} className="text-white-fg/90" />
+            <FontAwesomeIcon
+              icon={faXmark}
+              className="text-black-fg/70 dark:text-white-fg/90"
+            />
           </button>
         </div>
       </div>

@@ -28,20 +28,20 @@ export default function OrderHistory() {
   }
 
   return (
-    <div className="dark:bg-white/5 rounded-lg p-3 md:p-4">
+    <div className="bg-black/3 dark:bg-white/4 rounded-lg p-3 md:p-4">
       <div className="mb-2">
-        <h1 className="font-[400] font-dm-sans text-white-fg text-2xl text-start">
+        <h1 className="font-[400] font-dm-sans text-2xl text-start">
           Order History
         </h1>
-        <h2 className="text-white-fg/90 font-poppins font-[300]">
-          Total: <span className="text-white-fg/90">{orders.length}</span>
+        <h2 className="text-fg/90 font-poppins font-[300]">
+          Total: <span className="text-fg/90">{orders.length}</span>
         </h2>
       </div>
       <div className="space-y-6">
         {orders.map((order) => (
           <div
             key={order.id}
-            className="bg-white/2 font-poppins font-[300] px-3 md:px-4 py-2.5 md:py-3 rounded-lg"
+            className="bg-black/2 dark:bg-white/2 font-poppins font-[300] px-3 md:px-4 py-2.5 md:py-3 rounded-lg"
           >
             <div className="flex items-center gap-x-1 flex-wrap">
               <p>Order #:</p>
@@ -94,7 +94,7 @@ export default function OrderHistory() {
                 </p>
               </div>
             </div>
-            <hr className="my-2 border-gray-200 dark:border-gray-700" />
+            <hr className="my-2 border-gray-300 dark:border-gray-700" />
           </div>
         ))}
       </div>

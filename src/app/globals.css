@@ -94,8 +94,8 @@ section h1 {
     transform: translateY(0);
   }
 
-  .dropdown:hover .dropbtn {
-    color: var(--color-white-fg);
+  .dropdown.active .dropbtn {
+    @apply text-black-fg dark:text-white-fg;
   }
 }
 
@@ -107,7 +107,7 @@ section h1 {
   }
 
   .dropdown.active .dropbtn {
-    color: var(--color-white-fg);
+    @apply text-black-fg dark:text-white-fg;
   }
 }
 

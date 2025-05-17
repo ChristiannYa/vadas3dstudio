@@ -69,7 +69,7 @@ const Cart = () => {
           </h2>
         </div>
 
-        <div>
+        <div className="overflow-y-auto px-2 pb-3.5">
           {noCartItems ? (
             <p className="font-poppins font-[300] text-center">Empty</p>
           ) : (
@@ -80,10 +80,8 @@ const Cart = () => {
                 ))}
               </div>
               <hr className="my-2 text-white/20" />
-              <div className="px-3">
-                <CartTotal />
-              </div>
-              <div className="mr-3 flex justify-end">
+              <CartTotal />
+              <div className="flex justify-end">
                 <button
                   onClick={() => dispatch(clearCart())}
                   className="bg-red-500 hover:bg-red-500/80 dark:hover:bg-red-600 text-white-fg dark:hover:text-red-100 rounded-full cursor-pointer w-[22px] h-[22px] flex justify-center items-center"

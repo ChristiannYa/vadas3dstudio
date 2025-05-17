@@ -76,7 +76,7 @@ export function LoginForm() {
             >
               <p>Orders</p>
             </button>
-            <LogoutButton className="bg-white hover:bg-neutral-100/95 dark:bg-white-fg dark:hover:bg-neutral-300 text-black-fg cursor-pointer w-full py-2" />
+            <LogoutButton className="bg-transparent hover:bg-neutral-900/90 dark:hover:bg-white-fg dark:text-white-fg hover:text-white-fg dark:hover:text-black-fg cursor-pointer w-full py-2" />
           </div>
         </div>
       ) : (

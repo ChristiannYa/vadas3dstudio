@@ -24,10 +24,15 @@ export default function Header() {
             <Nav />
             <button
               onClick={handleCartTabStatus}
-              className="bg-accent-1 hover:bg-accent-1-hover rounded-full cursor-pointer w-8 h-8 flex justify-center items-center relative"
+              className="bg-black-fg dark:bg-white-fg rounded-full cursor-pointer w-8 h-8 flex justify-center items-center relative"
             >
-              <FontAwesomeIcon icon={faBagShopping} width={16} height={16} />
-              <span className="bg-white-fg font-poppins text-black-fg text-xs rounded-full w-[18px] h-[18px] flex items-center justify-center absolute -top-1.5 -right-1.5">
+              <FontAwesomeIcon
+                icon={faBagShopping}
+                width={16}
+                height={16}
+                className="text-white-fg dark:text-black-fg"
+              />
+              <span className="bg-black-fg dark:bg-white-fg font-poppins text-white-fg dark:text-black-fg text-xs rounded-full w-[18px] h-[18px] flex items-center justify-center absolute -top-1.5 -right-1.5">
                 {cartItemsLength}
               </span>
             </button>
