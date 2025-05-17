@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useCheckout } from "@/hooks/checkout";
 import { useAppDispatch, useAppSelector, useCartTab } from "@/hooks/redux";
 import {
@@ -14,8 +14,6 @@ import CartItem from "./CartItem";
 import CartTotal from "./CartTotal";
 
 const Cart = () => {
-  const { handleCheckout, isLoading, error, clearError } = useCheckout();
-
   const dispatch = useAppDispatch();
   const cartRef = useRef<HTMLDivElement | null>(null);
   const cartItems = useAppSelector(selectCartItems);
@@ -23,11 +21,18 @@ const Cart = () => {
   const { handleCartTabStatus } = useCartTab();
   const noCartItems = cartItems.length === 0;
 
+  const handleAuthError = useCallback(() => {
+    handleCartTabStatus();
+  }, [handleCartTabStatus]);
+
+  const { handleCheckout, isLoading, error, clearError } =
+    useCheckout(handleAuthError);
+
   useEffect(() => {
     if (error) {
       const timer = setTimeout(() => {
         clearError();
-      }, 5000);
+      }, 8000);
 
       return () => clearTimeout(timer);
     }
