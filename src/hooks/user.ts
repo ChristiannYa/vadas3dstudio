@@ -10,13 +10,13 @@ export function useOrders() {
     const fetchOrders = async () => {
       try {
         const response = await fetch("/api/user/orders");
+        const data = await response.json();
 
-        if (!response.ok) {
+        if (data.error) {
           console.error("Failed to fetch orders:", response.status);
           throw new Error("Failed to fetch orders");
         }
 
-        const data = await response.json();
         setOrders(data.orders);
       } catch (err) {
         console.error("Error fetching orders:", err);

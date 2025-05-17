@@ -29,37 +29,36 @@ export function useCheckout() {
       const data = await response.json();
 
       if (data.error) {
-        setError("Unable to create checkout session. Please try again.");
+        setError(data.error);
         console.error("Error creating checkout session:", data.error);
         return;
       }
 
       try {
-        console.log("Getting Stripe instance...");
         const stripe = await getStripe();
 
         if (!stripe) {
+          console.error("Stripe initialization failed");
           throw new Error("Failed to initialize Stripe");
         }
 
-        console.log("Redirecting to checkout with session ID:", data.sessionId);
         const { error: redirectError } = await stripe.redirectToCheckout({
           sessionId: data.sessionId,
         });
 
         if (redirectError) {
-          setError("Unable to redirect to payment page. Please try again.");
           console.error("Redirect error:", redirectError.message);
+          setError("Unable to redirect to payment page. Please try again.");
         }
       } catch (stripeError) {
-        setError("Payment system unavailable. Please try again later.");
         console.error("Stripe initialization error:", stripeError);
+        setError("Payment system unavailable. Please try again later.");
       }
     } catch (err) {
-      setError("An unexpected error occurred. Please try again later.");
       const errorMessage =
         err instanceof Error ? err.message : "An unknown error occurred";
       console.error("Checkout error:", errorMessage);
+      setError("An unexpected error occurred. Please try again later.");
     } finally {
       setIsLoading(false);
     }

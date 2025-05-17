@@ -17,13 +17,13 @@ export function useUser() {
       const fetchUser = async () => {
         try {
           const response = await fetch("/api/user");
+          const data = await response.json();
 
-          if (!response.ok) {
+          if (data.error) {
             console.error("Failed to fetch user data:", response.status);
             throw new Error("Failed to fetch user data");
           }
 
-          const data = await response.json();
           setUserData(data);
         } catch (err) {
           console.error("Error fetching user:", err);
