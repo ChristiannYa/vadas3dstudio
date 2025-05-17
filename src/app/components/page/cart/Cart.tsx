@@ -54,19 +54,19 @@ const Cart = () => {
     <>
       <div
         ref={cartRef}
-        className={`bg-black-fg/10 dark:bg-white/5 backdrop-blur-xl transform transition-transform duration-500 w-80 md:w-96 h-full p-2 grid grid-rows-[60px_1fr_40px] fixed top-0 right-0 ${
+        className={`bg-black-fg/10 dark:bg-white/5 backdrop-blur-xl transform transition-transform duration-500 w-[20.625rem] md:w-[25rem] h-full p-2 grid grid-rows-[60px_1fr_40px] fixed top-0 right-0 ${
           statusTab === false ? "translate-x-full" : ""
         }`}
       >
         <div className="flex flex-col items-center justify-center">
           <h2 className="font-dream-avenue font-[500] text-3xl text-center">
-            Your Cart
+            Your Bag
           </h2>
         </div>
 
         <div>
           {noCartItems ? (
-            <p className="font-poppins text-center">Empty</p>
+            <p className="font-poppins font-[300] text-center">Empty</p>
           ) : (
             <div>
               {cartItems.map((item) => (
