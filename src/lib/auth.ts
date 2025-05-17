@@ -2,14 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import prisma from "@/lib/prisma";
 import { authConstants } from "@/lib/constants/auth";
-
-const generateUUID = () => {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-    const r = (Math.random() * 16) | 0;
-    const v = c === "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-};
+import { generateUUID } from "@/utils/auth";
 
 export const { auth, handlers } = NextAuth({
   providers: [
@@ -41,7 +34,6 @@ export const { auth, handlers } = NextAuth({
                 name: user.name?.split(" ")[0] || "",
                 last_name: user.name?.split(" ").slice(1).join(" ") || "",
                 email: user.email,
-                // Use the generateUUID function instead of randomUUID
                 password_hash: `oauth_${generateUUID()}`,
               },
             });
@@ -57,33 +49,7 @@ export const { auth, handlers } = NextAuth({
       }
       return true;
     },
-    async session({ session, token }) {
-      console.log("Session callback", {
-        sessionUser: session.user,
-        token: { sub: token.sub, email: token.email },
-      });
-      return session;
-    },
-    // JWT callback to log token information
-    async jwt({ token, user, account }) {
-      if (account && user) {
-        console.log("JWT callback - new sign in", {
-          userId: user.id,
-          accountType: account.provider,
-        });
-      } else {
-        console.log("JWT callback - existing token");
-      }
-      return token;
-    },
-
-    // Redirect callback to see where NextAuth is redirecting
-    async redirect({ url, baseUrl }) {
-      console.log("Redirect callback", { url, baseUrl });
-      return url.startsWith(baseUrl) ? url : baseUrl;
-    },
   },
-  debug: process.env.NODE_ENV !== "production",
 
   pages: {
     signIn: "/auth/log-in",
