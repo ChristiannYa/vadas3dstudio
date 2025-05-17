@@ -38,14 +38,11 @@ export default function OrderHistory() {
         </h2>
       </div>
       <div className="space-y-6">
-        {orders.map((order, index) => (
+        {orders.map((order) => (
           <div
             key={order.id}
-            className="bg-white/2 font-poppins font-[300] px-3 md:px-4 py-2.5 md:py-3 rounded-lg relative"
+            className="bg-white/2 font-poppins font-[300] px-3 md:px-4 py-2.5 md:py-3 rounded-lg"
           >
-            <div className="bg-white/5 rounded-full w-4.5 h-4.5 flex justify-center items-center absolute top-2 right-2">
-              <p className="font-poppins text-white-fg text-xs">{index + 1}</p>
-            </div>
             <div className="flex items-center gap-x-1 flex-wrap">
               <p>Order #:</p>
               <p className="text-black/60 dark:text-white">{order.id}</p>

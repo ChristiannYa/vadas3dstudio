@@ -2,19 +2,6 @@ import { authConstants } from "@/lib/constants/auth";
 import { StaticImageData } from "next/image";
 import { ButtonHTMLAttributes, ReactNode, RefObject } from "react";
 
-export interface UserData {
-  isLoggedIn: boolean;
-  user?: {
-    id: number | string;
-    name: string;
-    last_name: string;
-    email: string;
-    created_at?: string;
-  };
-  authType?: AuthType;
-  provider?: AuthProvider;
-}
-
 export interface HomeButtonProps {
   className?: string;
   variant?: "header" | "profile";
@@ -73,6 +60,19 @@ export interface AccentButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
+export interface UserData {
+  isLoggedIn: boolean;
+  user?: {
+    id: number | string;
+    name: string;
+    last_name: string;
+    email: string;
+    created_at?: string;
+  };
+  authType?: AuthType;
+  provider?: AuthProvider;
+}
+
 export interface PricingGuide {
   id: number;
   title: string;
@@ -106,6 +106,9 @@ export interface OrderItem {
 }
 
 export interface OrderWithItems {
+  id: number;
+  created_at: string;
+  total: number;
   orderItems: {
     id: number;
     title: string;
