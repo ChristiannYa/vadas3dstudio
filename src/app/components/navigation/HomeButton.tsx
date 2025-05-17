@@ -1,10 +1,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-interface HomeButtonProps {
-  className?: string;
-  variant?: "header" | "profile";
-}
+import { HomeButtonProps } from "@/app/definitions";
 
 const HomeButton = ({ className = "", variant }: HomeButtonProps) => {
   const pathname = usePathname();

@@ -3,6 +3,7 @@ import { decrypt } from "@/lib/session";
 import { authConstants } from "@/lib/constants/auth";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
+import { CookieAccessor } from "@/app/definitions";
 
 export type AuthResult = {
   isAuthenticated: boolean;
@@ -10,10 +11,6 @@ export type AuthResult = {
   userEmail?: string;
   authType?: string;
 };
-
-interface CookieAccessor {
-  get: (name: string) => { value?: string } | undefined;
-}
 
 /**
  * Checks authentication using both custom session and NextAuth

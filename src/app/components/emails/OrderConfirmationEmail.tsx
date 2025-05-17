@@ -1,12 +1,5 @@
 import * as React from "react";
-import { OrderItem } from "@/app/definitions";
-
-interface OrderConfirmationEmailProps {
-  customerName: string;
-  orderId: number;
-  orderItems: OrderItem[];
-  total: number;
-}
+import { OrderConfirmationEmailProps } from "@/app/definitions";
 
 export const OrderConfirmationEmail: React.FC<
   Readonly<OrderConfirmationEmailProps>

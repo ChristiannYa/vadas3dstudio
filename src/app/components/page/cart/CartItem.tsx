@@ -3,16 +3,12 @@
 import { useAppDispatch } from "@/hooks/redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
-import { CartItem as Item } from "@/app/definitions";
+import { ItemProps } from "@/app/definitions";
 import {
   incrementQuantity,
   decrementQuantity,
   removeItemFromCart,
 } from "@/lib/features/cart/cartSlice";
-
-interface ItemProps {
-  item: Item;
-}
 
 const CartItem = ({ item }: ItemProps) => {
   const dispatch = useAppDispatch();

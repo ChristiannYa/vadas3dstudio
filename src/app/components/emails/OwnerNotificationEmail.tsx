@@ -1,13 +1,5 @@
 import * as React from "react";
-import { OrderItem } from "@/app/definitions";
-
-interface OwnerNotificationEmailProps {
-  customerName: string;
-  customerEmail: string;
-  orderId: number;
-  orderItems: OrderItem[];
-  total: number;
-}
+import { OwnerNotificationEmailProps } from "@/app/definitions";
 
 export const OwnerNotificationEmail: React.FC<
   Readonly<OwnerNotificationEmailProps>

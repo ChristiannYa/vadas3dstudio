@@ -1,12 +1,7 @@
 "use client";
-import { FC } from "react";
 
-interface CurvedTextProps {
-  text: string;
-  radius: number;
-  textSize: number;
-  color: string;
-}
+import { FC } from "react";
+import { CurvedTextProps } from "@/app/definitions";
 
 const CurvedText: FC<CurvedTextProps> = ({ text, radius, textSize, color }) => {
   const characters = text.split("");

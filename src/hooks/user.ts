@@ -1,14 +1,5 @@
 import { useState, useEffect } from "react";
-import { Order } from "@prisma/client";
-
-interface OrderWithItems extends Order {
-  orderItems: {
-    id: number;
-    title: string;
-    price: number;
-    quantity: number;
-  }[];
-}
+import { OrderWithItems } from "@/app/definitions";
 
 export function useOrders() {
   const [orders, setOrders] = useState<OrderWithItems[]>([]);

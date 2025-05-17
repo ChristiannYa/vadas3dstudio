@@ -1,14 +1,10 @@
-import { PricingGuide } from "@/app/definitions";
+import { ShopItemProps } from "@/app/definitions";
 import { useAppSelector, useAppDispatch } from "@/hooks/redux";
 import {
   addItemToCart,
   removeItemFromCart,
   selectIsItemInCart,
 } from "@/lib/features/cart/cartSlice";
-
-interface ShopItemProps {
-  item: PricingGuide;
-}
 
 export default function ShopItem({ item }: ShopItemProps) {
   const dispatch = useAppDispatch();

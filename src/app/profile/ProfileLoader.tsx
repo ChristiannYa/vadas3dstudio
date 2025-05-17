@@ -2,11 +2,7 @@
 
 import { useUser } from "@/hooks/auth";
 import { useOrders } from "@/hooks/user";
-import { ReactNode } from "react";
-
-interface ProfileLoaderProps {
-  children: ReactNode;
-}
+import { ProfileLoaderProps } from "../definitions";
 
 export default function ProfileLoader({ children }: ProfileLoaderProps) {
   const {
