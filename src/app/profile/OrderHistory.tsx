@@ -10,7 +10,7 @@ export default function OrderHistory() {
 
   if (loading) {
     return (
-      <div className="dark:bg-white/5 rounded-lg animate-pulse h-full p-3 md:p-4">
+      <div className="rounded-lg h-full p-3 md:p-4">
         <div className="flex gap-x-2">
           <p className="leading-none">Loading your orders</p>
           <span className="inline-block w-4 h-4 border-2 border-accent-1 border-t-amber-200 rounded-full animate-spin"></span>

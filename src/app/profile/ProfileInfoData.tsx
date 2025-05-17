@@ -10,51 +10,16 @@ export default function ProfileInfoData() {
 
   if (loading) {
     return (
-      <>
-        {/* Title skeleton */}
-        <p className="bg-gray-200 dark:bg-gray-700 text-2xl text-transparent leading-[21px] rounded-md animate-pulse pointer-events-none w-fit mb-3">
-          Usernamess Account information
-        </p>
+      <div>
+        <div className="bg-gray-200 dark:bg-gray-700/40 text-2xl text-transparent rounded-md animate-pulse pointer-events-none w-[410px] h-[14px] mb-3"></div>
 
         <div className="text-transparent leading-none w-fit mb-4 space-y-3">
-          {/* First name */}
-          <div className="flex">
-            <p className="bg-gray-200 dark:bg-gray-700 rounded-l-md animate-pulse">
-              Usernameinformation
-            </p>
-            <p className="bg-gray-200 dark:bg-gray-700 rounded-r-md animate-pulse">
-              Usernamename
-            </p>
-          </div>
-          {/* Last name */}
-          <div className="flex">
-            <p className="bg-gray-200 dark:bg-gray-700 rounded-l-md animate-pulse">
-              Usernameinformation
-            </p>
-            <p className="bg-gray-200 dark:bg-gray-700 rounded-r-md animate-pulse">
-              Usernamename
-            </p>
-          </div>
-          {/* Email */}
-          <div className="flex">
-            <p className="bg-gray-200 dark:bg-gray-700 rounded-l-md animate-pulse">
-              Usernameinformation
-            </p>
-            <p className="bg-gray-200 dark:bg-gray-700 rounded-r-md animate-pulse">
-              Usernamename
-            </p>
-          </div>
-          {/* Created at */}
-          <div className="flex">
-            <p className="bg-gray-200 dark:bg-gray-700 rounded-l-md animate-pulse">
-              Usernameinformation
-            </p>
-            <p className="bg-gray-200 dark:bg-gray-700 rounded-r-md animate-pulse">
-              Usernamename
-            </p>
-          </div>
+          <div className="bg-gray-200 dark:bg-gray-700/30 rounded-md animate-pulse w-[250px] h-[12px]"></div>
+          <div className="bg-gray-200 dark:bg-gray-700/30 rounded-md animate-pulse w-[250px] h-[12px]"></div>
+          <div className="bg-gray-200 dark:bg-gray-700/30 rounded-md animate-pulse w-[250px] h-[12px]"></div>
+          <div className="bg-gray-200 dark:bg-gray-700/30 rounded-md animate-pulse w-[250px] h-[12px]"></div>
         </div>
-      </>
+      </div>
     );
   }
 
