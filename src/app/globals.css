@@ -88,7 +88,7 @@ section h1 {
   @apply bg-red-200 border border-red-500 text-red-500 text-center font-raleway uppercase rounded-md p-2;
 }
 
-.profile__home-btn {
+.account__home-btn {
   @apply bg-accent-1 hover:text-fg hover:bg-accent-1-hover rounded-sm py-1 px-1.5;
 }
 
@@ -172,7 +172,9 @@ form {
 
 /* About section */
 .tool span {
-  transition: transform 0.3s, opacity 0.3s;
+  transition:
+    transform 0.3s,
+    opacity 0.3s;
   transform: translateX(-50%) translateY(18px) scale(0.8);
   opacity: 0;
 }
@@ -237,17 +239,29 @@ form {
 }
 
 .td-text {
-  text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191,
-    1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191,
-    1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191,
-    1px 11px 5px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2),
+  text-shadow:
+    1px 1px 1px #919191,
+    1px 2px 1px #919191,
+    1px 3px 1px #919191,
+    1px 4px 1px #919191,
+    1px 5px 1px #919191,
+    1px 6px 1px #919191,
+    1px 7px 1px #919191,
+    1px 8px 1px #919191,
+    1px 9px 1px #919191,
+    1px 11px 5px rgba(16, 16, 16, 0.2),
+    1px 25px 35px rgba(16, 16, 16, 0.2),
     1px 7px 15px rgba(16, 16, 16, 0.4);
 }
 
 @media (max-width: 1025px) {
   .td-text {
-    text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191,
-      1px 4px 1px #919191, 1px 5px 1px #919191;
+    text-shadow:
+      1px 1px 1px #919191,
+      1px 2px 1px #919191,
+      1px 3px 1px #919191,
+      1px 4px 1px #919191,
+      1px 5px 1px #919191;
   }
 }
 

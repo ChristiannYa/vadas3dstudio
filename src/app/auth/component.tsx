@@ -20,7 +20,7 @@ export function LoginForm() {
 
   const handleButtonClick = () => {
     if (user?.isLoggedIn) {
-      router.push("/profile");
+      router.push("/account");
     } else {
       setIsOpen(true);
     }
@@ -36,10 +36,10 @@ export function LoginForm() {
         <button
           onClick={handleButtonClick}
           className={`nav__item ${
-            pathname.startsWith("/profile") ? "active" : ""
+            pathname.startsWith("/account") ? "active" : ""
           }`}
         >
-          <p>Profile</p>
+          <p>Account</p>
         </button>
       ) : (
         <button onClick={handleButtonClick} className="nav__item">

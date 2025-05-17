@@ -139,7 +139,7 @@ export default function CheckoutSuccessPage() {
 
         <div className="flex flex-col space-y-4">
           <Link
-            href="/profile"
+            href="/account"
             className="bg-accent-1 hover:bg-accent-1/90 text-white py-2 px-4 rounded transition"
           >
             View Your Orders

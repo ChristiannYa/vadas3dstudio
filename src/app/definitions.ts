@@ -2,11 +2,6 @@ import { authConstants } from "@/lib/constants/auth";
 import { StaticImageData } from "next/image";
 import { ButtonHTMLAttributes, ReactNode, RefObject } from "react";
 
-export interface HomeButtonProps {
-  className?: string;
-  variant?: "header" | "profile";
-}
-
 export interface CurvedTextProps {
   text: string;
   radius: number;

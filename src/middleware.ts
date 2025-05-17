@@ -3,9 +3,9 @@ import { checkAuthentication } from "./utils/auth";
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
-  const protectedRoutes = ["/profile"];
+  const protectedRoutes = ["/account"];
 
-  // Check for nested routes (e.g., /profile/settings, /profile/settings/edit)
+  // Check for nested routes (e.g., /account/settings, /account/settings/edit)
   const isProtectedRoute = protectedRoutes.some(
     (route) => path === route || path.startsWith(`${route}/`)
   );
@@ -28,5 +28,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/profile/:path*"],
+  matcher: ["/account/:path*"],
 };
