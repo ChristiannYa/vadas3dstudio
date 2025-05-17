@@ -74,9 +74,11 @@ const Cart = () => {
             <p className="font-poppins font-[300] text-center">Empty</p>
           ) : (
             <div>
-              {cartItems.map((item) => (
-                <CartItem key={item.id} item={item} />
-              ))}
+              <div className="space-y-2.5">
+                {cartItems.map((item) => (
+                  <CartItem key={item.id} item={item} />
+                ))}
+              </div>
               <hr className="my-2 text-white/20" />
               <div className="px-3">
                 <CartTotal />

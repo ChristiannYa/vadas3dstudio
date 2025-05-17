@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function CheckoutCanceledPage() {
   return (
-    <div className="min-h-full flex items-center justify-center p-4">
+    <div className="container-1600 min-h-full flex items-center justify-center">
       <div className="text-center max-w-md w-full">
         <div className="mb-2">
           <svg
