@@ -105,6 +105,15 @@ export interface OrderItem {
   quantity: number;
 }
 
+export interface OrderWithItems {
+  orderItems: {
+    id: number;
+    title: string;
+    price: number;
+    quantity: number;
+  }[];
+}
+
 export interface OrderConfirmationEmailProps {
   customerName: string;
   orderId: number;
@@ -146,13 +155,4 @@ export interface UsePasswordToggleResult {
 
 export interface CookieAccessor {
   get: (name: string) => { value?: string } | undefined;
-}
-
-export interface OrderWithItems {
-  orderItems: {
-    id: number;
-    title: string;
-    price: number;
-    quantity: number;
-  }[];
 }

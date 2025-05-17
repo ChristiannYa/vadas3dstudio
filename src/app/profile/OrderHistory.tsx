@@ -6,7 +6,18 @@ import { formatDate } from "@/utils/ui";
 import { useOrders } from "@/hooks/user";
 
 export default function OrderHistory() {
-  const { orders } = useOrders();
+  const { orders, loading } = useOrders();
+
+  if (loading) {
+    return (
+      <div className="dark:bg-white/5 rounded-lg animate-pulse h-full p-3 md:p-4">
+        <div className="flex gap-x-2">
+          <p className="leading-none">Loading your orders</p>
+          <span className="inline-block w-4 h-4 border-2 border-accent-1 border-t-amber-200 rounded-full animate-spin"></span>
+        </div>
+      </div>
+    );
+  }
 
   if (orders.length === 0) {
     return (

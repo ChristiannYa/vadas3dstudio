@@ -6,7 +6,58 @@ import {
 } from "@/utils/ui";
 
 export default function ProfileInfoData() {
-  const { user } = useUser();
+  const { user, loading } = useUser();
+
+  if (loading) {
+    return (
+      <>
+        {/* Title skeleton */}
+        <p className="bg-gray-200 dark:bg-gray-700 text-2xl text-transparent leading-[21px] rounded-md animate-pulse pointer-events-none w-fit mb-3">
+          Usernamess Account information
+        </p>
+
+        <div className="text-transparent leading-none w-fit mb-4 space-y-3">
+          {/* First name */}
+          <div className="flex">
+            <p className="bg-gray-200 dark:bg-gray-700 rounded-l-md animate-pulse">
+              Usernameinformation
+            </p>
+            <p className="bg-gray-200 dark:bg-gray-700 rounded-r-md animate-pulse">
+              Usernamename
+            </p>
+          </div>
+          {/* Last name */}
+          <div className="flex">
+            <p className="bg-gray-200 dark:bg-gray-700 rounded-l-md animate-pulse">
+              Usernameinformation
+            </p>
+            <p className="bg-gray-200 dark:bg-gray-700 rounded-r-md animate-pulse">
+              Usernamename
+            </p>
+          </div>
+          {/* Email */}
+          <div className="flex">
+            <p className="bg-gray-200 dark:bg-gray-700 rounded-l-md animate-pulse">
+              Usernameinformation
+            </p>
+            <p className="bg-gray-200 dark:bg-gray-700 rounded-r-md animate-pulse">
+              Usernamename
+            </p>
+          </div>
+          {/* Created at */}
+          <div className="flex">
+            <p className="bg-gray-200 dark:bg-gray-700 rounded-l-md animate-pulse">
+              Usernameinformation
+            </p>
+            <p className="bg-gray-200 dark:bg-gray-700 rounded-r-md animate-pulse">
+              Usernamename
+            </p>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   const { name, last_name, email, created_at } = user?.user || {};
 
   const profileFields = [
