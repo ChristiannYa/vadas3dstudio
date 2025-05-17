@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useCheckout } from "@/hooks/checkout";
 import { useAppDispatch, useAppSelector, useCartTab } from "@/hooks/redux";
 import {
@@ -17,6 +17,7 @@ const Cart = () => {
   const { handleCheckout, isLoading, error, clearError } = useCheckout();
 
   const dispatch = useAppDispatch();
+  const cartRef = useRef<HTMLDivElement | null>(null);
   const cartItems = useAppSelector(selectCartItems);
   const statusTab = useAppSelector(selectCartTabStatus);
   const { handleCartTabStatus } = useCartTab();
@@ -32,9 +33,27 @@ const Cart = () => {
     }
   }, [error, clearError]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        statusTab &&
+        cartRef.current &&
+        !cartRef.current.contains(event.target as Node)
+      ) {
+        handleCartTabStatus();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [handleCartTabStatus, statusTab]);
+
   return (
     <>
       <div
+        ref={cartRef}
         className={`bg-black-fg/10 dark:bg-white/5 backdrop-blur-xl transform transition-transform duration-500 w-80 md:w-96 h-full p-2 grid grid-rows-[60px_1fr_40px] fixed top-0 right-0 ${
           statusTab === false ? "translate-x-full" : ""
         }`}

@@ -17,19 +17,20 @@ export function LoginForm() {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const toggleFlip = () => {
+  const toggleFormFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
-  const handleButtonClick = () => {
+  const handleUserBtnClick = () => {
     if (user?.isLoggedIn) {
+      setIsDropdownActive(false);
       router.push("/account");
     } else {
       setIsOpen(true);
     }
   };
 
-  const toggleDropdown = () => {
+  const toggleDropdownMenu = () => {
     setIsDropdownActive(!isDropdownActive);
   };
 
@@ -61,7 +62,7 @@ export function LoginForm() {
           className={`dropdown ${isDropdownActive ? "active" : ""}`}
         >
           <div
-            onClick={toggleDropdown}
+            onClick={toggleDropdownMenu}
             className={`nav__item dropbtn ${
               pathname.startsWith("/account") ? "active" : ""
             }`}
@@ -70,7 +71,7 @@ export function LoginForm() {
           </div>
           <div className="dropdown-content font-dm-sans min-w-[150px] pt-1 lg:pt-3.5 flex flex-col absolute right-0 max-md:-left-1/2 z-[1]">
             <button
-              onClick={handleButtonClick}
+              onClick={handleUserBtnClick}
               className="bg-accent-1 hover:bg-accent-1-hover text-black-fg cursor-pointer w-full py-2"
             >
               <p>Orders</p>
@@ -79,7 +80,7 @@ export function LoginForm() {
           </div>
         </div>
       ) : (
-        <button onClick={handleButtonClick} className="nav__item">
+        <button onClick={handleUserBtnClick} className="nav__item">
           <p>Login</p>
         </button>
       )}
@@ -102,13 +103,13 @@ export function LoginForm() {
             <div className="card__wrapper" onClick={(e) => e.stopPropagation()}>
               {/* Front of card */}
               <LogInFace
-                toggleFlip={toggleFlip}
+                toggleFlip={toggleFormFlip}
                 closeModal={() => setIsOpen(false)}
                 isFlipped={isFlipped}
               />
               {/* Back of card */}
               <SignupFace
-                toggleFlip={toggleFlip}
+                toggleFlip={toggleFormFlip}
                 closeModal={() => setIsOpen(false)}
                 isFlipped={isFlipped}
               />
