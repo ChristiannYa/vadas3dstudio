@@ -43,27 +43,29 @@ export default function LogInForm() {
         )}
       </div>
       {/* password */}
-      <div className="form__field relative">
+      <div className="form__field">
         <label htmlFor="login-password" className="form__label sr-only">
           Password
         </label>
-        <input
-          ref={passwordInputRef}
-          id="login-password"
-          name="password"
-          type={showPassword ? "text" : "password"}
-          placeholder="Password"
-          className="form__input pr-10"
-          autoComplete="current-password"
-        />
-        <button
-          type="button"
-          onMouseDown={togglePasswordVisibility}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white focus:outline-none hover:cursor-pointer"
-          aria-label={showPassword ? "Hide password" : "Show password"}
-        >
-          <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-        </button>
+        <div className="relative">
+          <input
+            ref={passwordInputRef}
+            id="login-password"
+            name="password"
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            className="form__input pr-10"
+            autoComplete="current-password"
+          />
+          <button
+            type="button"
+            onMouseDown={togglePasswordVisibility}
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white focus:outline-none hover:cursor-pointer"
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+          </button>
+        </div>
         {state?.errors?.password && (
           <p className="font-poppins text-red-500 text-xs md:text-sm normal-case">
             {state.errors.password}
