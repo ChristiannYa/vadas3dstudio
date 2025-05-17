@@ -17,16 +17,17 @@ export function useUser() {
       const fetchUser = async () => {
         try {
           const response = await fetch("/api/user");
-          if (!response.ok) throw new Error("Failed to fetch user data");
+
+          if (!response.ok) {
+            console.error("Failed to fetch user data:", response.status);
+            throw new Error("Failed to fetch user data");
+          }
+
           const data = await response.json();
           setUserData(data);
         } catch (err) {
           console.error("Error fetching user:", err);
-          setError(
-            err instanceof Error
-              ? err.message
-              : "An error occurred while fetching user data"
-          );
+          setError("An error occurred while fetching user data");
         } finally {
           setLoading(false);
         }
@@ -83,7 +84,8 @@ export function usePasswordToggle(): UsePasswordToggleResult {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const togglePasswordVisibility = (e: React.MouseEvent) => {
-    e.preventDefault(); // Crucial to prevent focus loss on mobile
+    // Crucial to prevent focus loss on mobile
+    e.preventDefault();
 
     // Store current selection
     const selectionStart = inputRef.current?.selectionStart;

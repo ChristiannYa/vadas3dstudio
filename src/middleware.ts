@@ -3,9 +3,6 @@ import { checkAuthentication } from "./utils/auth";
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
-  console.log(`Middleware processing path: ${path}`);
-
-  // Protected routes that require authentication
   const protectedRoutes = ["/profile"];
 
   // Check for nested routes (e.g., /profile/settings, /profile/settings/edit)
@@ -13,27 +10,18 @@ export async function middleware(request: NextRequest) {
     (route) => path === route || path.startsWith(`${route}/`)
   );
 
-  console.log(`Is protected route: ${isProtectedRoute}`);
-
-  // Only check authentication for protected routes
   if (isProtectedRoute) {
-    console.log("Checking authentication in middleware");
-
-    // Pass request cookies to the authentication function and skip database check
+    // Pass request cookies to the authentication function and skip
+    // database check
     const { isAuthenticated } = await checkAuthentication(
       request.cookies,
       true
     );
 
-    console.log(`Authentication result: ${isAuthenticated}`);
-
     // Redirect unauthenticated users
     if (!isAuthenticated) {
-      console.log("User not authenticated, redirecting to home page");
       return NextResponse.redirect(new URL("/", request.url));
     }
-
-    console.log("User authenticated, allowing access to protected route");
   }
 
   return NextResponse.next();

@@ -11,7 +11,6 @@ export type AuthResult = {
   authType?: string;
 };
 
-// Define a minimal interface for cookie access
 interface CookieAccessor {
   get: (name: string) => { value?: string } | undefined;
 }
@@ -29,40 +28,29 @@ export async function checkAuthentication(
 ): Promise<AuthResult> {
   let jwtSessionCookie;
 
-  // Handle cookies differently based on context (middleware vs API route)
+  // Handle cookies differently based on context
+  // (middleware vs API route)
   if (requestCookies) {
     // For middleware
     jwtSessionCookie = requestCookies.get(
       authConstants.SESSION_COOKIE_NAME
     )?.value;
-    console.log(
-      "Middleware cookie check:",
-      jwtSessionCookie ? "Found cookie" : "No cookie"
-    );
   } else {
     // For API routes
     const cookieStore = await cookies();
     jwtSessionCookie = cookieStore.get(
       authConstants.SESSION_COOKIE_NAME
     )?.value;
-    console.log(
-      "API route cookie check:",
-      jwtSessionCookie ? "Found cookie" : "No cookie"
-    );
   }
 
   // First try the custom session
   if (jwtSessionCookie) {
     try {
-      console.log("Attempting to decrypt custom session");
       const session = await decrypt(jwtSessionCookie);
-      console.log(
-        "Session after decrypt:",
-        session ? JSON.stringify(session) : "No session"
-      );
 
       if (session?.userId) {
-        // For middleware, just check if session exists without database validation
+        // For middleware, just check if session exists without
+        // database validation
         if (skipDatabaseCheck) {
           return {
             isAuthenticated: true,
@@ -75,11 +63,6 @@ export async function checkAuthentication(
         const user = await prisma.user.findUnique({
           where: { id: session.userId },
         });
-
-        console.log(
-          "User from custom session:",
-          user ? `Found (ID: ${user.id})` : "Not found"
-        );
 
         if (user) {
           return {
@@ -97,12 +80,7 @@ export async function checkAuthentication(
 
   // If custom session failed, try NextAuth
   try {
-    console.log("Attempting NextAuth session check");
     const session = await auth();
-    console.log(
-      "NextAuth session:",
-      session ? `Found (Email: ${session.user?.email})` : "No session"
-    );
 
     if (session?.user?.email) {
       // For middleware, just check if session exists without database validation
@@ -119,11 +97,6 @@ export async function checkAuthentication(
         where: { email: session.user.email },
       });
 
-      console.log(
-        "User from NextAuth:",
-        user ? `Found (ID: ${user.id})` : "Not found"
-      );
-
       if (user) {
         return {
           isAuthenticated: true,
@@ -138,6 +111,5 @@ export async function checkAuthentication(
   }
 
   // If we get here, neither auth method worked
-  console.log("Authentication failed - returning not authenticated");
   return { isAuthenticated: false };
 }
