@@ -72,6 +72,45 @@ section h1 {
   @apply text-accent-1;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition:
+    opacity 0.1s ease,
+    transform 0.5s ease,
+    visibility 0.1s;
+}
+
+@media (hover: hover) {
+  .dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown:hover .dropbtn {
+    color: var(--color-white-fg);
+  }
+}
+
+@media (hover: none) {
+  .dropdown.active .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown.active .dropbtn {
+    color: var(--color-white-fg);
+  }
+}
+
 .section-title {
   @apply font-dream-avenue font-[500] text-6xl lg:text-8xl;
 }

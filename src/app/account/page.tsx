@@ -1,6 +1,5 @@
 "use client";
 
-import LogoutButton from "./LogoutButton";
 import AccountInfoData from "./AccountInfoData";
 import OrderHistory from "./OrderHistory";
 
@@ -11,9 +10,6 @@ export default function Account() {
         <div className="h-full flex flex-col gap-4">
           <AccountInfoData />
           <OrderHistory />
-          <div className="flex justify-end items-end">
-            <LogoutButton />
-          </div>
         </div>
       </div>
     </div>

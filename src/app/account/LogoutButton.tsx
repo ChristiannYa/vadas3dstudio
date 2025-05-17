@@ -2,7 +2,7 @@
 
 import { useLogOut } from "@/hooks/auth";
 
-const LogoutButton = () => {
+const LogoutButton = ({ className }: { className?: string }) => {
   const { logOut, isLoggingOut, error } = useLogOut();
 
   return (
@@ -10,7 +10,7 @@ const LogoutButton = () => {
       <button
         onClick={() => logOut()}
         disabled={isLoggingOut}
-        className="bg-red-500 hover:bg-red-600 hover:cursor-pointer text-white text-sm rounded-sm w-fit h-fit px-2 py-1"
+        className={`${className}`}
       >
         {isLoggingOut ? "Logging out..." : "Log out"}
       </button>
