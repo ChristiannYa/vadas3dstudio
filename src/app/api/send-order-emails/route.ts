@@ -1,3 +1,4 @@
+/* Uncomment the code when ready to enable checkout
 import { OrderConfirmationEmail } from "@/app/components/emails/OrderConfirmationEmail";
 import { OwnerNotificationEmail } from "@/app/components/emails/OwnerNotificationEmail";
 import { Resend } from "resend";
@@ -87,5 +88,28 @@ export async function POST(request: Request) {
       { error: "Failed to send order emails" },
       { status: 500 }
     );
+  }
+}
+*/
+
+// Remove when ready to enable checkout
+import { NextResponse } from "next/server";
+
+/**
+ * Temporary placeholder for order email sending
+ * Returns a message that email sending is not available
+ */
+export async function POST() {
+  try {
+    // Return a message that email sending is not available
+    return NextResponse.json(
+      {
+        message: "Order email sending is temporarily disabled.",
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   }
 }
