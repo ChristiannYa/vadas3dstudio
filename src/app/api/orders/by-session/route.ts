@@ -1,3 +1,5 @@
+// Uncomment the code when ready to enable checkout
+/*
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { checkAuthentication } from "@/utils/auth";
@@ -59,6 +61,44 @@ export async function GET(request: Request) {
     console.error("Error retrieving order by session ID:", error);
     return NextResponse.json(
       { error: "Error retrieving order details" },
+      { status: 500 }
+    );
+  }
+}
+*/
+
+// Remove when ready to enable checkout
+import { NextResponse } from "next/server";
+import { checkAuthentication } from "@/utils/auth";
+
+/**
+ * Temporary placeholder for order retrieval by session
+ * Returns a message that order retrieval is not available
+ */
+export async function GET() {
+  try {
+    // Check if user is authenticated
+    const { isAuthenticated, userEmail } = await checkAuthentication();
+    if (!isAuthenticated || !userEmail) {
+      return NextResponse.json(
+        { error: "You must be logged in to view orders" },
+        { status: 401 }
+      );
+    }
+
+    // Return a message that order retrieval is not available
+    return NextResponse.json(
+      {
+        error:
+          "Order retrieval is temporarily unavailable. Please contact vadas3dstudio@gmail.com for order inquiries.",
+      },
+      { status: 503 } // Service Unavailable
+    );
+  } catch (error) {
+    const err = error as Error;
+    console.error("Error retrieving order:", err);
+    return NextResponse.json(
+      { error: "Failed to retrieve order" },
       { status: 500 }
     );
   }
