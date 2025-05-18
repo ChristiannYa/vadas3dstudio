@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { Suspense } from "react";
 
-export default function CheckoutCanceledPage() {
+function CheckoutCanceledContent() {
   return (
     <div className="container-1600 min-h-full flex items-center justify-center">
       <div className="text-center max-w-md w-full">
@@ -43,5 +44,13 @@ export default function CheckoutCanceledPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CheckoutCanceledPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CheckoutCanceledContent />
+    </Suspense>
   );
 }
