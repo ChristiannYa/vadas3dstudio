@@ -15,12 +15,15 @@ export function useCheckout(onAuthError?: () => void) {
     async (items: CartItem[]) => {
       if (items.length === 0) return;
 
-      // Custom temporary message
-      setError("Please contact vadas3dstudio for further assistance.");
-      onAuthError?.(); // Remove this call when ready to enable checkout
+      // Loading brifly to show processing state
+      setIsLoading(true);
 
-      // No need to set loading state since we're not making any API calls
-      // setIsLoading(true);
+      // Custom message after a short delay to simulate processing
+      setTimeout(() => {
+        setError("Please contact vadas3dstudio for further assistance.");
+        onAuthError?.(); // Remove this call when ready to enable checkout
+        setIsLoading(false);
+      }, 2000);
 
       // Uncomment the code below when it's ready to enable checkout
       /*
