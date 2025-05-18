@@ -1,3 +1,5 @@
+// Uncomment the code when ready to enable the webhook
+/*
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { Stripe } from "stripe";
@@ -6,7 +8,9 @@ import {
   handlePaymentIntentSucceeded,
   handlePaymentIntentFailed,
 } from "@/lib/stripe";
+ */
 
+/*
 // Initialize Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
@@ -80,6 +84,27 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
+}
+
+// This disables the default body parser
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+*/
+
+// Remove when ready to enable webhooks
+import { NextResponse } from "next/server";
+
+/**
+ * Temporary placeholder for webhook handler
+ * Returns a message that webhooks are not being processed
+ */
+export async function POST() {
+  return NextResponse.json({
+    message: "Webhook processing is temporarily disabled.",
+  });
 }
 
 // This disables the default body parser

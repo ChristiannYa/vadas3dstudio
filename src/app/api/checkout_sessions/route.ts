@@ -1,16 +1,24 @@
+// Uncomment the code below when ready to enable checkout
+
+/*
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { pricingGuideList } from "@/lib/constants/pricing";
 import { CartItem, StripeCheckoutMetadata } from "@/app/definitions";
 import { checkAuthentication } from "@/utils/auth";
+*/
 
+/*
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+*/
 
 /**
  * Creates a checkout session and return the session ID
  * which is used to initiate the redirection to Stripe checkout
  * @returns {string} session ID
  */
+
+/*
 export async function POST(request: Request): Promise<NextResponse> {
   try {
     // Get cart items from request
@@ -82,6 +90,45 @@ export async function POST(request: Request): Promise<NextResponse> {
     console.error("Checkout error:", err);
     return NextResponse.json(
       { error: err.message || "An error occurred during checkout" },
+      { status: 500 }
+    );
+  }
+}
+*/
+
+// Remove when ready to enable checkout
+import { NextResponse } from "next/server";
+import { checkAuthentication } from "@/utils/auth";
+
+/**
+ * Temporary placeholder for checkout sessions route
+ * Returns a message that online orders are not available
+ */
+export async function POST(): Promise<NextResponse> {
+  try {
+    const { isAuthenticated, userEmail } = await checkAuthentication();
+
+    // The `!userEmail` is just a defensive programming check
+    if (!isAuthenticated || !userEmail) {
+      return NextResponse.json(
+        { error: "You must be logged in to checkout" },
+        { status: 401 }
+      );
+    }
+
+    // Return a message that online orders are not available
+    return NextResponse.json(
+      {
+        error:
+          "Online orders are currently unavailable. Please contact vadas3dstudio@gmail.com for purchasing inquiries.",
+      },
+      { status: 503 } // Service Unavailable
+    );
+  } catch (error) {
+    const err = error as Error;
+    console.error("Checkout error:", err);
+    return NextResponse.json(
+      { error: "An error occurred during checkout" },
       { status: 500 }
     );
   }
