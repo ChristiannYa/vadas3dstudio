@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import getStripe from "@/utils/stripe";
+// import getStripe from "@/utils/stripe";
 import { CartItem } from "@/app/definitions";
 
 /**
@@ -15,6 +15,15 @@ export function useCheckout(onAuthError?: () => void) {
     async (items: CartItem[]) => {
       if (items.length === 0) return;
 
+      // Custom temporary message
+      setError("Please contact vadas3dstudio for further assistance.");
+      onAuthError?.(); // Remove this call when ready to enable checkout
+
+      // No need to set loading state since we're not making any API calls
+      // setIsLoading(true);
+
+      // Uncomment the code below when it's ready to enable checkout
+      /*
       setIsLoading(true);
       setError(null);
 
@@ -68,7 +77,9 @@ export function useCheckout(onAuthError?: () => void) {
       } finally {
         setIsLoading(false);
       }
+      */
     },
+    // when uncommenting the code
     [onAuthError]
   );
 
