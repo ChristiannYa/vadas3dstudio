@@ -3,8 +3,8 @@
 import prisma from "@/lib/prisma";
 import bcrypt from "bcrypt";
 import { z } from "zod";
-import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
+import { createSession } from "@/lib/session";
 import { authConstants } from "@/lib/constants/auth";
 
 const registerSchema = z
