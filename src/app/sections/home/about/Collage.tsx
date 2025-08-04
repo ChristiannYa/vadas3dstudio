@@ -1,5 +1,5 @@
 import Image from "next/image";
-import * as collageImages from "@/app/assets/images/collage/index";
+import { collageImages } from "@/app/assets/images/collage/index";
 
 /**
  * @note - The width of the Image component works as follows:
@@ -15,7 +15,7 @@ export default function Collage() {
       {images.map((image, index) => (
         <div key={index}>
           <Image
-            src={image}
+            src={image.image}
             alt={`Collage ${index + 1}`}
             className="block"
             width={0}

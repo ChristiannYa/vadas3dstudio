@@ -5,6 +5,7 @@ import kitchen1 from "./kitchen-1.avif";
 import kitchen2 from "./kitchen-2.avif";
 import kitchen3 from "./kitchen-3.avif";
 import restroom1 from "./restroom-1.avif";
+import willowDuplex from "./willow-duplex.avif";
 
 export {
   backyard1,
@@ -14,4 +15,5 @@ export {
   kitchen2,
   kitchen3,
   restroom1,
+  willowDuplex,
 };
