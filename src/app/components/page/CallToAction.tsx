@@ -23,7 +23,7 @@ export default function CallToAction() {
               className="bg-accent-1 before:bg-accent-1-hover rounded-full mt-3"
             >
               <span className="font-poppins text-accent-2">
-                Let&apos;s Build Your Vision in 3D
+                Get your quote now
               </span>
             </Button>
           </a>

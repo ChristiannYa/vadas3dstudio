@@ -11,7 +11,7 @@ export default function GetInTouchSection() {
               key={contact.id}
               className="flex flex-col items-center justify-center gap-y-2"
             >
-              <div className="get-in-touch__btn flex items-center gap-x-2">
+              <div className="get-in-touch__btn flex flex-col items-center justify-center gap-x-2 gap-y-1">
                 <div className="bg-black dark:bg-white rounded-full p-1.5 inline-block">
                   <contact.icon className="w-3 md:w-5 h-3 md:h-5" />
                 </div>

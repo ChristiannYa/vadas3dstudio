@@ -14,7 +14,7 @@ export default function Footer() {
               ©Copyright {startYear}{" "}
               {currentYear > startYear && ` - ${currentYear}`}
             </p>
-            <p className="paragraph-lg">Vedas 3D Studio</p>
+            <p className="paragraph-lg">Vadas 3D Studio</p>
             <p className="paragraph-lg">All Rights Reserved</p>
           </div>
           <a href={externalLink} target="_blank" rel="noopener noreferrer">
