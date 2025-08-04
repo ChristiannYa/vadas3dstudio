@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: "3D rendering studio based in Houston, TX",
     images: [
       {
-        url: "https://vadas3dstudio.com/og-image.jpg",
+        url: "https://vadas3dstudio.com/opengraph-image.jpg",
         width: 1200,
         height: 630,
       },
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vadas 3D Studio",
     description: "3D rendering studio based in Houston, TX",
-    images: ["https://vadas3dstudio.com/og-image.jpg"],
+    images: ["https://vadas3dstudio.com/opengraph-image.jpg"],
   },
   other: {
     "twitter:domain": "vadas3dstudio.com",
