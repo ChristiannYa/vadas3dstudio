@@ -56,7 +56,13 @@ const AutomaticCarousel: FC<AutomaticCarouselProps> = ({
           src={imageItem.image}
           alt={`Carousel image ${imageItem.id}`}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 767px) 94vw, (max-width: 1023px) calc(94vw - 576px - 1.5rem), (max-width: 1600px) calc(94vw - 768px - 1.5rem), 808px"
+          /*
+            - Mobile: 94vw ("full" container width)
+            - Tablet: 94vw - 576px - 1.5rem (container minus CallToAction width minus gap)
+            - Desktop: 94vw - 768px - 1.5rem (container minus larger CallToAction minus gap)
+            - Large screens: 808px (fixed size when container maxes out)
+          */
           style={{
             objectFit: "cover",
             opacity: index === currentIndex ? 1 : 0,
@@ -64,6 +70,7 @@ const AutomaticCarousel: FC<AutomaticCarouselProps> = ({
             zIndex: index === currentIndex ? 1 : 0,
           }}
           priority={index === 0} // Priority for first image only
+          quality={100}
         />
       ))}
     </div>
