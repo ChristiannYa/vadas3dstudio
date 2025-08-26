@@ -6,6 +6,7 @@ import {
   Montserrat_Alternates,
   Kanit,
   Fira_Code,
+  Syncopate,
 } from "next/font/google";
 
 /*
@@ -56,6 +57,13 @@ export const firaCode = Fira_Code({
   subsets: ["latin"],
   variable: "--font-fira-code",
   weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+export const syncopate = Syncopate({
+  subsets: ["latin"],
+  variable: "--font-syncopate",
+  weight: ["400", "700"],
   display: "swap",
 });
 

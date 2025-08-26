@@ -44,7 +44,7 @@ export interface Service {
 }
 
 export interface Industries {
-  id: number;
+  id: string;
   industry: string;
   description: string;
 }

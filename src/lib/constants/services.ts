@@ -45,16 +45,16 @@ export const servicesList: Service[] = [
     items: [
       {
         id: 1,
-        title: "3D Product Modeling",
-        description:
-          "High-quality digital models from sketches, CAD files, or references. Delivered in your preferred formats.",
-      },
-      {
-        id: 2,
         title: "Product Rendering",
         description:
           "Showcase your product in the best light with cinematic-quality lighting and camera angles.",
         details: ["Includes: Studio scenes, lifestyle mockups, close-ups"],
+      },
+      {
+        id: 2,
+        title: "3D Product Modeling",
+        description:
+          "High-quality digital models from sketches, CAD files, or references. Delivered in your preferred formats.",
       },
       {
         id: 3,
@@ -69,15 +69,45 @@ export const servicesList: Service[] = [
 
 export const IndustriesServed: Industries[] = [
   {
-    id: 1,
+    id: "architects",
+    industry: "Architects",
+    description:
+      "Visual solutions for architectural projects, including marketing materials and client presentations.",
+  },
+  {
+    id: "real_estate",
     industry: "Real Estate",
     description:
       "Complete digital marketing packages: renders, floor plans, and virtual tours. Furniture & Decor",
   },
   {
-    id: 2,
+    id: "home_developers",
+    industry: "Home Developers",
+    description:
+      "Visual solutions for residential projects, including marketing materials and client presentations.",
+  },
+  {
+    id: "interior_designers",
     industry: "Interior Designers",
     description:
       "Rendered sets, configuration visuals, exploded views for manuals or marketing.",
+  },
+  {
+    id: "product_designers",
+    industry: "Product Designers",
+    description:
+      "From concept to photorealistic renders. Perfect for pitches, crowdfunding, and marketing.",
+  },
+  {
+    id: "commercial_developers",
+    industry: "Commercial Developers",
+    description:
+      "Tailored visual solutions for commercial projects, including marketing materials and client presentations.",
+  },
+  {
+    id: "contractors_construction_companies",
+    industry: "Contractors & Construction Companies",
+    description:
+      "Visual solutions for construction projects, including site plans and progress visuals.",
   },
 ];

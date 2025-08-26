@@ -8,6 +8,7 @@ import {
   dreamAvenue,
   kanit,
   firaCode,
+  syncopate,
 } from "./fonts";
 import "./globals.css";
 import Layout from "./components/layout/Layout";
@@ -55,7 +56,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${raleway.variable} ${poppins.variable} ${dmSans.variable} ${montserratAlternates.variable} ${dreamAvenue.variable} ${kanit.variable} ${firaCode.variable} antialiased`}
+        className={`
+          ${raleway.variable} ${poppins.variable} ${dmSans.variable} 
+          ${montserratAlternates.variable} ${dreamAvenue.variable} 
+          ${kanit.variable} ${firaCode.variable} ${syncopate.variable} antialiased
+        `}
       >
         <AuthProvider>
           <StoreProvider>

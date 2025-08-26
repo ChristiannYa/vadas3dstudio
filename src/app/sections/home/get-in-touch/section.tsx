@@ -4,7 +4,7 @@ export default function GetInTouchSection() {
   return (
     <section className="container-1000">
       <div className="flex flex-col justify-center items-center">
-        <h1 className="section-title__mb text-center">Get in Touch</h1>
+        <h1 className="section-title__mb text-center">Contact</h1>
         <div className="get-in-touch__banners flex flex-col gap-y-5">
           {contactInfo.map((contact) => (
             <div

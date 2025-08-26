@@ -9,7 +9,7 @@ export default function List() {
           className="w-full md:w-[calc(50%-16px)] space-y-2"
         >
           <div>
-            <h2 className="font-montserrat-alternates font-[400] dark:font-[300] text-2xl lg:text-3xl text-start uppercase">
+            <h2 className="font-syncopate font-[400] dark:font-[300] text-2xl lg:text-3xl text-start">
               {service.category.map((word, i) =>
                 word.highlight ? (
                   <span key={i} className="text-accent-1">

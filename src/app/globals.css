@@ -41,6 +41,7 @@
   --font-dream-avenue: var(--font-dream-avenue);
   --font-kanit: var(--font-kanit);
   --font-fira-code: var(--font-fira-code);
+  --font-syncopate: var(--font-syncopate);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -270,11 +271,9 @@ form {
   animation: shine 3s infinite linear;
   animation-fill-mode: forwards;
   -webkit-text-size-adjust: none;
-  font-weight: 600;
-  font-size: 2.9rem;
+  font-size: 2.6rem;
   text-decoration: none;
   white-space: nowrap;
-  font-family: var(--font-dream-avenue);
 }
 
 .td-text {

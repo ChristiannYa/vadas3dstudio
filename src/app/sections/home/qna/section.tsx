@@ -13,8 +13,8 @@ export default function QuestionsAndAnswers() {
   };
 
   return (
-    <section className="container-1600">
-      <h1 className="section-title__mb">FAQ&apos;s</h1>
+    <section className="container-1000">
+      <h1 className="section-title__mb text-center">FAQ&apos;s</h1>
       <ul className="space-y-4">
         {qnaList.map((item, index) => {
           return (
