@@ -5,10 +5,10 @@ export default function CallToAction() {
 
   return (
     <div className="w-full sm:w-xl lg:w-3xl">
-      <h3 className="font-syncopate font-[500] text-accent-1 text-2xl lg:text-3xl">
+      <h3 className="font-syncopate font-[500] text-accent-1 text-xl lg:text-2xl">
         Have a unique vision?
       </h3>
-      <p className="font-syncopate font-[400] text-base lg:text-lg">
+      <p className="font-syncopate font-[400] text-base">
         We&apos;d love to hear what you have in mind. Whether it&apos;s a
         specific concept or just a rough idea, this short form helps us
         understand your goals, timeline, and budget. Once submitted, we&apos;ll

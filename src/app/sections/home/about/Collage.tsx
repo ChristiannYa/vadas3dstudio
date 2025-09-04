@@ -1,5 +1,9 @@
-import Image from "next/image";
-import { collageImages } from "@/app/assets/images/collage/index";
+import {
+  duAgGroup,
+  kitchenSketchupGroup,
+  kitchenSketchup2Group,
+} from "@/app/assets/effects";
+import AutomaticCarousel from "@/app/shop/AutomaticCarousel";
 
 /**
  * @note - The width of the Image component works as follows:
@@ -8,27 +12,23 @@ import { collageImages } from "@/app/assets/images/collage/index";
  *   width on screens smaller than 768px, and 300px on larger screens.
  */
 export default function Collage() {
-  const images = Object.values(collageImages);
-
   return (
-    <div className="list columns-[300px] gap-2">
-      {images.map((image, index) => (
-        <div key={index}>
-          <Image
-            src={image.image}
-            alt={`Collage ${index + 1}`}
-            className="block"
-            width={0}
-            height={0}
-            sizes="(max-width: 40rem) 100vw, 300px"
-            style={{
-              width: "100%",
-              height: "auto",
-              marginBottom: "0.5rem",
-            }}
-          />
-        </div>
-      ))}
+    <div className="list columns-[350px] gap-2">
+      <AutomaticCarousel
+        images={kitchenSketchupGroup}
+        intervalSeconds={2}
+        className="mb-2 w-full aspect-[7/4]"
+      />
+      <AutomaticCarousel
+        images={kitchenSketchup2Group}
+        intervalSeconds={2}
+        className="mb-2 w-full aspect-[7/4]"
+      />
+      <AutomaticCarousel
+        images={duAgGroup}
+        intervalSeconds={2}
+        className="mb-2 w-full aspect-[7/4]"
+      />
     </div>
   );
 }
