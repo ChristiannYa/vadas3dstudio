@@ -15,6 +15,18 @@ export const portfolioItems: PortfolioItem[] = [
     image: porfolioImages.duplexAugust,
   },
   {
+    id: "minimalist_kitchen_1",
+    title: "Minimalist Kitchen",
+    description: "Honey stained cabinets and smooth counters",
+    image: porfolioImages.miniKitchen1,
+  },
+  // {
+  //   id: "minimalist_kitchen_2",
+  //   title: "Another Minimalist Kitchen",
+  //   description: "",
+  //   image: porfolioImages.miniKitchen2,
+  // },
+  {
     id: "elegant_backyard",
     title: "Elegant backyard",
     description: "Showcasing a large modern pool",

@@ -8,7 +8,7 @@ export default function PortfolioSection() {
 
       <div className="flex justify-center flex-wrap gap-3 ">
         {portfolioItems.map((item, i) => (
-          <div key={item.id} className="space-y-2">
+          <div key={item.id} className="space-y-2 max-w-[25rem]">
             <Image
               src={item.image}
               alt={item.title}
