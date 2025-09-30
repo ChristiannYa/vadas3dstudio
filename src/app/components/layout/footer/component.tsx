@@ -1,6 +1,5 @@
 export default function Footer() {
-  const externalLink = "https://christianwebdev.com/";
-
+  const externalLink = "https://christianweb.dev";
   const startYear = 2024;
   const currentYear = new Date().getFullYear();
 
@@ -19,7 +18,7 @@ export default function Footer() {
           </div>
           <a href={externalLink} target="_blank" rel="noopener noreferrer">
             <p className="text-center opacity-80 hover:text-accent-1 hover:opacity-100">
-              Designed by Chriswebdev
+              Designed by Christianwebdev
             </p>
           </a>
         </div>
