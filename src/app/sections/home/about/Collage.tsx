@@ -1,5 +1,4 @@
 import {
-  duAgGroup,
   kitchenSketchupGroup,
   kitchenSketchup2Group,
 } from "@/app/assets/effects";
@@ -21,11 +20,6 @@ export default function Collage() {
       />
       <AutomaticCarousel
         images={kitchenSketchup2Group}
-        intervalSeconds={2}
-        className="mb-2 w-full aspect-[7/4]"
-      />
-      <AutomaticCarousel
-        images={duAgGroup}
         intervalSeconds={2}
         className="mb-2 w-full aspect-[7/4]"
       />

@@ -7,7 +7,7 @@ import { tools } from "@/lib/constants/skills";
  */
 export default function Tools() {
   return (
-    <ul className="font-poppins flex flex-col gap-y-5.5 mr-2">
+    <ul className="font-poppins flex  gap-x-5.5 mr-2">
       {tools.map((tool) => (
         <li key={tool.id} className="tool w-fit relative">
           <tool.icon className="w-5 h-5 lg:w-6 lg:h-6" />

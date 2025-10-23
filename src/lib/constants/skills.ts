@@ -11,9 +11,8 @@ export const skills = [
   { id: 3, name: "Rendering" },
   { id: 4, name: "3D Modeling" },
   { id: 5, name: "Color Grading" },
-  { id: 6, name: "Color Correction" },
-  { id: 7, name: "Video Production" },
-  { id: 8, name: "Architectural Visualization" },
+  { id: 6, name: "Video Production" },
+  { id: 7, name: "Architectural Visualization" },
 ];
 
 export const tools = [

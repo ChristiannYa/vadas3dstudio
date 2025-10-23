@@ -271,7 +271,6 @@ form {
   animation: shine 3s infinite linear;
   animation-fill-mode: forwards;
   -webkit-text-size-adjust: none;
-  font-size: 2.6rem;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -318,6 +317,11 @@ form {
 .container-1000 {
   margin-inline: auto;
   width: min(94%, 1000px);
+}
+
+.container-600 {
+  margin-inline: auto;
+  width: min(94%, 600px);
 }
 
 img,
